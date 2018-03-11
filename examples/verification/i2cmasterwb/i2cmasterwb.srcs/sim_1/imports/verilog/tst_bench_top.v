@@ -203,8 +203,8 @@ module tst_bench_top();
 	         $display("INFO: Signal dump enabled ...\n\n");
 	      `endif
 
-	      force i2c_slave.debug = 1'b1; // enable i2c_slave debug information
-//	      force i2c_slave.debug = 1'b0; // disable i2c_slave debug information
+//	      force i2c_slave.debug = 1'b1; // enable i2c_slave debug information
+	      force i2c_slave.debug = 1'b0; // disable i2c_slave debug information
 
 	      $display("\nstatus: %t Testbench started\n\n", $time);
 
@@ -278,13 +278,14 @@ while (scl) #1;
 force scl= 1'b0;
 #100000;
 release scl;
-
+          
 	      // check tip bit
 	      u0.wb_read(1, SR, q);
 	      while(q[1])
 	           u0.wb_read(1, SR, q); // poll it until it is zero
 	      $display("status: %t tip==0", $time);
 
+          /*
 	      // send memory contents for next memory address (auto_inc)
 	      u0.wb_write(1, TXR,     8'h5a); // present data
 	      u0.wb_write(0, CR,      8'h50); // set command (stop, write)
@@ -295,6 +296,7 @@ release scl;
 	      while(q[1])
 	           u0.wb_read(1, SR, q); // poll it until it is zero
 	      $display("status: %t tip==0", $time);
+	      */
 
 	      //
 	      // delay
@@ -340,7 +342,8 @@ release scl;
 	      $display("status: %t tip==0", $time);
 
 	      // read data from slave
-	      u0.wb_write(1, CR,      8'h20); // set command (read, ack_read)
+	      //u0.wb_write(1, CR,      8'h20); // set command (read, ack_read)
+	      u0.wb_write(1, CR,      8'h28); // set command (read, nack_read)     //read only one addr
 	      $display("status: %t read + ack", $time);
 
 	      // check tip bit
@@ -355,6 +358,8 @@ release scl;
 	        $display("\nERROR: Expected a5, received %x at time %t", qq, $time);
 	      else
 	        $display("status: %t received %x", $time, qq);
+	        
+	      /*
 
 	      // read data from slave
 	      u0.wb_write(1, CR,      8'h20); // set command (read, ack_read)
@@ -400,10 +405,12 @@ release scl;
 	      // check data just received
 	      u0.wb_read(1, RXR, qq);
 	      $display("status: %t received %x from 4th read address", $time, qq);
+	      */
 
 	      //
 	      // check invalid slave memory address
 	      //
+	      /*
 
 	      // drive slave address
 	      u0.wb_write(1, TXR, {SADR,WR} ); // present slave address, set write-bit
@@ -441,6 +448,7 @@ release scl;
 	      while(q[1])
 	      u0.wb_read(1, SR, q); // poll it until it is zero
 	      $display("status: %t tip==0", $time);
+	      */
 
 	      #250000; // wait 250us
 	      $display("\n\nstatus: %t Testbench done", $time);
