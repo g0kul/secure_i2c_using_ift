@@ -31,16 +31,13 @@
 (assert (not (= HIGH LOW))) ; the lattice cannot clapse
 
 ; new lattice elements L1 and L2
-(declare-fun L1 () Label)
-(declare-fun L2 () Label)
+;(declare-fun L1 () Label)
+;(declare-fun L2 () Label)
 
 ; lattice structure
-(assert (leq L1 L2))
+;(assert (leq L1 L2))
 
 ; variables to be solved
-(declare-fun sl () Int)
-(assert (<= 0  sl))
-(assert (<= sl 1))
 
 ; function that maps 0 to LOW; 1 to HIGH
 (declare-fun LH (Int) Label)
@@ -48,13 +45,67 @@
 (assert (= (LH 1) HIGH))
 ; Domain(0)=L1, Domain(1)=L2
 (declare-fun Domain (Int) Label)
-(assert (= (Domain 0) L1))
-(assert (= (Domain 1) L2))
+(assert (= (Domain 0) D1))
+(assert (= (Domain 1) D2))
 
 ; assertions to be verified
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; assign sl = 1 @twomodule.v:17
+(assert  (not(leq D1  D1)))    ; Instantiate parameter d1 in module submodule2 @submodule2_check_top.v:21
+(check-sat)
+(pop)
+
+
+(push)
+(assert  (not(leq D2  D2)))    ; Instantiate parameter d2 in module submodule2 @submodule2_check_top.v:21
+(check-sat)
+(pop)
+
+
+(push)
+(assert  (not(leq LOW  LOW)))    ; Instantiate parameter sel in module submodule2 @submodule2_check_top.v:21
+(check-sat)
+(pop)
+
+
+(push)
+(assert  (not(leq D1  (Domain 0))))    ; Instantiate parameter d3 in module submodule2 @submodule2_check_top.v:21
+(check-sat)
+(pop)
+
+
+(push)
+(assert  (not(leq (Domain 0)  D1)))    ; Instantiate parameter out in module submodule2 @submodule2_check_top.v:21
+(check-sat)
+(pop)
+
+
+(push)
+(assert  (not(leq D1  D1)))    ; Instantiate parameter d1 in module submodule2 @submodule2_check_top.v:30
+(check-sat)
+(pop)
+
+
+(push)
+(assert  (not(leq D2  D2)))    ; Instantiate parameter d2 in module submodule2 @submodule2_check_top.v:30
+(check-sat)
+(pop)
+
+
+(push)
+(assert  (not(leq LOW  LOW)))    ; Instantiate parameter sel in module submodule2 @submodule2_check_top.v:30
+(check-sat)
+(pop)
+
+
+(push)
+(assert  (not(leq D2  (Domain 1))))    ; Instantiate parameter d3 in module submodule2 @submodule2_check_top.v:30
+(check-sat)
+(pop)
+
+
+(push)
+(assert  (not(leq (Domain 1)  D2)))    ; Instantiate parameter out in module submodule2 @submodule2_check_top.v:30
 (check-sat)
 (pop)
 

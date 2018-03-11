@@ -1,0 +1,341 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"i2c",
+				"i2c_master_byte_ctrl"
+			],
+			[
+				"stat",
+				"stat_fp"
+			],
+			[
+				"ckt",
+				"ckt_bdd"
+			],
+			[
+				"inpu",
+				"input_order"
+			],
+			[
+				"to",
+				"to_run"
+			],
+			[
+				"inputs",
+				"inputs"
+			],
+			[
+				"inte",
+				"input_interleave_order"
+			],
+			[
+				"bdd",
+				"bddvars"
+			],
+			[
+				"input",
+				"input_interleave_order"
+			],
+			[
+				"re",
+				"read_icount"
+			],
+			[
+				"ip",
+				"ipnames"
+			],
+			[
+				"rea",
+				"read_all"
+			],
+			[
+				"str",
+				"str_in"
+			],
+			[
+				"op",
+				"op_expr"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 124.0,
+		"last_filter": "install",
+		"selected_items":
+		[
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"preferen",
+				"Preferences: Settings"
+			],
+			[
+				"package",
+				"Package Control: List Packages"
+			],
+			[
+				"theme",
+				"UI: Select Theme"
+			],
+			[
+				"verilo",
+				"Set Syntax: Verilog"
+			],
+			[
+				"install ",
+				"Package Control: Install Package"
+			],
+			[
+				"Install Package",
+				"Install Package Control"
+			],
+			[
+				"Install Package ",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 497.0
+	},
+	"console":
+	{
+		"height": 130.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/home/gokul/playground/secverilog/i2c_ift/examples"
+	],
+	"file_history":
+	[
+		"/home/gokul/playground/secverilog/i2c_ift/examples/i2cslave/i2cslave.fun",
+		"/home/gokul/playground/secverilog/i2c_ift/examples/i2cslave/i2cslave.lattice",
+		"/home/gokul/playground/secverilog/tool/SecVerilog-1.0/Examples/oneway.lattice",
+		"/home/gokul/playground/secverilog/tool/SecVerilog-1.0/Examples/oneway.fun",
+		"/home/gokul/playground/secverilog/i2c_ift/examples/mux/muxgp.v",
+		"/home/gokul/playground/secverilog/tool/SecVerilog-1.0/Examples/muxgp.v",
+		"/home/gokul/playground/secverilog/tool/SecVerilog-1.0/Examples/twomodule.v",
+		"/home/gokul/playground/secverilog/i2c/open_core/i2c/trunk/rtl/verilog/i2c_master_bit_ctrl.v",
+		"/home/gokul/playground/secverilog/i2c/open_core/i2c/trunk/rtl/verilog/i2c_master_byte_ctrl.v",
+		"/home/gokul/playground/secverilog/ed/TrustZone-SecVerilog/secverilog-static/plab1-imul-CountZeros.v",
+		"/home/gokul/playground/secverilog/i2c/open_core/i2cslave/trunk/rtl/serialInterface.v",
+		"/home/gokul/playground/secverilog/i2c/open_core/i2cslave/trunk/rtl/registerInterface.v",
+		"/home/gokul/playground/secverilog/ed/TrustZone-SecVerilog/secverilog-static/plab5-mcore-mem-acc.v",
+		"/home/gokul/playground/secverilog/i2c/open_core/i2cslave/trunk/rtl/i2cSlave.v",
+		"/home/gokul/playground/secverilog/i2c/open_core/i2c/trunk/rtl/verilog/i2c_master_top.v",
+		"/home/gokul/playground/secverilog/i2c_ift/examples/mux/Readme.md",
+		"/home/gokul/playground/secverilog/ed/TrustZone-SecVerilog/secverilog-static/plab3-mem-BlockingL2CacheDpath.v",
+		"/home/gokul/playground/secverilog/ed/TrustZone-SecVerilog/secverilog-static/plab4-net-RingNet.v",
+		"/home/gokul/playground/secverilog/ed/TrustZone-SecVerilog/secverilog-static/vc-arbiter.v",
+		"/tmp/.fr-bcl9kB/i2c/trunk/rtl/verilog/i2c_master_top.v",
+		"/home/gokul/studies/pgs/Courses/Winter18/CS292C/Prj/I2C_USB_Info_Flow/open-core-i2c/i2c_master_slave_core/trunk/i2c_master_slave_core/i2c_master_slave_core/verilog/rtl/shift.v",
+		"/home/gokul/studies/pgs/Courses/Winter18/CS292C/Prj/I2C_USB_Info_Flow/open-core-i2c/i2c_master_slave_core/trunk/i2c_master_slave_core/i2c_master_slave_core/verilog/rtl/ms_core.v",
+		"/tmp/.fr-0ksa1A/AN65974/FPGA Source files/fx3_slaveFIFO2b_xilinx/rtl_verilog/slaveFIFO2b/slaveFIFO2b_fpga_top.v",
+		"/home/gokul/playground/secverilog/i2c/open_core/i2cslave/trunk/rtl/i2cSlaveTop.v",
+		"/home/gokul/playground/secverilog/i2c/open_core/i2c/trunk/rtl/verilog/timescale.v",
+		"/home/gokul/studies/pgs/Courses/Winter18/CS292C/Prj/I2C_USB_Info_Flow/open-core-i2c/i2c_master_slave_core/trunk/i2c_master_slave_core/i2c_master_slave_core/verilog/rtl/i2c_blk.v",
+		"/home/gokul/studies/pgs/Courses/Winter18/CS292C/Prj/I2C_USB_Info_Flow/open-core-i2c/i2c_master_slave_core/trunk/i2c_master_slave_core/i2c_master_slave_core/verilog/rtl/controller_interface.v",
+		"/home/gokul/studies/pgs/Courses/Winter18/CS292C/Prj/I2C_USB_Info_Flow/open-core-i2c/i2c_master_slave_core/trunk/i2c_master_slave_core/i2c_master_slave_core/svtb/Readme",
+		"/home/gokul/playground/secverilog/tool/SecVerilog-1.0/Examples/oneway.v",
+		"/home/gokul/playground/secverilog/ed/TrustZone-SecVerilog/secverilog-static/vc-arithmetic.v",
+		"/home/gokul/playground/secverilog/ed/TrustZone-SecVerilog/secverilog-static/vc-arbiters.v",
+		"/home/gokul/playground/secverilog/ed/TrustZone-SecVerilog/verilog-static/plab1-imul/plab1-imul-msgs.t.v",
+		"/home/gokul/playground/secverilog/i2c/open_core/i2c/trunk/rtl/verilog/i2c_master_defines.v",
+		"/home/gokul/playground/secverilog/i2c/fpga4fun-ed/I2C_slavemodule_simulation/I2Cslave_Mod1.v",
+		"/home/gokul/playground/secverilog/i2c/fpga4fun-ed/I2C_slavemodule_simulation/sim_main.v",
+		"/home/gokul/playground/vlsidv/ece255b/bdd/bkp/temp2.txt",
+		"/home/gokul/playground/vlsidv/ece255b/bdd/outputs/stat.txt",
+		"/home/gokul/playground/vlsidv/ece255b/bdd/bdd_graph.py",
+		"/home/gokul/playground/vlsidv/ece255b/bdd/sample_circuits/C499.sim",
+		"/home/gokul/playground/vlsidv/ece255b/bdd/sample_circuits/C6288.sim",
+		"/home/gokul/playground/vlsidv/ece255b/bdd/isca_parse.py",
+		"/home/gokul/.local/share/Trash/files/temp.5.txt",
+		"/home/gokul/playground/vlsidv/ece255b/bdd/bkp/isca_parse-bkp1.py",
+		"/home/gokul/playground/vlsidv/ece255b/bdd/bkp/c499_op_expressions.txt",
+		"/home/gokul/playground/vlsidv/ece255b/bdd/sample_circuits/C432.sim",
+		"/home/gokul/Desktop/cudd_test.py",
+		"/home/gokul/Desktop/cudd_statistics.py",
+		"/home/gokul/playground/vlsidv/ece255b/bdd/C17.sim",
+		"/home/gokul/playground/vlsidv/ece255b/podem/podemisca/sample_circuits/C432.sim",
+		"/home/gokul/playground/vlsidv/ece255b/bdd/temp.txt",
+		"/home/gokul/studies/pgs/Courses/Winter18/ECE255B/Hw/HW2/cudd-3.0.0/README",
+		"/home/gokul/playground/vlsidv/ece255b/cudd/pycudd/pycudd/INSTALL",
+		"/home/gokul/playground/vlsidv/ece255b/cudd/pycudd/pycudd/README",
+		"/home/gokul/playground/vlsidv/ece255b/cudd/pycudd/cudd-2.4.2/README",
+		"/home/gokul/studies/pgs/Courses/Winter18/ECE255B/Hw/HW2/ECE_156B_W18_HW2/test/r",
+		"/home/gokul/studies/pgs/Courses/Winter18/ECE255B/Hw/HW2/ECE_156B_W18_HW2/test/obdd_graph.dot",
+		"/home/gokul/studies/pgs/Courses/Winter18/ECE255B/Hw/HW2/cudd-3.0.0/Makefile.am",
+		"/home/gokul/Desktop/cudd-3.0.0/README",
+		"/home/gokul/playground/vlsidv/ece255b/cudd/pycudd/pycudd/example1.py",
+		"/home/gokul/playground/vlsidv/ece255b/cudd/pycudd/pycudd/UNIMPLEMENTED",
+		"/home/gokul/playground/vlsidv/ece255b/bdd/23GAT9_int.pdf",
+		"/home/gokul/playground/vlsidv/ece255b/bdd/test.sim",
+		"/home/gokul/playground/vlsidv/ece255b/bdd/output0",
+		"/tmp/.fr-ay7vZz/pycudd2.0.2/pycudd/README",
+		"/tmp/.fr-igy5k9/pycudd2.0.2/pycudd/README",
+		"/home/gokul/Bri McWhorter -- Grad Slam",
+		"/home/gokul/playground/secverilog/i2c/open_core/i2cslave/trunk/rtl/i2cSlave.sublime-project",
+		"/home/gokul/playground/secverilog/i2c/altera_i2c/i2c_opencores/i2c_opencores.v",
+		"/home/gokul/playground/secverilog/i2c/lattice-ed/rd1139_i2c_master_controller/rd1139/source/verilog/i2c_master_scl_gen.v",
+		"/home/gokul/playground/secverilog/i2c/open_core/i2c_master_slave/web_uploads/i2c_core_v02.vhd",
+		"/home/gokul/studies/pgs/Courses/Winter18/CS292C/tools/secverilog/SecVerilog-1.0/Examples/deptype-example.v",
+		"/home/gokul/studies/pgs/Courses/Winter18/CS292C/tools/secverilog/SecVerilog-1.0/Examples/oneway.v",
+		"/home/gokul/studies/pgs/Courses/Winter18/CS292C/tools/secverilog/SecVerilog-1.0/Examples/oneway.fun",
+		"/home/gokul/studies/pgs/Courses/Winter18/CS292C/tools/secverilog/SecVerilog-1.0/Examples/oneway.lattice",
+		"/home/gokul/studies/pgs/Courses/Winter18/CS292C/tools/secverilog/SecVerilog-1.0/Examples/twomodule.v",
+		"/home/gokul/studies/pgs/Courses/Winter18/CS292C/tools/secverilog/SecVerilog-1.0/Examples/mux.v",
+		"/home/gokul/playground/secverilog/i2c/altera_i2c/i2c_opencores/i2c_master_top.v",
+		"/home/gokul/playground/secverilog/i2c/i2c/trunk/rtl/verilog/i2c_master_top.v",
+		"/home/gokul/studies/pgs/Courses/Winter18/CS292C/Prj/SecVerilog/Docs/Template/ISCA2018-latex-template/ref.bib",
+		"/home/gokul/studies/pgs/Courses/Winter18/CS292C/tools/secverilog/SecVerilog-1.0/Examples/secverilog",
+		"/home/gokul/studies/pgs/Courses/Winter18/CS292C/tools/secverilog/SecVerilog-1.0/Examples/diamond.v",
+		"/home/gokul/.config/sublime-text-3/Packages/User/Package Control.sublime-settings",
+		"/home/gokul/studies/pgs/Courses/Winter18/CS292C/tools/secverilog/SecVerilog-1.0/Examples/diamond.fun",
+		"/home/gokul/studies/pgs/Courses/Winter18/CS292C/tools/secverilog/SecVerilog-1.0/Examples/mux.",
+		"/home/gokul/studies/pgs/Courses/Winter18/CS292C/tools/secverilog/SecVerilog-1.0/Examples/test.c"
+	],
+	"find":
+	{
+		"height": 23.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 23.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "examples.sublime-project",
+	"replace":
+	{
+		"height": 42.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": false,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 228.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

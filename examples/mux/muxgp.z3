@@ -60,7 +60,7 @@
 
 
 (push)
-(assert (and (= sel 1)  (not(leq L2  (Domain sel)))))    ; out = in2 @muxgp.v:19
+(assert (and (= sel 1)  (not(leq (Domain sel)  (Domain sel)))))    ; out = in2 @muxgp.v:19
 (check-sat)
 (pop)
 
