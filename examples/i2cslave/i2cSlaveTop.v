@@ -48,15 +48,17 @@
 module i2cSlaveTop (
   clk,
   rst,
+  domain,
   sda,
   scl,
   myReg0
 );
-input clk;
-input rst;
-inout sda;
-input scl;
-output [7:0] myReg0;
+input         {L} clk;
+input         {L} rst;
+input         {L} domain;
+inout         {Ctrl Domain} sda;
+input         {Ctrl Domain} scl;
+output [7:0]  {Data Domain} myReg0;
 
 
 i2cSlave u_i2cSlave(

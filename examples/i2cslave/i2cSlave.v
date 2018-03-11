@@ -48,6 +48,7 @@
 module i2cSlave (
   clk,
   rst,
+  domain,
   sda,
   scl,
   myReg0,
@@ -60,39 +61,40 @@ module i2cSlave (
   myReg7
 );
 
-input clk;
-input rst;
-inout sda;
-input scl;
-output [7:0] myReg0;
-output [7:0] myReg1;
-output [7:0] myReg2;
-output [7:0] myReg3;
-input [7:0] myReg4;
-input [7:0] myReg5;
-input [7:0] myReg6;
-input [7:0] myReg7;
+input                   {L} clk;
+input                   {L} rst;
+input                   {L} domain;
+inout                   {Ctrl domain} sda;
+input                   {Ctrl domain} scl;
+output [7:0]            {Data domain} myReg0;
+output [7:0]            {Data domain} myReg1;
+output [7:0]            {Data domain} myReg2;
+output [7:0]            {Data domain} myReg3;
+input [7:0]             {Data domain} myReg4;
+input [7:0]             {Data domain} myReg5;
+input [7:0]             {Data domain} myReg6;
+input [7:0]             {Data domain} myReg7;
 
 
 // local wires and regs
-reg sdaDeb;
-reg sclDeb;
-reg [`DEB_I2C_LEN-1:0] sdaPipe;
-reg [`DEB_I2C_LEN-1:0] sclPipe;
+reg                     {Ctrl domain} sdaDeb;
+reg                     {Ctrl domain} sclDeb;
+reg [`DEB_I2C_LEN-1:0]  {Ctrl domain} sdaPipe;
+reg [`DEB_I2C_LEN-1:0]  {Ctrl domain} sclPipe;
 
-reg [`SCL_DEL_LEN-1:0] sclDelayed;
-reg [`SDA_DEL_LEN-1:0] sdaDelayed;
-reg [1:0] startStopDetState;
-wire clearStartStopDet;
-wire sdaOut;
-wire sdaIn;
-wire [7:0] regAddr;
-wire [7:0] dataToRegIF;
-wire writeEn;
-wire [7:0] dataFromRegIF;
-reg [1:0] rstPipe;
-wire rstSyncToClk;
-reg startEdgeDet;
+reg [`SCL_DEL_LEN-1:0]  {Ctrl domain} sclDelayed;
+reg [`SDA_DEL_LEN-1:0]  {Ctrl domain} sdaDelayed;
+reg [1:0]               {Ctrl domain} startStopDetState;
+wire                    {Ctrl domain} clearStartStopDet;
+wire                    {Ctrl domain} sdaOut;
+wire                    {Ctrl domain} sdaIn;
+wire [7:0]              {Ctrl domain} regAddr;
+wire [7:0]              {Data domain} dataToRegIF;
+wire                    {Ctrl domain} writeEn;
+wire [7:0]              {Data domain} dataFromRegIF;
+reg [1:0]               {Ctrl domain} rstPipe;
+wire                    {Ctrl domain} rstSyncToClk;
+reg                     {Ctrl domain} startEdgeDet;
 
 assign sda = (sdaOut == 1'b0) ? 1'b0 : 1'bz;
 assign sdaIn = sda;
