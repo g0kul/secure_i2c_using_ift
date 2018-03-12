@@ -35,14 +35,19 @@ module i2c_sys_tb();
     wire wb_we;
     wire wb_stb;
     wire wb_cyc;
-    reg  wb_inta;
+    //reg  wb_inta;
+    wire wb_inta;
     //reg  wb_ack;
     wire  wb_ack;
-
 
 	reg start;
 	wire done;
 	
+	//I2C
+    wire scl, scl0_o, scl0_oen;
+    wire sda, sda0_o, sda0_oen;
+	
+	//Params
     localparam ADDR_WIDTH = 3, DATA_WIDTH = 8, M_SEL_ADDR = 7'h20;
 
     // generate clock
@@ -72,13 +77,60 @@ module i2c_sys_tb();
         .wb_inta(wb_inta)
     );
     
+    
+    i2c_master_top i2c_top (
+
+        // wishbone interface
+        .wb_clk_i(clk),
+        .wb_rst_i(1'b0),
+        .arst_i(!rst),
+        .wb_adr_i(wb_addr),
+        .wb_dat_i(wb_wr_data),
+        .wb_dat_o(wb_rd_data),
+        .wb_we_i(wb_we),
+        .wb_stb_i(wb_stb),
+        .wb_cyc_i(wb_cyc),
+        .wb_ack_o(wb_ack),
+        .wb_inta_o(wb_inta),
+
+        // i2c signals
+        .scl_pad_i(scl),
+        .scl_pad_o(scl0_o),
+        .scl_padoen_o(scl0_oen),
+        .sda_pad_i(sda),
+        .sda_pad_o(sda0_o),
+        .sda_padoen_o(sda0_oen)
+    );
+    
+    i2cSlave i2c_slave0(
+      .clk(clk),
+      .rst(rst),
+      .i2c_sl_address(7'h20),
+      .sda(sda),
+      .scl(scl),
+      .myReg0(),
+      .myReg1(),
+      .myReg2(),
+      .myReg3(),
+      .myReg4(8'h90),
+      .myReg5(8'h12),
+      .myReg6(8'h34),
+      .myReg7(8'h56)
+    );
+    
+    assign scl = scl0_oen ? 1'bz : scl0_o;
+    assign sda = sda0_oen ? 1'bz : sda0_o;
+    
+    pullup p1(scl); // pullup scl line
+    pullup p2(sda); // pullup sda line
+    
     //simulating ack
     //always @(posedge clk)
     //begin
     //    wb_ack <= wb_cyc & wb_stb;
     //end
     
-    assign wb_ack = wb_cyc & wb_stb;
+    //assign wb_ack = wb_cyc & wb_stb;
 
     initial
     begin

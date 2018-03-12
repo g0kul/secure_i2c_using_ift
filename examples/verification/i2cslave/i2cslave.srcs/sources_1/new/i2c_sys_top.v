@@ -257,7 +257,7 @@ module i2c_sys_top
 				if(wb_ack == 1'b0)
 				begin
 					n_wb_addr = TXR;
-					n_wb_wr_data = 8'h01;
+					n_wb_wr_data = 8'h06;  //mem addr
 					n_wb_we = 1'b1;
 					n_wb_stb = 1'b1;
 					n_wb_cyc = 1'b1;

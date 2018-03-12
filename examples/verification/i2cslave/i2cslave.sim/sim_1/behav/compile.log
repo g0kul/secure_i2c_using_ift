@@ -1,7 +1,20 @@
+INFO: [VRFC 10-2263] Analyzing Verilog file "/home/gokul/playground/secverilog/i2c_ift/examples/verification/i2cslave/i2cslave.srcs/sources_1/imports/rtl/i2cSlave.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module i2cSlave
+INFO: [VRFC 10-2263] Analyzing Verilog file "/home/gokul/playground/secverilog/i2c_ift/examples/verification/i2cslave/i2cslave.srcs/sources_1/imports/verilog/i2c_master_bit_ctrl.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module i2c_master_bit_ctrl
+INFO: [VRFC 10-2263] Analyzing Verilog file "/home/gokul/playground/secverilog/i2c_ift/examples/verification/i2cslave/i2cslave.srcs/sources_1/imports/verilog/i2c_master_byte_ctrl.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module i2c_master_byte_ctrl
+INFO: [VRFC 10-2263] Analyzing Verilog file "/home/gokul/playground/secverilog/i2c_ift/examples/verification/i2cslave/i2cslave.srcs/sources_1/imports/verilog/i2c_master_top.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module i2c_master_top
 INFO: [VRFC 10-2263] Analyzing Verilog file "/home/gokul/playground/secverilog/i2c_ift/examples/verification/i2cslave/i2cslave.srcs/sources_1/new/i2c_sys_top.v" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module i2cSlaveTop
 INFO: [VRFC 10-311] analyzing module i2c_master_top
+WARNING: [VRFC 10-1195] overwriting previous definition of module i2c_master_top [../../../i2cslave.srcs/sources_1/imports/verilog/i2c_master_top.v:78]
 INFO: [VRFC 10-311] analyzing module i2c_sys_top
+INFO: [VRFC 10-2263] Analyzing Verilog file "/home/gokul/playground/secverilog/i2c_ift/examples/verification/i2cslave/i2cslave.srcs/sources_1/imports/rtl/registerInterface.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module registerInterface
+INFO: [VRFC 10-2263] Analyzing Verilog file "/home/gokul/playground/secverilog/i2c_ift/examples/verification/i2cslave/i2cslave.srcs/sources_1/imports/rtl/serialInterface.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module serialInterface
 INFO: [VRFC 10-2263] Analyzing Verilog file "/home/gokul/playground/secverilog/i2c_ift/examples/verification/i2cslave/i2cslave.srcs/sim_1/new/i2c_sys_tb.v" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module i2c_sys_tb
 WARNING: [VRFC 10-756] identifier ADDR_WIDTH is used before its declaration [/home/gokul/playground/secverilog/i2c_ift/examples/verification/i2cslave/i2cslave.srcs/sim_1/new/i2c_sys_tb.v:32]
