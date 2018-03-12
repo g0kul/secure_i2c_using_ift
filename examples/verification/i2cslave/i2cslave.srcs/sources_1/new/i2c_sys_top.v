@@ -78,11 +78,22 @@ module i2c_sys_top(clk, rstn, start, done);
 
 	parameter RD      = 1'b1;
 	parameter WR      = 1'b0;
-	parameter SADDR1    = 7'b0010_000;
-    parameter SADDR2    = 7'b0100_000;
+	parameter SADDR1  = 7'b0010_000;
+    parameter SADDR2  = 7'b0100_000;
 
     //state machine
-	parameter ST_IDLE = 4'd0;
+	parameter ST_IDLE 			= 4'd0;
+	parameter ST_WR_PRER_LO 	= 4'd1;
+	parameter ST_WR_PRER_HI 	= 4'd2;
+	parameter ST_WR_CTR 		= 4'd3;
+	parameter ST_WR_SLADR_W 	= 4'd4;
+	parameter ST_WR_CR 			= 4'd5;
+	parameter ST_RD_ACK 		= 4'd6;
+	parameter ST_WR_MEM_ADDR 	= 4'd7;
+	parameter ST_WR_SLADR_R 	= 4'd8;
+	parameter ST_RD_INIT 		= 4'd9;
+	parameter ST_RD_DATA 		= 4'd10;
+
 
 
 	always @(*)
@@ -309,8 +320,26 @@ module i2c_sys_top(clk, rstn, start, done);
 		begin
 			// reset
 			wb_state <= ST_IDLE;
+			wb_state_d1 <= ST_IDLE;
+			wb_cr_data <= {DATA_WIDTH{1'b0}};
+			wb_rd_data_r <= {DATA_WIDTH{1'bx}};
+
+			wb_addr <= {ADDR_WIDTH{1'bx}};
+			wb_wr_data <= {DATA_WIDTH{1'bx}};
+			wb_we <= 1'b0;
+			wb_stb <= 1'b0;
+			wb_cyc <= 1'b0;
 		end
 		else
 			wb_state <= n_wb_state;
+			wb_state_d1 <= n_wb_state_d1;
+			wb_cr_data <= n_wb_cr_data;
+			wb_rd_data <= n_wb_rd_data;
+
+			wb_addr <= n_wb_addr;
+			wb_wr_data <= n_wb_wr_data;
+			wb_we <= n_wb_we;
+			wb_stb <= n_wb_stb;
+			wb_cyc <= n_wb_cyc;
 		end
 	end
