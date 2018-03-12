@@ -9,5 +9,5 @@ then
 exit $RETVAL
 fi
 }
-echo "xvlog -m64 --relax -prj tst_bench_top_vlog.prj"
-ExecStep $xv_path/bin/xvlog -m64 --relax -prj tst_bench_top_vlog.prj 2>&1 | tee compile.log
+echo "xvlog -m64 --relax -prj i2c_sys_tb_vlog.prj"
+ExecStep $xv_path/bin/xvlog -m64 --relax -prj i2c_sys_tb_vlog.prj 2>&1 | tee compile.log

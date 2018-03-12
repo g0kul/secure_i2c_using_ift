@@ -240,7 +240,7 @@ module tst_bench_top();
 	      //
 
 	      // program internal registers
-	      u0.wb_write(1, PRER_LO, 8'hfa); // load prescaler lo-byte
+	      //u0.wb_write(1, PRER_LO, 8'hfa); // load prescaler lo-byte
 	      u0.wb_write(1, PRER_LO, 8'hc8); // load prescaler lo-byte
 	      u0.wb_write(1, PRER_HI, 8'h00); // load prescaler hi-byte
 	      $display("status: %t programmed registers", $time);

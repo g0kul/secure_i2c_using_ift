@@ -1,0 +1,9 @@
+# compile verilog/system verilog design source files
+verilog xil_defaultlib  "../../../i2cslave.srcs/sources_1/new/i2c_sys_top.v" --include "../../../i2cslave.srcs/sources_1/imports/verilog" --include "../../../i2cslave.srcs/sources_1/new" --include "../../../i2cslave.srcs/sources_1/imports/rtl"
+verilog xil_defaultlib  "../../../i2cslave.srcs/sim_1/new/i2c_sys_tb.v" --include "../../../i2cslave.srcs/sources_1/imports/verilog" --include "../../../i2cslave.srcs/sources_1/new" --include "../../../i2cslave.srcs/sources_1/imports/rtl"
+
+# compile glbl module
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort

@@ -20,13 +20,13 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-`define DATA_WIDTH 8
-`define ADDR_WIDTH 3
-
+`include "i2c_sys_defines.vh"
 `include "i2cSlaveTop.v"
 `include "i2c_master_top.v"
 
-module i2c_sys_top(clk, rstn, start, done);
+module i2c_sys_top
+#(parameter ADDR_WIDTH = 3, DATA_WIDTH = 8, M_SEL_ADDR = 7'h20)
+(clk, rst, start, done, wb_addr, wb_wr_data, wb_rd_data, wb_we, wb_stb, wb_cyc, wb_ack, wb_inta);
 
 	//
 	// wires && regs
@@ -35,7 +35,16 @@ module i2c_sys_top(clk, rstn, start, done);
 	input rst;
 	input start;
 	output done;
-
+    
+    //WB Intf
+    output [ADDR_WIDTH-1:0] wb_addr;
+    output [DATA_WIDTH-1:0] wb_wr_data;
+    input  [DATA_WIDTH-1:0] wb_rd_data;
+    output wb_we;
+    output wb_stb;
+    output wb_cyc;
+    input  wb_ack;
+    input  wb_inta;
 
 	//WB Intf
 	reg [ADDR_WIDTH-1:0] wb_addr;
@@ -61,6 +70,8 @@ module i2c_sys_top(clk, rstn, start, done);
 
 	reg [DATA_WIDTH-1:0] wb_cr_data;
 	reg [DATA_WIDTH-1:0] n_wb_cr_data;
+	
+	reg n_done, done_r;
 
 
 	//params
@@ -108,6 +119,8 @@ module i2c_sys_top(clk, rstn, start, done);
 		n_wb_we = 1'b0;
 		n_wb_stb = 1'b0;
 		n_wb_cyc = 1'b0;
+		
+		n_done = 1'b0;
 
 		case (wb_state)
 			ST_IDLE:
@@ -306,6 +319,7 @@ module i2c_sys_top(clk, rstn, start, done);
 					n_wb_stb = 1'bx;
 					n_wb_cyc = 1'b0;
 
+                    n_done = 1'b1;          //Assert Done
 					n_wb_state = ST_IDLE;
 				end
 				//read similar to RD_ACK
@@ -329,17 +343,26 @@ module i2c_sys_top(clk, rstn, start, done);
 			wb_we <= 1'b0;
 			wb_stb <= 1'b0;
 			wb_cyc <= 1'b0;
+			
+			done_r <= 1'b0;
 		end
 		else
+		begin
 			wb_state <= n_wb_state;
 			wb_state_d1 <= n_wb_state_d1;
 			wb_cr_data <= n_wb_cr_data;
-			wb_rd_data <= n_wb_rd_data;
+			wb_rd_data_r <= n_wb_rd_data;
 
 			wb_addr <= n_wb_addr;
 			wb_wr_data <= n_wb_wr_data;
 			wb_we <= n_wb_we;
 			wb_stb <= n_wb_stb;
 			wb_cyc <= n_wb_cyc;
+			
+			done_r <= n_done;
 		end
 	end
+	
+	assign done = done_r;
+	
+endmodule
