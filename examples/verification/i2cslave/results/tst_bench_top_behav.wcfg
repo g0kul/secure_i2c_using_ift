@@ -11,15 +11,15 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="0fs"></ZoomStartTime>
-      <ZoomEndTime time="739500000001fs"></ZoomEndTime>
-      <Cursor1Time time="250500000000fs"></Cursor1Time>
+      <ZoomStartTime time="1733334fs"></ZoomStartTime>
+      <ZoomEndTime time="147333335fs"></ZoomEndTime>
+      <Cursor1Time time="26000000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="286"></NameColumnWidth>
+      <NameColumnWidth column_width="104"></NameColumnWidth>
       <ValueColumnWidth column_width="66"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="40" />
+   <WVObjectSize size="34" />
    <wvobject type="logic" fp_name="/tst_bench_top/clk">
       <obj_property name="ElementShortName">clk</obj_property>
       <obj_property name="ObjectShortName">clk</obj_property>
@@ -27,30 +27,6 @@
    <wvobject type="logic" fp_name="/tst_bench_top/rstn">
       <obj_property name="ElementShortName">rstn</obj_property>
       <obj_property name="ObjectShortName">rstn</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/tst_bench_top/scl">
-      <obj_property name="DisplayName">label</obj_property>
-      <obj_property name="ElementShortName">scl</obj_property>
-      <obj_property name="ObjectShortName">scl</obj_property>
-      <obj_property name="label">scl_m</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/tst_bench_top/i2c_slave1/sda">
-      <obj_property name="DisplayName">label</obj_property>
-      <obj_property name="ElementShortName">sda</obj_property>
-      <obj_property name="ObjectShortName">sda</obj_property>
-      <obj_property name="label">sda_m</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/tst_bench_top/i2c_slave1/sdaOut">
-      <obj_property name="DisplayName">label</obj_property>
-      <obj_property name="ElementShortName">sdaOut</obj_property>
-      <obj_property name="ObjectShortName">sdaOut</obj_property>
-      <obj_property name="label">sdaOut_s1</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/tst_bench_top/i2c_slave2/sdaOut">
-      <obj_property name="DisplayName">label</obj_property>
-      <obj_property name="ElementShortName">sdaOut</obj_property>
-      <obj_property name="ObjectShortName">sdaOut</obj_property>
-      <obj_property name="label">sdaOut_s2</obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/tst_bench_top/adr">
       <obj_property name="ElementShortName">adr[31:0]</obj_property>
@@ -67,10 +43,6 @@
    <wvobject type="array" fp_name="/tst_bench_top/dat0_i">
       <obj_property name="ElementShortName">dat0_i[7:0]</obj_property>
       <obj_property name="ObjectShortName">dat0_i[7:0]</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/tst_bench_top/dat1_i">
-      <obj_property name="ElementShortName">dat1_i[7:0]</obj_property>
-      <obj_property name="ObjectShortName">dat1_i[7:0]</obj_property>
    </wvobject>
    <wvobject type="logic" fp_name="/tst_bench_top/we">
       <obj_property name="ElementShortName">we</obj_property>
@@ -100,6 +72,10 @@
       <obj_property name="ElementShortName">qq[7:0]</obj_property>
       <obj_property name="ObjectShortName">qq[7:0]</obj_property>
    </wvobject>
+   <wvobject type="logic" fp_name="/tst_bench_top/scl">
+      <obj_property name="ElementShortName">scl</obj_property>
+      <obj_property name="ObjectShortName">scl</obj_property>
+   </wvobject>
    <wvobject type="logic" fp_name="/tst_bench_top/scl0_o">
       <obj_property name="ElementShortName">scl0_o</obj_property>
       <obj_property name="ObjectShortName">scl0_o</obj_property>
@@ -107,14 +83,6 @@
    <wvobject type="logic" fp_name="/tst_bench_top/scl0_oen">
       <obj_property name="ElementShortName">scl0_oen</obj_property>
       <obj_property name="ObjectShortName">scl0_oen</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/tst_bench_top/scl1_o">
-      <obj_property name="ElementShortName">scl1_o</obj_property>
-      <obj_property name="ObjectShortName">scl1_o</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/tst_bench_top/scl1_oen">
-      <obj_property name="ElementShortName">scl1_oen</obj_property>
-      <obj_property name="ObjectShortName">scl1_oen</obj_property>
    </wvobject>
    <wvobject type="logic" fp_name="/tst_bench_top/sda">
       <obj_property name="ElementShortName">sda</obj_property>
@@ -128,21 +96,13 @@
       <obj_property name="ElementShortName">sda0_oen</obj_property>
       <obj_property name="ObjectShortName">sda0_oen</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/tst_bench_top/sda1_o">
-      <obj_property name="ElementShortName">sda1_o</obj_property>
-      <obj_property name="ObjectShortName">sda1_o</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/tst_bench_top/sda1_oen">
-      <obj_property name="ElementShortName">sda1_oen</obj_property>
-      <obj_property name="ObjectShortName">sda1_oen</obj_property>
+   <wvobject type="array" fp_name="/tst_bench_top/M_SEL_ADDR">
+      <obj_property name="ElementShortName">M_SEL_ADDR[6:0]</obj_property>
+      <obj_property name="ObjectShortName">M_SEL_ADDR[6:0]</obj_property>
    </wvobject>
    <wvobject type="logic" fp_name="/tst_bench_top/stb0">
       <obj_property name="ElementShortName">stb0</obj_property>
       <obj_property name="ObjectShortName">stb0</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/tst_bench_top/stb1">
-      <obj_property name="ElementShortName">stb1</obj_property>
-      <obj_property name="ObjectShortName">stb1</obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/tst_bench_top/PRER_LO">
       <obj_property name="ElementShortName">PRER_LO[2:0]</obj_property>
@@ -187,5 +147,13 @@
    <wvobject type="logic" fp_name="/tst_bench_top/WR">
       <obj_property name="ElementShortName">WR</obj_property>
       <obj_property name="ObjectShortName">WR</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tst_bench_top/SADDR1">
+      <obj_property name="ElementShortName">SADDR1[6:0]</obj_property>
+      <obj_property name="ObjectShortName">SADDR1[6:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tst_bench_top/SADDR2">
+      <obj_property name="ElementShortName">SADDR2[6:0]</obj_property>
+      <obj_property name="ObjectShortName">SADDR2[6:0]</obj_property>
    </wvobject>
 </wave_config>
