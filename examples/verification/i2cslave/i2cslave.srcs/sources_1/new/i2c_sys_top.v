@@ -25,8 +25,8 @@
 `include "i2c_master_top.v"
 
 module i2c_sys_top
-#(parameter ADDR_WIDTH = 3, DATA_WIDTH = 8, M_SEL_ADDR = 7'h20)
-(clk, rst, start, done, wb_addr, wb_wr_data, wb_rd_data, wb_we, wb_stb, wb_cyc, wb_ack, wb_inta);
+#(parameter ADDR_WIDTH = 3, DATA_WIDTH = 8)
+(clk, rst, start, done, slave_addr, read_data_out, wb_addr, wb_wr_data, wb_rd_data, wb_we, wb_stb, wb_cyc, wb_ack, wb_inta);
 
 	//
 	// wires && regs
@@ -35,6 +35,9 @@ module i2c_sys_top
 	input rst;
 	input start;
 	output done;
+	
+	input [6:0] slave_addr;
+	output [DATA_WIDTH-1:0] read_data_out;
     
     //WB Intf
     output [ADDR_WIDTH-1:0] wb_addr;
@@ -196,7 +199,7 @@ module i2c_sys_top
 				if(wb_ack == 1'b0)
 				begin
 					n_wb_addr = TXR;
-					n_wb_wr_data = {M_SEL_ADDR,WR};
+					n_wb_wr_data = {slave_addr,WR};
 					n_wb_we = 1'b1;
 					n_wb_stb = 1'b1;
 					n_wb_cyc = 1'b1;
@@ -279,7 +282,7 @@ module i2c_sys_top
 				if(wb_ack == 1'b0)
 				begin
 					n_wb_addr = TXR;
-					n_wb_wr_data = {M_SEL_ADDR,RD};
+					n_wb_wr_data = {slave_addr,RD};
 					n_wb_we = 1'b1;
 					n_wb_stb = 1'b1;
 					n_wb_cyc = 1'b1;
@@ -364,5 +367,6 @@ module i2c_sys_top
 	end
 	
 	assign done = done_r;
+	assign read_data_out = wb_rd_data_r;
 	
 endmodule

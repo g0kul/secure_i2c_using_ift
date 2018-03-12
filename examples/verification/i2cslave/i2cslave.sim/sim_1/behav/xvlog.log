@@ -20,5 +20,6 @@ INFO: [VRFC 10-311] analyzing module i2c_sys_tb
 WARNING: [VRFC 10-756] identifier ADDR_WIDTH is used before its declaration [/home/gokul/playground/secverilog/i2c_ift/examples/verification/i2cslave/i2cslave.srcs/sim_1/new/i2c_sys_tb.v:32]
 WARNING: [VRFC 10-756] identifier DATA_WIDTH is used before its declaration [/home/gokul/playground/secverilog/i2c_ift/examples/verification/i2cslave/i2cslave.srcs/sim_1/new/i2c_sys_tb.v:33]
 WARNING: [VRFC 10-756] identifier DATA_WIDTH is used before its declaration [/home/gokul/playground/secverilog/i2c_ift/examples/verification/i2cslave/i2cslave.srcs/sim_1/new/i2c_sys_tb.v:34]
+WARNING: [VRFC 10-756] identifier DATA_WIDTH is used before its declaration [/home/gokul/playground/secverilog/i2c_ift/examples/verification/i2cslave/i2cslave.srcs/sim_1/new/i2c_sys_tb.v:51]
 INFO: [VRFC 10-2263] Analyzing Verilog file "/home/gokul/playground/secverilog/i2c_ift/examples/verification/i2cslave/i2cslave.sim/sim_1/behav/glbl.v" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module glbl

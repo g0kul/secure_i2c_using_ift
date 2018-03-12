@@ -46,9 +46,12 @@ module i2c_sys_tb();
 	//I2C
     wire scl, scl0_o, scl0_oen;
     wire sda, sda0_o, sda0_oen;
+    
+    reg [6:0]            i2c_slave_addr;
+    wire [DATA_WIDTH-1:0] i2c_read_data_out;
 	
 	//Params
-    localparam ADDR_WIDTH = 3, DATA_WIDTH = 8, M_SEL_ADDR = 7'h20;
+    localparam ADDR_WIDTH = 3, DATA_WIDTH = 8, M_SEL_ADDR1 = 7'h10, M_SEL_ADDR2 = 7'h20;
 
     // generate clock
     always #5 clk = ~clk;
@@ -57,8 +60,7 @@ module i2c_sys_tb();
     i2c_sys_top
     #(
         .ADDR_WIDTH(ADDR_WIDTH),
-        .DATA_WIDTH(DATA_WIDTH),
-        .M_SEL_ADDR(M_SEL_ADDR)
+        .DATA_WIDTH(DATA_WIDTH)
     )
     inst0
     (
@@ -66,6 +68,9 @@ module i2c_sys_tb();
         .rst(rst),
         .start(start),
         .done(done),
+        
+        .slave_addr(i2c_slave_addr),
+        .read_data_out(i2c_read_data_out),
         
         .wb_addr(wb_addr),
         .wb_wr_data(wb_wr_data),
@@ -102,7 +107,23 @@ module i2c_sys_tb();
         .sda_padoen_o(sda0_oen)
     );
     
-    i2cSlave i2c_slave0(
+    i2cSlave i2c_slave1(
+      .clk(clk),
+      .rst(rst),
+      .i2c_sl_address(7'h10),
+      .sda(sda),
+      .scl(scl),
+      .myReg0(),
+      .myReg1(),
+      .myReg2(),
+      .myReg3(),
+      .myReg4(8'h12),
+      .myReg5(8'h34),
+      .myReg6(8'h56),
+      .myReg7(8'h78)
+    );
+    
+    i2cSlave i2c_slave2(
       .clk(clk),
       .rst(rst),
       .i2c_sl_address(7'h20),
@@ -171,12 +192,23 @@ module i2c_sys_tb();
         
         //while (scl) #1;
         //force start= 1'b1;
-        
+        i2c_slave_addr = M_SEL_ADDR1;
         start = 1'b1; // assert start
         repeat(2) @(posedge clk);
         start = 1'b0; // deassert start
         
         while (done == 1'b0) #1;
+        
+        $display("\nREAD from %0h : %0h", i2c_slave_addr, i2c_read_data_out);
+        
+        i2c_slave_addr = M_SEL_ADDR2;
+        start = 1'b1; // assert start
+        repeat(2) @(posedge clk);
+        start = 1'b0; // deassert start
+        
+        while (done == 1'b0) #1;
+        
+        $display("\nREAD from %0h : %0h", i2c_slave_addr, i2c_read_data_out);
         
 //        #100000;
 //        release scl;

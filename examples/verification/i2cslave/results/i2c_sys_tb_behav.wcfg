@@ -11,15 +11,15 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="410683516667fs"></ZoomStartTime>
-      <ZoomEndTime time="410818416668fs"></ZoomEndTime>
-      <Cursor1Time time="410706000000fs"></Cursor1Time>
+      <ZoomStartTime time="0fs"></ZoomStartTime>
+      <ZoomEndTime time="1000000000001fs"></ZoomEndTime>
+      <Cursor1Time time="1000000000000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="104"></NameColumnWidth>
       <ValueColumnWidth column_width="66"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="21" />
+   <WVObjectSize size="24" />
    <wvobject type="logic" fp_name="/i2c_sys_tb/clk">
       <obj_property name="ElementShortName">clk</obj_property>
       <obj_property name="ObjectShortName">clk</obj_property>
@@ -92,6 +92,14 @@
       <obj_property name="ElementShortName">sda0_oen</obj_property>
       <obj_property name="ObjectShortName">sda0_oen</obj_property>
    </wvobject>
+   <wvobject type="array" fp_name="/i2c_sys_tb/i2c_slave_addr">
+      <obj_property name="ElementShortName">i2c_slave_addr[6:0]</obj_property>
+      <obj_property name="ObjectShortName">i2c_slave_addr[6:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/i2c_sys_tb/i2c_read_data_out">
+      <obj_property name="ElementShortName">i2c_read_data_out[7:0]</obj_property>
+      <obj_property name="ObjectShortName">i2c_read_data_out[7:0]</obj_property>
+   </wvobject>
    <wvobject type="array" fp_name="/i2c_sys_tb/ADDR_WIDTH">
       <obj_property name="ElementShortName">ADDR_WIDTH[31:0]</obj_property>
       <obj_property name="ObjectShortName">ADDR_WIDTH[31:0]</obj_property>
@@ -100,8 +108,12 @@
       <obj_property name="ElementShortName">DATA_WIDTH[31:0]</obj_property>
       <obj_property name="ObjectShortName">DATA_WIDTH[31:0]</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/i2c_sys_tb/M_SEL_ADDR">
-      <obj_property name="ElementShortName">M_SEL_ADDR[6:0]</obj_property>
-      <obj_property name="ObjectShortName">M_SEL_ADDR[6:0]</obj_property>
+   <wvobject type="array" fp_name="/i2c_sys_tb/M_SEL_ADDR1">
+      <obj_property name="ElementShortName">M_SEL_ADDR1[6:0]</obj_property>
+      <obj_property name="ObjectShortName">M_SEL_ADDR1[6:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/i2c_sys_tb/M_SEL_ADDR2">
+      <obj_property name="ElementShortName">M_SEL_ADDR2[6:0]</obj_property>
+      <obj_property name="ObjectShortName">M_SEL_ADDR2[6:0]</obj_property>
    </wvobject>
 </wave_config>
