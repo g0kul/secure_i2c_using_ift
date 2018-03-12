@@ -4,6 +4,14 @@
 		"selected_items":
 		[
 			[
+				"sla",
+				"slave_wait"
+			],
+			[
+				"sel",
+				"sel_fix"
+			],
+			[
 				"i2c",
 				"i2c_master_byte_ctrl"
 			],
@@ -128,20 +136,62 @@
 	},
 	"expanded_folders":
 	[
-		"/home/gokul/playground/secverilog/i2c_ift/examples"
+		"/home/gokul/playground/secverilog/i2c_ift/examples",
+		"/home/gokul/playground/secverilog/i2c_ift/examples/i2cmasterwb"
 	],
 	"file_history":
 	[
-		"/home/gokul/playground/secverilog/i2c_ift/examples/i2cslave/i2cslave.fun",
+		"/home/gokul/playground/secverilog/i2c_ift/examples/mux/submodule.v",
+		"/home/gokul/playground/secverilog/i2c_ift/examples/verification/i2cmasterwb/i2cmasterwb.srcs/sim_1/imports/verilog/wb_master_model.v",
+		"/home/gokul/playground/secverilog/i2c_ift/examples/verification/i2cmasterwb/i2cmasterwb.srcs/sim_1/imports/verilog/i2c_slave_model.v",
+		"/home/gokul/playground/secverilog/i2c_ift/examples/i2cmasterwb/i2c_master_defines.v",
+		"/home/gokul/playground/secverilog/i2c_ift/examples/i2cmasterwb/i2c_master_top.v",
+		"/home/gokul/playground/secverilog/i2c_ift/examples/i2cmasterwb/i2c_master_byte_ctrl.v",
+		"/home/gokul/playground/secverilog/i2c_ift/examples/i2cmasterwb/i2c_master_bit_ctrl.v",
+		"/home/gokul/playground/secverilog/i2c_ift/examples/verification/i2cmasterwb/i2cmasterwb.srcs/sim_1/imports/verilog/tst_bench_top.v",
+		"/home/gokul/playground/secverilog/i2c_ift/examples/verification/i2cmasterwb/Results/twomaster_tst_bench_t1_tcl_log.txt",
+		"/home/gokul/playground/secverilog/i2c_ift/examples/i2cslave/origin/trunk/bench/multiByteReadWrite.v",
+		"/home/gokul/playground/secverilog/i2c_ift/examples/i2cslave/origin/trunk/bench/i2cSlaveTB_defines.v",
+		"/home/gokul/playground/secverilog/i2c_ift/examples/i2cslave/i2cSlaveTop.v",
+		"/home/gokul/playground/secverilog/i2c_ift/examples/verification/i2cmasterwb/Results/twomaster_tst_bench_tcl_log.txt",
+		"/home/gokul/playground/secverilog/i2c/open_core/i2c_m_verilog/i2c_master_bit_ctrl.v",
+		"/home/gokul/playground/secverilog/i2c/open_core/i2c_m_verilog/i2c_master_byte_ctrl.v",
+		"/home/gokul/playground/secverilog/i2c/open_core/i2c_m_verilog/i2c_master_top.v",
+		"/home/gokul/playground/secverilog/i2c/open_core/i2c_m_verilog/timescale.v",
+		"/home/gokul/playground/secverilog/i2c/open_core/i2c_m_verilog/i2c_master_defines.v",
+		"/home/gokul/playground/secverilog/i2c/open_core/i2c_m_verilog/i2c_master_byte_ctrl.z3",
+		"/home/gokul/playground/secverilog/i2c/open_core/i2c_m_verilog/i2c_master_bit_ctrl.z3",
+		"/home/gokul/playground/secverilog/i2c_ift/examples/i2cmaster/I2C_master.v",
+		"/home/gokul/playground/secverilog/i2c_ift/examples/i2cmaster/i2c_master_tb.v",
+		"/home/gokul/playground/secverilog/i2c_ift/examples/i2cmasterwb/i2c/trunk/bench/verilog/tst_bench_top.v",
+		"/home/gokul/playground/secverilog/i2c_ift/examples/i2cmasterwb/i2c/trunk/bench/verilog/i2c_slave_model.v",
+		"/tmp/.fr-ctFIxS/i2c_master_slave/web_uploads/i2c_core_v02.vhd",
+		"/home/gokul/playground/secverilog/i2c_ift/examples/i2cslave/check-i2cslave.cp",
+		"/home/gokul/playground/secverilog/i2c_ift/examples/i2cslave/i2cSlave.v",
+		"/home/gokul/playground/secverilog/i2c_ift/examples/i2cslave/registerInterface.v",
+		"/home/gokul/playground/secverilog/i2c_ift/examples/i2cslave/serialInterface.v",
 		"/home/gokul/playground/secverilog/i2c_ift/examples/i2cslave/i2cslave.lattice",
+		"/home/gokul/playground/secverilog/ed/TrustZone-SecVerilog/secverilog-static/plab1-imul-IntMulVarLat.v",
+		"/home/gokul/playground/secverilog/i2c_ift/examples/i2cmaster/secverilog",
+		"/home/gokul/playground/secverilog/ed/TrustZone-SecVerilog/secverilog-static/plab1-imul-CountZeros.v",
+		"/home/gokul/playground/secverilog/ed/TrustZone-SecVerilog/secverilog-static/check-plab3-mem-BlockingL2Cache.cp",
+		"/home/gokul/playground/secverilog/i2c_ift/examples/mux/submodule2_check_top.v",
+		"/home/gokul/playground/secverilog/i2c_ift/examples/mux/submodule2.v",
+		"/home/gokul/playground/secverilog/i2c_ift/examples/mux/twomodule.v",
+		"/home/gokul/playground/secverilog/i2c_ift/examples/mux/muxgp.v",
+		"/home/gokul/playground/secverilog/i2c_ift/examples/mux/submodule_check_top.v",
+		"/home/gokul/playground/secverilog/i2c_ift/examples/mux/submodule_check_top.z3",
+		"/home/gokul/playground/secverilog/i2c_ift/examples/i2cslave/i2cslave.fun",
+		"/home/gokul/playground/secverilog/i2c_ift/examples/mux/noway.lattice",
+		"/home/gokul/playground/secverilog/i2c_ift/examples/mux/noway.fun",
+		"/home/gokul/playground/secverilog/ed/TrustZone-SecVerilog/secverilog-static/test.cp",
+		"/home/gokul/playground/secverilog/i2c_ift/examples/i2cslave/Readme.md",
 		"/home/gokul/playground/secverilog/tool/SecVerilog-1.0/Examples/oneway.lattice",
 		"/home/gokul/playground/secverilog/tool/SecVerilog-1.0/Examples/oneway.fun",
-		"/home/gokul/playground/secverilog/i2c_ift/examples/mux/muxgp.v",
 		"/home/gokul/playground/secverilog/tool/SecVerilog-1.0/Examples/muxgp.v",
 		"/home/gokul/playground/secverilog/tool/SecVerilog-1.0/Examples/twomodule.v",
 		"/home/gokul/playground/secverilog/i2c/open_core/i2c/trunk/rtl/verilog/i2c_master_bit_ctrl.v",
 		"/home/gokul/playground/secverilog/i2c/open_core/i2c/trunk/rtl/verilog/i2c_master_byte_ctrl.v",
-		"/home/gokul/playground/secverilog/ed/TrustZone-SecVerilog/secverilog-static/plab1-imul-CountZeros.v",
 		"/home/gokul/playground/secverilog/i2c/open_core/i2cslave/trunk/rtl/serialInterface.v",
 		"/home/gokul/playground/secverilog/i2c/open_core/i2cslave/trunk/rtl/registerInterface.v",
 		"/home/gokul/playground/secverilog/ed/TrustZone-SecVerilog/secverilog-static/plab5-mcore-mem-acc.v",
@@ -224,7 +274,7 @@
 	},
 	"find_in_files":
 	{
-		"height": 0.0,
+		"height": 99.0,
 		"where_history":
 		[
 		]
@@ -234,6 +284,47 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"I2C_CMD_START",
+			"debug",
+			"wb_stb_i",
+			"prer",
+			"PRER_LO",
+			"adr",
+			"wb_write",
+			"adr",
+			"dat1_i",
+			"scl_o",
+			"scl_i",
+			"scl_pad_i",
+			"ARST_LVL",
+			"arst_i",
+			"rst_i",
+			"domain",
+			"core_txd",
+			"prer",
+			"wb_clk_i",
+			"{L}",
+			"Domain",
+			"{L}",
+			"~|",
+			"|",
+			"parameter",
+			"~|",
+			"#1 ",
+			"I2C_CMD_STOP",
+			"parameter",
+			"start",
+			"wr_ctrl",
+			",",
+			"t_low",
+			"scl_o",
+			"scl_oen",
+			"scl_o",
+			"scl_pad_o",
+			"join",
+			"4",
+			"lab4",
+			"Domain"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -241,6 +332,14 @@
 		"regex": false,
 		"replace_history":
 		[
+			"{Ctrl domain}",
+			"domain",
+			"{Ctrl Domain}",
+			"wire",
+			"",
+			"wire",
+			";",
+			"domain"
 		],
 		"reverse": false,
 		"show_context": true,

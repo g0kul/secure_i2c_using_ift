@@ -11,12 +11,10 @@ module submodule
 reg    {Domain sel}    out;
 
 always @ (*) begin
-    if (sel == 1'b0) begin
-        out = in1;
-    end
-    else begin
-        out = in2;
-    end
+    case(sel)
+        1'b0: out = in1;
+        1'b1: out = in2;
+    endcase
 end
 
 endmodule

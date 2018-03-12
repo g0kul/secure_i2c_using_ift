@@ -60,7 +60,7 @@
 
 
 (push)
-(assert (and (not(= sel 0))  (not(leq D2  (Domain sel)))))    ; out = in2 @submodule.v:18
+(assert (and (= sel 0) (= sel 1)  (not(leq D2  (Domain sel)))))    ; out = in2 @submodule.v:16
 (check-sat)
 (pop)
 
