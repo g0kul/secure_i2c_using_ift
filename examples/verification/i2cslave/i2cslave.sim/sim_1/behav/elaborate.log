@@ -7,6 +7,8 @@ Completed static elaboration
 Starting simulation data flow analysis
 WARNING: [XSIM 43-4099] "/home/gokul/playground/secverilog/i2c_ift/examples/verification/i2cslave/i2cslave.srcs/sources_1/imports/rtl/i2cSlave.v" Line 48. Module i2cSlave doesn't have a timescale but at least one module in design has a timescale.
 WARNING: [XSIM 43-4099] "/home/gokul/playground/secverilog/i2c_ift/examples/verification/i2cslave/i2cslave.srcs/sources_1/imports/rtl/registerInterface.v" Line 50. Module registerInterface doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "/home/gokul/playground/secverilog/i2c_ift/examples/verification/i2cslave/i2cslave.srcs/sources_1/imports/rtl/i2cSlave.v" Line 48. Module i2cSlave doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "/home/gokul/playground/secverilog/i2c_ift/examples/verification/i2cslave/i2cslave.srcs/sources_1/imports/rtl/registerInterface.v" Line 50. Module registerInterface doesn't have a timescale but at least one module in design has a timescale.
 Completed simulation data flow analysis
 Time Resolution for simulation is 1ps
 Compiling module xil_defaultlib.wb_master_model(dwidth=8)

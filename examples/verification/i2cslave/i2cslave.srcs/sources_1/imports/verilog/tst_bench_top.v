@@ -102,8 +102,11 @@ module tst_bench_top();
 
 	parameter RD      = 1'b1;
 	parameter WR      = 1'b0;
-	parameter SADR    = 7'b0010_000;
+	parameter SADDR1    = 7'b0010_000;
+    parameter SADDR2    = 7'b0100_000;
 
+    wire [6:0] M_SEL_ADDR = SADDR2; //what address master accesses
+    
 	//
 	// Module body
 	//
@@ -129,7 +132,7 @@ module tst_bench_top();
 
 	wire stb0 = stb & ~adr[3];
 	wire stb1 = stb &  adr[3];
-
+	
 	assign dat_i = ({{8'd8}{stb0}} & dat0_i) | ({{8'd8}{stb1}} & dat1_i);
 
 	// hookup wishbone_i2c_master core
@@ -181,14 +184,15 @@ module tst_bench_top();
 	);
 
 	// hookup i2c slave model
-	//i2c_slave_model #(SADR) i2c_slave (
+	//i2c_slave_model #(M_SEL_ADDR) i2c_slave (
 	//	.scl(scl),
 	//	.sda(sda)
 	//);
 	
-	i2cSlave i2c_slave(
+	i2cSlave i2c_slave1(
       .clk(clk),
       .rst(!rstn),
+      .i2c_sl_address(SADDR1),
       .sda(sda),
       .scl(scl),
       .myReg0(),
@@ -199,6 +203,22 @@ module tst_bench_top();
       .myReg5(8'h34),
       .myReg6(8'h56),
       .myReg7(8'h78)
+    );
+    
+    i2cSlave i2c_slave2(
+      .clk(clk),
+      .rst(!rstn),
+      .i2c_sl_address(SADDR2),
+      .sda(sda),
+      .scl(scl),
+      .myReg0(),
+      .myReg1(),
+      .myReg2(),
+      .myReg3(),
+      .myReg4(8'h90),
+      .myReg5(8'h12),
+      .myReg6(8'h34),
+      .myReg7(8'h56)
     );
 
     // create i2c lines
@@ -263,9 +283,9 @@ module tst_bench_top();
 	      //
 
 	      // drive slave address
-	      u0.wb_write(1, TXR, {SADR,WR} ); // present slave address, set write-bit
+	      u0.wb_write(1, TXR, {M_SEL_ADDR,WR} ); // present slave address, set write-bit
 	      u0.wb_write(0, CR,      8'h90 ); // set command (start, write)
-	      $display("status: %t generate 'start', write cmd %0h (slave address+write)", $time, {SADR,WR} );
+	      $display("status: %t generate 'start', write cmd %0h (slave address+write)", $time, {M_SEL_ADDR,WR} );
 
 	      // check tip bit
 	      u0.wb_read(1, SR, q);
@@ -324,9 +344,9 @@ release scl;
 	      //
 
 	      // drive slave address
-	      u0.wb_write(1, TXR,{SADR,WR} ); // present slave address, set write-bit
+	      u0.wb_write(1, TXR,{M_SEL_ADDR,WR} ); // present slave address, set write-bit
 	      u0.wb_write(0, CR,     8'h90 ); // set command (start, write)
-	      $display("status: %t generate 'start', write cmd %0h (slave address+write)", $time, {SADR,WR} );
+	      $display("status: %t generate 'start', write cmd %0h (slave address+write)", $time, {M_SEL_ADDR,WR} );
 
 	      // check tip bit
 	      u0.wb_read(1, SR, q);
@@ -346,9 +366,9 @@ release scl;
 	      $display("status: %t tip==0", $time);
 
 	      // drive slave address
-	      u0.wb_write(1, TXR, {SADR,RD} ); // present slave's address, set read-bit
+	      u0.wb_write(1, TXR, {M_SEL_ADDR,RD} ); // present slave's address, set read-bit
 	      u0.wb_write(0, CR,      8'h90 ); // set command (start, write)
-	      $display("status: %t generate 'repeated start', write cmd %0h (slave address+read)", $time, {SADR,RD} );
+	      $display("status: %t generate 'repeated start', write cmd %0h (slave address+read)", $time, {M_SEL_ADDR,RD} );
 
 	      // check tip bit
 	      u0.wb_read(1, SR, q);
@@ -428,9 +448,9 @@ release scl;
 	      /*
 
 	      // drive slave address
-	      u0.wb_write(1, TXR, {SADR,WR} ); // present slave address, set write-bit
+	      u0.wb_write(1, TXR, {M_SEL_ADDR,WR} ); // present slave address, set write-bit
 	      u0.wb_write(0, CR,      8'h90 ); // set command (start, write)
-	      $display("status: %t generate 'start', write cmd %0h (slave address+write). Check invalid address", $time, {SADR,WR} );
+	      $display("status: %t generate 'start', write cmd %0h (slave address+write). Check invalid address", $time, {M_SEL_ADDR,WR} );
 
 	      // check tip bit
 	      u0.wb_read(1, SR, q);

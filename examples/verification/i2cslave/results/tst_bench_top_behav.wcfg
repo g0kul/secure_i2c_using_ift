@@ -12,45 +12,29 @@
    </db_ref_list>
    <zoom_setting>
       <ZoomStartTime time="0fs"></ZoomStartTime>
-      <ZoomEndTime time="907731914900fs"></ZoomEndTime>
+      <ZoomEndTime time="1351059574474fs"></ZoomEndTime>
       <Cursor1Time time="1090206000000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="290"></NameColumnWidth>
-      <ValueColumnWidth column_width="70"></ValueColumnWidth>
+      <NameColumnWidth column_width="286"></NameColumnWidth>
+      <ValueColumnWidth column_width="66"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="46" />
-   <wvobject type="logic" fp_name="/tst_bench_top/i2c_slave/clk">
-      <obj_property name="ElementShortName">clk</obj_property>
-      <obj_property name="ObjectShortName">clk</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/tst_bench_top/i2c_slave/rst">
-      <obj_property name="ElementShortName">rst</obj_property>
-      <obj_property name="ObjectShortName">rst</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/tst_bench_top/i2c_slave/sda">
-      <obj_property name="ElementShortName">sda</obj_property>
-      <obj_property name="ObjectShortName">sda</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/tst_bench_top/i2c_slave/scl">
+   <WVObjectSize size="40" />
+   <wvobject type="logic" fp_name="/tst_bench_top/scl">
       <obj_property name="ElementShortName">scl</obj_property>
       <obj_property name="ObjectShortName">scl</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/tst_bench_top/i2c_slave/myReg0">
-      <obj_property name="ElementShortName">myReg0[7:0]</obj_property>
-      <obj_property name="ObjectShortName">myReg0[7:0]</obj_property>
+   <wvobject type="logic" fp_name="/tst_bench_top/i2c_slave1/sda">
+      <obj_property name="ElementShortName">sda</obj_property>
+      <obj_property name="ObjectShortName">sda</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/tst_bench_top/i2c_slave/myReg1">
-      <obj_property name="ElementShortName">myReg1[7:0]</obj_property>
-      <obj_property name="ObjectShortName">myReg1[7:0]</obj_property>
+   <wvobject type="logic" fp_name="/tst_bench_top/i2c_slave1/sdaOut">
+      <obj_property name="ElementShortName">sdaOut</obj_property>
+      <obj_property name="ObjectShortName">sdaOut</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/tst_bench_top/i2c_slave/myReg2">
-      <obj_property name="ElementShortName">myReg2[7:0]</obj_property>
-      <obj_property name="ObjectShortName">myReg2[7:0]</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/tst_bench_top/i2c_slave/myReg3">
-      <obj_property name="ElementShortName">myReg3[7:0]</obj_property>
-      <obj_property name="ObjectShortName">myReg3[7:0]</obj_property>
+   <wvobject type="logic" fp_name="/tst_bench_top/i2c_slave2/sdaOut">
+      <obj_property name="ElementShortName">sdaOut</obj_property>
+      <obj_property name="ObjectShortName">sdaOut</obj_property>
    </wvobject>
    <wvobject type="logic" fp_name="/tst_bench_top/clk">
       <obj_property name="ElementShortName">clk</obj_property>
@@ -107,10 +91,6 @@
    <wvobject type="array" fp_name="/tst_bench_top/qq">
       <obj_property name="ElementShortName">qq[7:0]</obj_property>
       <obj_property name="ObjectShortName">qq[7:0]</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/tst_bench_top/scl">
-      <obj_property name="ElementShortName">scl</obj_property>
-      <obj_property name="ObjectShortName">scl</obj_property>
    </wvobject>
    <wvobject type="logic" fp_name="/tst_bench_top/scl0_o">
       <obj_property name="ElementShortName">scl0_o</obj_property>
@@ -199,9 +179,5 @@
    <wvobject type="logic" fp_name="/tst_bench_top/WR">
       <obj_property name="ElementShortName">WR</obj_property>
       <obj_property name="ObjectShortName">WR</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/tst_bench_top/SADR">
-      <obj_property name="ElementShortName">SADR[6:0]</obj_property>
-      <obj_property name="ObjectShortName">SADR[6:0]</obj_property>
    </wvobject>
 </wave_config>

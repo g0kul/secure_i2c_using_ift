@@ -48,6 +48,7 @@
 module i2cSlave (
   clk,
   rst,
+  i2c_sl_address,
   sda,
   scl,
   myReg0,
@@ -62,6 +63,7 @@ module i2cSlave (
 
 input clk;
 input rst;
+input [6:0] i2c_sl_address;
 inout sda;
 input scl;
 output [7:0] myReg0;
@@ -189,6 +191,7 @@ registerInterface u_registerInterface(
 serialInterface u_serialInterface (
   .clk(clk), 
   .rst(rstSyncToClk | startEdgeDet), 
+  .i2c_sl_address(i2c_sl_address),
   .dataIn(dataFromRegIF), 
   .dataOut(dataToRegIF), 
   .writeEn(writeEn),

@@ -55,8 +55,9 @@
 `include "timescale.v"
 `include "i2cSlave_define.v"
 
-module serialInterface (clearStartStopDet, clk, dataIn, dataOut, regAddr, rst, scl, sdaIn, sdaOut, startStopDetState, writeEn);
+module serialInterface (clearStartStopDet, clk, i2c_sl_address, dataIn, dataOut, regAddr, rst, scl, sdaIn, sdaOut, startStopDetState, writeEn);
 input   clk;
+input   [6:0] i2c_sl_address;
 input   [7:0]dataIn;
 input   rst;
 input   scl;
@@ -249,7 +250,7 @@ begin
         next_sdaOut <= `I2C_ACK;
         case (streamSt)
         `STREAM_IDLE: begin
-        if (rxData[7:1] == `I2C_ADDRESS &&
+        if (rxData[7:1] == i2c_sl_address &&
         startStopDetState == `START_DET) begin
         if (rxData[0] == 1'b1)
         next_streamSt <= `STREAM_READ;
