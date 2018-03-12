@@ -77,7 +77,7 @@ module tst_bench_top();
 	reg  rstn;
 
 	wire [31:0] adr;
-	wire [ 7:0] dat_i, dat_o, dat0_i, dat1_i;
+	wire [ 7:0] dat_i, dat_o, dat0_i;
 	wire we;
 	wire stb;
 	wire cyc;
@@ -86,8 +86,8 @@ module tst_bench_top();
 
 	reg [7:0] q, qq;
 
-	wire scl, scl0_o, scl0_oen, scl1_o, scl1_oen;
-	wire sda, sda0_o, sda0_oen, sda1_o, sda1_oen;
+	wire scl, scl0_o, scl0_oen;
+	wire sda, sda0_o, sda0_oen;
 
 	parameter PRER_LO = 3'b000;
 	parameter PRER_HI = 3'b001;
@@ -131,9 +131,8 @@ module tst_bench_top();
 	);
 
 	wire stb0 = stb & ~adr[3];
-	wire stb1 = stb &  adr[3];
 	
-	assign dat_i = ({{8'd8}{stb0}} & dat0_i) | ({{8'd8}{stb1}} & dat1_i);
+	assign dat_i = ({{8'd8}{stb0}} & dat0_i);
 
 	// hookup wishbone_i2c_master core
 	i2c_master_top i2c_top (
@@ -158,29 +157,6 @@ module tst_bench_top();
 		.sda_pad_i(sda),
 		.sda_pad_o(sda0_o),
 		.sda_padoen_o(sda0_oen)
-	),
-	i2c_top2 (
-
-		// wishbone interface
-		.wb_clk_i(clk),
-		.wb_rst_i(1'b0),
-		.arst_i(rstn),
-		.wb_adr_i(adr[2:0]),
-		.wb_dat_i(dat_o),
-		.wb_dat_o(dat1_i),
-		.wb_we_i(we),
-		.wb_stb_i(stb1),
-		.wb_cyc_i(cyc),
-		.wb_ack_o(ack),
-		.wb_inta_o(inta),
-
-		// i2c signals
-		.scl_pad_i(scl),
-		.scl_pad_o(scl1_o),
-		.scl_padoen_o(scl1_oen),
-		.sda_pad_i(sda),
-		.sda_pad_o(sda1_o),
-		.sda_padoen_o(sda1_oen)
 	);
 
 	// hookup i2c slave model
@@ -223,9 +199,7 @@ module tst_bench_top();
 
     // create i2c lines
 	delay m0_scl (scl0_oen ? 1'bz : scl0_o, scl),
-	      m1_scl (scl1_oen ? 1'bz : scl1_o, scl),
-	      m0_sda (sda0_oen ? 1'bz : sda0_o, sda),
-	      m1_sda (sda1_oen ? 1'bz : sda1_o, sda);
+	      m0_sda (sda0_oen ? 1'bz : sda0_o, sda);
 
 	pullup p1(scl); // pullup scl line
 	pullup p2(sda); // pullup sda line
