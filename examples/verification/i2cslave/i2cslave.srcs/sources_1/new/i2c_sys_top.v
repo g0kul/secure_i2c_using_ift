@@ -20,9 +20,7 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-`include "i2c_sys_defines.vh"
-`include "i2cSlaveTop.v"
-`include "i2c_master_top.v"
+//`include "i2c_sys_defines.vh"
 
 module i2c_sys_top
 #(parameter ADDR_WIDTH = 3, DATA_WIDTH = 8)

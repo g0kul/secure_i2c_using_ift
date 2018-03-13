@@ -9,4 +9,4 @@ then
 exit $RETVAL
 fi
 }
-ExecStep $xv_path/bin/xsim i2c_sys_tb_behav -key {Behavioral:sim_1:Functional:i2c_sys_tb} -tclbatch i2c_sys_tb.tcl -log simulate.log
+ExecStep $xv_path/bin/xsim i2c_world_tb_behav -key {Behavioral:sim_1:Functional:i2c_world_tb} -tclbatch i2c_world_tb.tcl -log simulate.log
