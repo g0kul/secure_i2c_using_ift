@@ -66,10 +66,10 @@ module i2c_world_top
     wire {Ctrl domain} sda0_o;
     wire {Ctrl domain} sda0_oen;
     
-    reg [6:0]  {Ctrl domain} i2c_slave_addr;
+    reg [6:0]  {L} i2c_slave_addr;
     wire [7:0] {Data domain} i2c_read_data_out;
     
-    reg [6:0]  {Ctrl domain} n_i2c_slave_addr;
+    reg [6:0]  {L} n_i2c_slave_addr;
     reg [7:0]  {Data domain} rd_data_out;
     reg [7:0]  {Data domain} n_rd_data_out;
     
@@ -84,8 +84,8 @@ module i2c_world_top
     reg       {Ctrl domain} n_done_r;
 
 	//Params
-    wire [6:0] {Ctrl domain} M_SEL_ADDR1 = 7'h10;
-    wire [6:0] {Ctrl domain} M_SEL_ADDR2 = 7'h20;
+    wire [6:0] {L} M_SEL_ADDR1 = 7'h10;
+    wire [6:0] {L} M_SEL_ADDR2 = 7'h20;
     
     wire [2:0] {Ctrl domain} W_ST_IDLE = 3'd0;
     wire [2:0] {Ctrl domain} W_ST_RD1_START = 3'd1;

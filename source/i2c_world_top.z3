@@ -74,13 +74,13 @@
 
 
 (push)
-(assert  (not(leq LOW  (Ctrl domain))))    ; assign M_SEL_ADDR1 = 16 @i2c_world_top.v:87
+(assert  (not(leq LOW  LOW)))    ; assign M_SEL_ADDR1 = 16 @i2c_world_top.v:87
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  (Ctrl domain))))    ; assign M_SEL_ADDR2 = 32 @i2c_world_top.v:88
+(assert  (not(leq LOW  LOW)))    ; assign M_SEL_ADDR2 = 32 @i2c_world_top.v:88
 (check-sat)
 (pop)
 
@@ -164,7 +164,7 @@
 
 
 (push)
-(assert  (not(leq (Ctrl domain)  (Ctrl domain))))    ; Instantiate parameter slave_addr in module i2c_sys_top @i2c_world_top.v:174
+(assert  (not(leq LOW  (Ctrl domain))))    ; Instantiate parameter slave_addr in module i2c_sys_top @i2c_world_top.v:174
 (check-sat)
 (pop)
 
@@ -350,7 +350,7 @@
 
 
 (push)
-(assert  (not(leq (Ctrl domain)  LOW)))    ; Instantiate parameter i2c_sl_address in module i2cSlave @i2c_world_top.v:221
+(assert  (not(leq LOW  LOW)))    ; Instantiate parameter i2c_sl_address in module i2cSlave @i2c_world_top.v:221
 (check-sat)
 (pop)
 
@@ -410,7 +410,7 @@
 
 
 (push)
-(assert  (not(leq (Ctrl domain)  LOW)))    ; Instantiate parameter i2c_sl_address in module i2cSlave @i2c_world_top.v:235
+(assert  (not(leq LOW  LOW)))    ; Instantiate parameter i2c_sl_address in module i2cSlave @i2c_world_top.v:235
 (check-sat)
 (pop)
 
@@ -482,7 +482,7 @@
 
 
 (push)
-(assert  (not(leq (Ctrl domain)  (Ctrl domain))))    ; n_i2c_slave_addr = i2c_slave_addr @i2c_world_top.v:99
+(assert  (not(leq LOW  LOW)))    ; n_i2c_slave_addr = i2c_slave_addr @i2c_world_top.v:99
 (check-sat)
 (pop)
 
@@ -518,7 +518,7 @@
 
 
 (push)
-(assert  (not(leq (Ctrl domain)  (Ctrl domain))))    ; n_i2c_slave_addr = M_SEL_ADDR1 @i2c_world_top.v:115
+(assert  (not(leq (Ctrl domain)  LOW)))    ; n_i2c_slave_addr = M_SEL_ADDR1 @i2c_world_top.v:115
 (check-sat)
 (pop)
 
@@ -554,7 +554,7 @@
 
 
 (push)
-(assert  (not(leq (Ctrl domain)  (Ctrl domain))))    ; n_i2c_slave_addr = M_SEL_ADDR2 @i2c_world_top.v:130
+(assert  (not(leq (Ctrl domain)  LOW)))    ; n_i2c_slave_addr = M_SEL_ADDR2 @i2c_world_top.v:130
 (check-sat)
 (pop)
 
@@ -602,7 +602,7 @@
 
 
 (push)
-(assert  (not(leq LOW  (Ctrl domain))))    ; i2c_slave_addr <= 0 @i2c_world_top.v:152
+(assert  (not(leq LOW  LOW)))    ; i2c_slave_addr <= 0 @i2c_world_top.v:152
 (check-sat)
 (pop)
 
@@ -638,7 +638,7 @@
 
 
 (push)
-(assert  (not(leq (Ctrl domain)  (Ctrl domain))))    ; i2c_slave_addr <= n_i2c_slave_addr @i2c_world_top.v:161
+(assert  (not(leq LOW  LOW)))    ; i2c_slave_addr <= n_i2c_slave_addr @i2c_world_top.v:161
 (check-sat)
 (pop)
 

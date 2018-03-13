@@ -1,4 +1,6 @@
 #I2C Slave Source
+
+PS: This example has some connection issues, please check the source folder for the updated file.
 -------------------------
 Author: OpenCores - https://opencores.org/project,i2cslave
 
