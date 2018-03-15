@@ -73,7 +73,7 @@ module i2c_world_top
     reg [7:0]  {Data domain} rd_data_out;
     reg [7:0]  {Data domain} n_rd_data_out;
     
-    wire {Ctrl domain} high_imp = 1'bz;
+    wire {L1} high_imp = 1'bz;
     
     //SM
     reg [2:0] {Ctrl domain} world_state;
@@ -92,6 +92,13 @@ module i2c_world_top
     wire [2:0] {Ctrl domain} W_ST_RD1_WAIT = 3'd2;
     wire [2:0] {Ctrl domain} W_ST_RD2_START = 3'd3;
     wire [2:0] {Ctrl domain} W_ST_RD2_WAIT = 3'd4;
+
+    //time mux
+    reg [7:0] {L} count;
+    wire {D1} scl_S1;
+    wire {D1} sda_S1;
+    wire {D2} scl_S2;
+    wire {D2} sda_S2;
     
     always @(*)
     begin
@@ -170,6 +177,25 @@ module i2c_world_top
     assign valid = rd_valid;
     assign done = done_r;
 
+    //for time multiplexing
+    always @(posedge clk or posedge rst)
+    begin
+        if (rst)
+        begin
+            // reset
+            count <= 8'd0;
+        end
+        else
+        begin
+            count <= count + 8'd1;
+        end
+    end
+
+    assign scl_S1 = (count[7] == 1'b1) & (domain == 1'b0) ? scl : high_imp;
+    assign sda_S1 = (count[7] == 1'b1) & (domain == 1'b0) ? sda : high_imp;
+    assign scl_S2 = (count[7] == 1'b1) & (domain == 1'b1) ? scl : high_imp;
+    assign sda_S2 = (count[7] == 1'b1) & (domain == 1'b1) ? sda : high_imp;
+
     
     i2c_sys_top i2c_master_ctrl0 (
         .clk(clk),
@@ -224,8 +250,8 @@ module i2c_world_top
       .domain(1'b0),
 
       .i2c_sl_address(M_SEL_ADDR1),
-      .sda(sda),
-      .scl(scl),
+      .sda(sda_S1),
+      .scl(scl_S1),
       .myReg4(8'h12),
       .myReg5(8'h34),
       .myReg6(8'h56),
@@ -238,8 +264,8 @@ module i2c_world_top
       .domain(1'b1),
 
       .i2c_sl_address(M_SEL_ADDR2),
-      .sda(sda),
-      .scl(scl),
+      .sda(sda_S2),
+      .scl(scl_S2),
       .myReg4(8'h90),
       .myReg5(8'h12),
       .myReg6(8'h34),
