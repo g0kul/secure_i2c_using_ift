@@ -83,7 +83,7 @@
 `define ST_STOP  5'b1_0000
 
 module i2c_master_byte_ctrl (
-	clk, rst, nReset, domain, domain_i2c, ena, clk_cnt, start, stop, read, write, ack_in, din,
+	clk, rst, nReset, domain_i2c, ena, clk_cnt, start, stop, read, write, ack_in, din,
 	cmd_ack, ack_out, dout, i2c_busy, i2c_al, scl_i, scl_o, scl_oen, sda_i, sda_o, sda_oen );
 
 	//
@@ -92,7 +92,6 @@ module i2c_master_byte_ctrl (
 	input 			{L} clk;     // master clock
 	input 			{L} rst;     // synchronous active high reset
 	input 			{L} nReset;  // asynchronous active low reset
-	input 			{L} domain;
 	input 			{L} domain_i2c;
 
 	input 			{L} ena;     // core enable signal
@@ -157,7 +156,6 @@ module i2c_master_byte_ctrl (
 		.clk     ( clk      ),
 		.rst     ( rst      ),
 		.nReset  ( nReset   ),
-		.domain  ( domain   ),
 		.domain_i2c( domain_i2c ),
 		.ena     ( ena      ),
 		.clk_cnt ( clk_cnt  ),

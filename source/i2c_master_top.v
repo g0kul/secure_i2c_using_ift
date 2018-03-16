@@ -86,13 +86,13 @@ module i2c_master_top
 	input        	{L}  wb_clk_i,     // master clock input
 	input        	{L}  wb_rst_i,     // synchronous active high reset
 	input        	{L}  arst_i,       // asynchronous reset
-	input 			{L}  domain,
 	input 			{L}  domain_i2c,
 
 
 	input  [2:0] 	{L}  wb_adr_i,     // lower address bits
 	input  [7:0] 	{L}  wb_dat_i,     // databus input
 	output [7:0] 	{L}  wb_dat_o,     // databus output
+	output [7:0] 	{Data domain_i2c}  wb_i2c_dat_o,     // databus output
 	input        	{L}  wb_we_i,      // write enable input
 	input        	{L}  wb_stb_i,     // stobe/core select signal
 	input        	{L}  wb_cyc_i,     // valid bus cycle input
@@ -123,6 +123,7 @@ module i2c_master_top
 
 	// I2C signals
 	reg [7:0]		{L} wb_dat_o;
+	reg [7:0]		{Data domain_i2c} wb_i2c_dat_o;
 	reg 			{L} wb_ack_o;
 	reg 			{L} wb_inta_o;
 
@@ -171,6 +172,7 @@ module i2c_master_top
 	always @(posedge wb_clk_i)
 	  wb_ack_o <= #1 wb_cyc_i & wb_stb_i & ~wb_ack_o; // because timing is always honored
 
+    
 	// assign DAT_O
 	always @(posedge wb_clk_i)
 	begin
@@ -178,11 +180,21 @@ module i2c_master_top
 	    3'b000: wb_dat_o <= #1 prer[ 7:0];
 	    3'b001: wb_dat_o <= #1 prer[15:8];
 	    3'b010: wb_dat_o <= #1 ctr;
-	    3'b011: wb_dat_o <= #1 rxr; // write is transmit register (txr)
-	    3'b100: wb_dat_o <= #1 sr;  // write is command register (cr)
+	    3'b011: wb_dat_o <= #1 0;	//rxr; // write is transmit register (txr)
+	    3'b100: wb_dat_o <= #1 0;	//sr;  // write is command register (cr)
 	    3'b101: wb_dat_o <= #1 txr;
 	    3'b110: wb_dat_o <= #1 cr;
 	    3'b111: wb_dat_o <= #1 0;   // reserved
+	  endcase
+	end
+
+
+	always @(posedge wb_clk_i)
+	begin
+	  case (wb_adr_i) // synopsys parallel_case
+	    3'b011: wb_i2c_dat_o <= #1 rxr; // write is transmit register (txr)
+	    3'b100: wb_i2c_dat_o <= #1 sr;  // write is command register (cr)
+	    default: wb_i2c_dat_o <= #1 0;   // reserved
 	  endcase
 	end
 
@@ -240,7 +252,6 @@ module i2c_master_top
 		.clk      ( wb_clk_i     ),
 		.rst      ( wb_rst_i     ),
 		.nReset   ( rst_i        ),
-		.domain   (domain        ),
 		.ena      ( core_en      ),
 		.clk_cnt  ( prer         ),
 		.start    ( sta          ),

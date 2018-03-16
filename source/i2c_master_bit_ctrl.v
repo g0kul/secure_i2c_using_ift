@@ -166,7 +166,6 @@ module i2c_master_bit_ctrl (
     input             {L} clk,      // system clock
     input             {L} rst,      // synchronous active high reset
     input             {L} nReset,   // asynchronous active low reset
-    input             {L} domain,
     input             {L} domain_i2c,
 
     input             {L} ena,      // core enable signal
