@@ -1,23 +1,38 @@
-#I2C Slave Source
--------------------------
-Author: OpenCores - https://opencores.org/project,i2cslave
+#Secured I2C using IFT  
+-------------------------  
+i2c_world_top.v ~ Main top file, the I2C World.  
+i2c_sys_top.v ~ An WishBone master that controls I2C Master.  
+i2c_master_top.v ~ Top module of I2C Master with WishBone slave interface for control.  
+i2c_master_byte_ctrl.v ~ I2C Master byte transfer.  
+i2c_master_bit_ctrl.v ~ Transmits bits onto I2C lines.  
+i2cSlave.v ~ Top module of the slave.  
+serialInterface.v ~ Handles the I2C slave operation.  
+registerInterface.v ~ Contains I2C slave registers - 8 registers of 8bit wide (4 of them are read only).  
 
-#Format to run
---------------------------
+#Format to run  
+--------------------------  
 
-secverilog -F <DependentType_FnDef.fun> -l <SecLattice_Def.lattice> -z <file1.v file2.v ... > 
+./check_security.cp  
 
-#Expected Result
---------------------------
+#Expected Result  
+--------------------------  
 
-./secverilog -F oneway.fun -l oneway.lattice -z twomodule.v muxgp.v 
+Compiling file i2c_world_top.v  
+Compiling file i2c_master_top.v  
+Compiling file i2c_master_byte_ctrl.v  
+Compiling file i2c_master_bit_ctrl.v  
+Compiling file i2cSlave.v  
+Compiling file serialInterface.v  
+Compiling file registerInterface.v  
+Compiling file i2c_sys_top.v  
+Verifying module i2c_master_bit_ctrl verified  
+Verifying module i2c_master_byte_ctrl verified  
+Verifying module i2c_master_top verified  
+Verifying module i2c_sys_top verified  
+Verifying module i2c_world_top verified  
+Verifying module i2cSlave verified  
+Verifying module registerInterface verified  
+Verifying module serialInterface verified  
+Total: 0 assertions failed  
 
-Compiling file twomodule.v
-Compiling file muxgp.v
-Verifying file twomodule.v
-verified
-Verifying file muxgp.v
-verified
-Total: 0 assertions failed
-
-----------------------------
+----------------------------  
