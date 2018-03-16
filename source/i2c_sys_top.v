@@ -62,10 +62,10 @@ module i2c_sys_top
 	input 					{L} rst;
 	input					{L} domain_i2c;
 
-	input 					{L} start;
+	input 					{Ctrl domain_i2c} start;
 	output 					{Ctrl domain_i2c} done;
 	
-	input [6:0] 			{L} slave_addr;
+	input [6:0] 			{Ctrl domain_i2c} slave_addr;
 	output [7:0]	{Data domain_i2c} read_data_out;
     
     //WB Intf
