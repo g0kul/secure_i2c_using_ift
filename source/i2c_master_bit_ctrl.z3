@@ -38,9 +38,6 @@
 ;(assert (leq L1 L2))
 
 ; variables to be solved
-(declare-fun domain () Int)
-(assert (<= 0  domain))
-(assert (<= domain 1))
 (declare-fun domain_i2c () Int)
 (assert (<= 0  domain_i2c))
 (assert (<= domain_i2c 1))
@@ -71,895 +68,913 @@
 ; assertions to be verified
 
 (push)
-(assert  (not(leq (join (join (Ctrl domain) (Ctrl domain)) (Ctrl domain))  (Ctrl domain))))    ; assign scl_sync = ((dSCL)&(~(sSCL)))&(scl_oen) @i2c_master_bit_ctrl.v:240
+(assert  (not(leq LOW  LOW)))    ; assign scl_sync = ((dSCL)&(~(sSCL)))&(scl_oen) @i2c_master_bit_ctrl.v:241
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  (Ctrl domain))))    ; assign scl_o = 0 @i2c_master_bit_ctrl.v:587
+(assert  (not(leq LOW  LOW)))    ; assign no_filter_cnt = |(filter_cnt) @i2c_master_bit_ctrl.v:298
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  (Ctrl domain))))    ; assign sda_o = 0 @i2c_master_bit_ctrl.v:588
+(assert  (not(leq LOW  LOW)))    ; assign scl_o = 0 @i2c_master_bit_ctrl.v:623
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq (Ctrl domain)  (Ctrl domain))))    ; dscl_oen <= scl_oen @i2c_master_bit_ctrl.v:230
+(assert  (not(leq LOW  LOW)))    ; assign sda_o = 0 @i2c_master_bit_ctrl.v:624
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  (Ctrl domain))))    ; slave_wait <= 0 @i2c_master_bit_ctrl.v:235
+(assert  (not(leq LOW  LOW)))    ; dscl_oen <= scl_oen @i2c_master_bit_ctrl.v:231
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq (join (join (join (Ctrl domain) (Ctrl domain)) (Ctrl domain)) (join (Ctrl domain) (Ctrl domain)))  (Ctrl domain))))    ; slave_wait <= (((scl_oen)&(~(dscl_oen)))&(~(sSCL)))|((slave_wait)&(~(sSCL))) @i2c_master_bit_ctrl.v:236
+(assert  (not(leq LOW  LOW)))    ; slave_wait <= 0 @i2c_master_bit_ctrl.v:236
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  (Ctrl domain))))    ; cnt <= 0 @i2c_master_bit_ctrl.v:247
+(assert  (not(leq LOW  LOW)))    ; slave_wait <= (((scl_oen)&(~(dscl_oen)))&(~(sSCL)))|((slave_wait)&(~(sSCL))) @i2c_master_bit_ctrl.v:237
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  (Ctrl domain))))    ; clk_en <= 1 @i2c_master_bit_ctrl.v:248
+(assert  (not(leq LOW  LOW)))    ; cnt <= 0 @i2c_master_bit_ctrl.v:248
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq (Ctrl domain)  (Ctrl domain))))    ; cnt <= clk_cnt @i2c_master_bit_ctrl.v:253
+(assert  (not(leq LOW  LOW)))    ; clk_en <= 1 @i2c_master_bit_ctrl.v:249
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq (Ctrl domain)  (Ctrl domain))))    ; clk_en <= 1 @i2c_master_bit_ctrl.v:254
+(assert  (not(leq LOW  LOW)))    ; cnt <= clk_cnt @i2c_master_bit_ctrl.v:254
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq (Ctrl domain)  (Ctrl domain))))    ; cnt <= cnt @i2c_master_bit_ctrl.v:258
+(assert  (not(leq LOW  LOW)))    ; clk_en <= 1 @i2c_master_bit_ctrl.v:255
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq (Ctrl domain)  (Ctrl domain))))    ; clk_en <= 0 @i2c_master_bit_ctrl.v:259
+(assert  (not(leq LOW  LOW)))    ; cnt <= cnt @i2c_master_bit_ctrl.v:259
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq (Ctrl domain)  (Ctrl domain))))    ; cnt <= (cnt)-(1) @i2c_master_bit_ctrl.v:263
+(assert  (not(leq LOW  LOW)))    ; clk_en <= 0 @i2c_master_bit_ctrl.v:260
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq (Ctrl domain)  (Ctrl domain))))    ; clk_en <= 0 @i2c_master_bit_ctrl.v:264
+(assert  (not(leq LOW  LOW)))    ; cnt <= (cnt)-(1) @i2c_master_bit_ctrl.v:264
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  (Ctrl domain))))    ; cSCL <= 0 @i2c_master_bit_ctrl.v:275
+(assert  (not(leq LOW  LOW)))    ; clk_en <= 0 @i2c_master_bit_ctrl.v:265
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  (Ctrl domain_i2c))))    ; cSDA <= 0 @i2c_master_bit_ctrl.v:276
+(assert  (not(leq LOW  LOW)))    ; cSCL <= 0 @i2c_master_bit_ctrl.v:276
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  (Ctrl domain))))    ; cSCL <= 0 @i2c_master_bit_ctrl.v:280
+(assert  (not(leq LOW  (Ctrl domain_i2c))))    ; cSDA <= 0 @i2c_master_bit_ctrl.v:277
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  (Ctrl domain_i2c))))    ; cSDA <= 0 @i2c_master_bit_ctrl.v:281
+(assert  (not(leq LOW  LOW)))    ; cSCL <= 0 @i2c_master_bit_ctrl.v:281
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq (Ctrl domain)  (Ctrl domain))))    ; cSCL <= {cSCL[0], scl_i} @i2c_master_bit_ctrl.v:285
+(assert  (not(leq LOW  (Ctrl domain_i2c))))    ; cSDA <= 0 @i2c_master_bit_ctrl.v:282
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; cSDA <= {cSDA[0], sda_i} @i2c_master_bit_ctrl.v:286
+(assert  (not(leq LOW  LOW)))    ; cSCL <= {cSCL[0], scl_i} @i2c_master_bit_ctrl.v:286
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  (Ctrl domain))))    ; filter_cnt <= 0 @i2c_master_bit_ctrl.v:292
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; cSDA <= {cSDA[0], sda_i} @i2c_master_bit_ctrl.v:287
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq (Ctrl domain)  (Ctrl domain))))    ; filter_cnt <= 0 @i2c_master_bit_ctrl.v:293
+(assert  (not(leq LOW  LOW)))    ; filter_cnt <= 0 @i2c_master_bit_ctrl.v:293
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq (Ctrl domain)  (Ctrl domain))))    ; filter_cnt <= (clk_cnt)>>(2) @i2c_master_bit_ctrl.v:294
+(assert  (not(leq LOW  LOW)))    ; filter_cnt <= 0 @i2c_master_bit_ctrl.v:294
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq (Ctrl domain)  (Ctrl domain))))    ; filter_cnt <= (filter_cnt)-(1) @i2c_master_bit_ctrl.v:295
+(assert  (not(leq LOW  LOW)))    ; filter_cnt <= (clk_cnt)>>(2) @i2c_master_bit_ctrl.v:295
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  (Ctrl domain))))    ; fSCL <= 7 @i2c_master_bit_ctrl.v:301
+(assert  (not(leq LOW  LOW)))    ; filter_cnt <= (filter_cnt)-(1) @i2c_master_bit_ctrl.v:296
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  (Ctrl domain_i2c))))    ; fSDA <= 7 @i2c_master_bit_ctrl.v:302
+(assert  (not(leq LOW  LOW)))    ; fSCL <= 7 @i2c_master_bit_ctrl.v:304
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  (Ctrl domain))))    ; fSCL <= 7 @i2c_master_bit_ctrl.v:306
+(assert  (not(leq LOW  LOW)))    ; fSCL <= 7 @i2c_master_bit_ctrl.v:308
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  (Ctrl domain_i2c))))    ; fSDA <= 7 @i2c_master_bit_ctrl.v:307
+(assert  (not(leq LOW  LOW)))    ; fSCL <= {fSCL[1:0], cSCL[1]} @i2c_master_bit_ctrl.v:312
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq (Ctrl domain)  (Ctrl domain))))    ; fSCL <= {fSCL[1:0], cSCL[1]} @i2c_master_bit_ctrl.v:311
+(assert  (not(leq LOW  LOW)))    ; sSCL <= 1 @i2c_master_bit_ctrl.v:320
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq (join (Ctrl domain_i2c) (Ctrl domain))  (Ctrl domain_i2c))))    ; fSDA <= {fSDA[1:0], cSDA[1]} @i2c_master_bit_ctrl.v:312
+(assert  (not(leq LOW  LOW)))    ; dSCL <= 1 @i2c_master_bit_ctrl.v:322
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  (Ctrl domain))))    ; sSCL <= 1 @i2c_master_bit_ctrl.v:320
+(assert  (not(leq LOW  LOW)))    ; sSCL <= 1 @i2c_master_bit_ctrl.v:326
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  (Ctrl domain_i2c))))    ; sSDA <= 1 @i2c_master_bit_ctrl.v:321
+(assert  (not(leq LOW  LOW)))    ; dSCL <= 1 @i2c_master_bit_ctrl.v:328
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  (Ctrl domain))))    ; dSCL <= 1 @i2c_master_bit_ctrl.v:323
+(assert  (not(leq LOW  LOW)))    ; sSCL <= ((&(fSCL[2:1]))|(&(fSCL[1:0])))|((fSCL[2])&(fSCL[0])) @i2c_master_bit_ctrl.v:332
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  (Ctrl domain_i2c))))    ; dSDA <= 1 @i2c_master_bit_ctrl.v:324
+(assert  (not(leq LOW  LOW)))    ; dSCL <= sSCL @i2c_master_bit_ctrl.v:334
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  (Ctrl domain))))    ; sSCL <= 1 @i2c_master_bit_ctrl.v:328
+(assert  (not(leq LOW  (Ctrl domain_i2c))))    ; fSDA <= 7 @i2c_master_bit_ctrl.v:341
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  (Ctrl domain_i2c))))    ; sSDA <= 1 @i2c_master_bit_ctrl.v:329
+(assert  (not(leq LOW  (Ctrl domain_i2c))))    ; fSDA <= 7 @i2c_master_bit_ctrl.v:345
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  (Ctrl domain))))    ; dSCL <= 1 @i2c_master_bit_ctrl.v:331
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; fSDA <= {fSDA[1:0], cSDA[1]} @i2c_master_bit_ctrl.v:349
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  (Ctrl domain_i2c))))    ; dSDA <= 1 @i2c_master_bit_ctrl.v:332
+(assert  (not(leq LOW  (Ctrl domain_i2c))))    ; sSDA <= 1 @i2c_master_bit_ctrl.v:357
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq (join (Ctrl domain) (Ctrl domain))  (Ctrl domain))))    ; sSCL <= ((&(fSCL[2:1]))|(&(fSCL[1:0])))|((fSCL[2])&(fSCL[0])) @i2c_master_bit_ctrl.v:336
+(assert  (not(leq LOW  (Ctrl domain_i2c))))    ; dSDA <= 1 @i2c_master_bit_ctrl.v:359
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq (join (Ctrl domain_i2c) (Ctrl domain_i2c))  (Ctrl domain_i2c))))    ; sSDA <= ((&(fSDA[2:1]))|(&(fSDA[1:0])))|((fSDA[2])&(fSDA[0])) @i2c_master_bit_ctrl.v:337
+(assert  (not(leq LOW  (Ctrl domain_i2c))))    ; sSDA <= 1 @i2c_master_bit_ctrl.v:363
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq (Ctrl domain)  (Ctrl domain))))    ; dSCL <= sSCL @i2c_master_bit_ctrl.v:339
+(assert  (not(leq LOW  (Ctrl domain_i2c))))    ; dSDA <= 1 @i2c_master_bit_ctrl.v:365
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; dSDA <= sSDA @i2c_master_bit_ctrl.v:340
+(assert  (not(leq (join (Ctrl domain_i2c) (Ctrl domain_i2c))  (Ctrl domain_i2c))))    ; sSDA <= ((&(fSDA[2:1]))|(&(fSDA[1:0])))|((fSDA[2])&(fSDA[0])) @i2c_master_bit_ctrl.v:369
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  (Ctrl domain))))    ; sta_condition <= 0 @i2c_master_bit_ctrl.v:348
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; dSDA <= sSDA @i2c_master_bit_ctrl.v:371
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  (Ctrl domain))))    ; sto_condition <= 0 @i2c_master_bit_ctrl.v:349
+(assert  (not(leq LOW  (Ctrl domain_i2c))))    ; sta_condition <= 0 @i2c_master_bit_ctrl.v:379
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  (Ctrl domain))))    ; sta_condition <= 0 @i2c_master_bit_ctrl.v:353
+(assert  (not(leq LOW  (Ctrl domain_i2c))))    ; sto_condition <= 0 @i2c_master_bit_ctrl.v:380
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  (Ctrl domain))))    ; sto_condition <= 0 @i2c_master_bit_ctrl.v:354
+(assert  (not(leq LOW  (Ctrl domain_i2c))))    ; sta_condition <= 0 @i2c_master_bit_ctrl.v:384
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq (join (join (Ctrl domain_i2c) (Ctrl domain_i2c)) (Ctrl domain))  (Ctrl domain))))    ; sta_condition <= ((~(sSDA))&(dSDA))&(sSCL) @i2c_master_bit_ctrl.v:358
+(assert  (not(leq LOW  (Ctrl domain_i2c))))    ; sto_condition <= 0 @i2c_master_bit_ctrl.v:385
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq (join (join (Ctrl domain_i2c) (Ctrl domain_i2c)) (Ctrl domain))  (Ctrl domain))))    ; sto_condition <= ((sSDA)&(~(dSDA)))&(sSCL) @i2c_master_bit_ctrl.v:359
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; sta_condition <= (~(sSDA))&(dSDA) @i2c_master_bit_ctrl.v:389
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  (Ctrl domain))))    ; busy <= 0 @i2c_master_bit_ctrl.v:365
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; sto_condition <= (sSDA)&(~(dSDA)) @i2c_master_bit_ctrl.v:390
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  (Ctrl domain))))    ; busy <= 0 @i2c_master_bit_ctrl.v:366
+(assert  (not(leq LOW  (Ctrl domain_i2c))))    ; sta_condition <= 0 @i2c_master_bit_ctrl.v:394
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq (join (join (Ctrl domain) (Ctrl domain)) (Ctrl domain))  (Ctrl domain))))    ; busy <= ((sta_condition)|(busy))&(~(sto_condition)) @i2c_master_bit_ctrl.v:367
+(assert  (not(leq LOW  (Ctrl domain_i2c))))    ; sto_condition <= 0 @i2c_master_bit_ctrl.v:395
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  (Ctrl domain))))    ; cmd_stop <= 0 @i2c_master_bit_ctrl.v:376
+(assert  (not(leq LOW  LOW)))    ; busy <= 0 @i2c_master_bit_ctrl.v:401
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  (Ctrl domain))))    ; cmd_stop <= 0 @i2c_master_bit_ctrl.v:378
+(assert  (not(leq LOW  LOW)))    ; busy <= 0 @i2c_master_bit_ctrl.v:402
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq (Ctrl domain)  (Ctrl domain))))    ; cmd_stop <= = cmd 2 @i2c_master_bit_ctrl.v:380
+(assert  (not(leq (Ctrl domain_i2c)  LOW)))    ; busy <= ((sta_condition)|(busy))&(~(sto_condition)) @i2c_master_bit_ctrl.v:403
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  (Ctrl domain))))    ; al <= 0 @i2c_master_bit_ctrl.v:384
+(assert  (not(leq LOW  LOW)))    ; cmd_stop <= 0 @i2c_master_bit_ctrl.v:412
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  (Ctrl domain))))    ; al <= 0 @i2c_master_bit_ctrl.v:386
+(assert  (not(leq LOW  LOW)))    ; cmd_stop <= 0 @i2c_master_bit_ctrl.v:414
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq (join (join (join (Ctrl domain) (Ctrl domain_i2c)) (Ctrl domain)) (join (join (Ctrl domain) (Ctrl domain)) (Ctrl domain)))  (Ctrl domain))))    ; al <= (((sda_chk)&(~(sSDA)))&(sda_oen))|(((|(c_state))&(sto_condition))&(~(cmd_stop))) @i2c_master_bit_ctrl.v:388
+(assert  (not(leq LOW  LOW)))    ; cmd_stop <= = cmd 2 @i2c_master_bit_ctrl.v:416
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq (join (Ctrl domain_i2c) (Ctrl domain))  (Data domain))))    ; dout <= sSDA @i2c_master_bit_ctrl.v:393
+(assert  (not(leq LOW  LOW)))    ; al <= 0 @i2c_master_bit_ctrl.v:420
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  (Ctrl domain))))    ; c_state <= 0 @i2c_master_bit_ctrl.v:401
+(assert  (not(leq LOW  LOW)))    ; al <= 0 @i2c_master_bit_ctrl.v:422
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  (Ctrl domain))))    ; cmd_ack <= 0 @i2c_master_bit_ctrl.v:402
+(assert  (not(leq (Ctrl domain_i2c)  LOW)))    ; al <= (((sda_chk)&(~(sSDA)))&(sda_oen))|(((|(c_state))&(sto_condition))&(~(cmd_stop))) @i2c_master_bit_ctrl.v:424
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  (Ctrl domain))))    ; scl_oen <= 1 @i2c_master_bit_ctrl.v:403
+(assert  (not(leq (Ctrl domain_i2c)  LOW)))    ; dout <= sSDA @i2c_master_bit_ctrl.v:429
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  (Ctrl domain))))    ; sda_oen <= 1 @i2c_master_bit_ctrl.v:404
+(assert  (not(leq LOW  LOW)))    ; c_state <= 0 @i2c_master_bit_ctrl.v:437
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  (Ctrl domain))))    ; sda_chk <= 0 @i2c_master_bit_ctrl.v:405
+(assert  (not(leq LOW  LOW)))    ; cmd_ack <= 0 @i2c_master_bit_ctrl.v:438
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq (Ctrl domain)  (Ctrl domain))))    ; c_state <= 0 @i2c_master_bit_ctrl.v:409
+(assert  (not(leq LOW  LOW)))    ; scl_oen <= 1 @i2c_master_bit_ctrl.v:439
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq (Ctrl domain)  (Ctrl domain))))    ; cmd_ack <= 0 @i2c_master_bit_ctrl.v:410
+(assert  (not(leq LOW  LOW)))    ; sda_oen <= 1 @i2c_master_bit_ctrl.v:440
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq (Ctrl domain)  (Ctrl domain))))    ; scl_oen <= 1 @i2c_master_bit_ctrl.v:411
+(assert  (not(leq LOW  LOW)))    ; sda_chk <= 0 @i2c_master_bit_ctrl.v:441
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq (Ctrl domain)  (Ctrl domain))))    ; sda_oen <= 1 @i2c_master_bit_ctrl.v:412
+(assert  (not(leq LOW  LOW)))    ; c_state <= 0 @i2c_master_bit_ctrl.v:445
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq (Ctrl domain)  (Ctrl domain))))    ; sda_chk <= 0 @i2c_master_bit_ctrl.v:413
+(assert  (not(leq LOW  LOW)))    ; cmd_ack <= 0 @i2c_master_bit_ctrl.v:446
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq (Ctrl domain)  (Ctrl domain))))    ; cmd_ack <= 0 @i2c_master_bit_ctrl.v:417
+(assert  (not(leq LOW  LOW)))    ; scl_oen <= 1 @i2c_master_bit_ctrl.v:447
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq (Ctrl domain)  (Ctrl domain))))    ; c_state <= 1 @i2c_master_bit_ctrl.v:425
+(assert  (not(leq LOW  LOW)))    ; sda_oen <= 1 @i2c_master_bit_ctrl.v:448
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq (Ctrl domain)  (Ctrl domain))))    ; c_state <= 32 @i2c_master_bit_ctrl.v:426
+(assert  (not(leq LOW  LOW)))    ; sda_chk <= 0 @i2c_master_bit_ctrl.v:449
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq (Ctrl domain)  (Ctrl domain))))    ; c_state <= 8192 @i2c_master_bit_ctrl.v:427
+(assert  (not(leq LOW  LOW)))    ; cmd_ack <= 0 @i2c_master_bit_ctrl.v:453
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq (Ctrl domain)  (Ctrl domain))))    ; c_state <= 512 @i2c_master_bit_ctrl.v:428
+(assert  (not(leq LOW  LOW)))    ; c_state <= 1 @i2c_master_bit_ctrl.v:461
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq (Ctrl domain)  (Ctrl domain))))    ; c_state <= 0 @i2c_master_bit_ctrl.v:429
+(assert  (not(leq LOW  LOW)))    ; c_state <= 32 @i2c_master_bit_ctrl.v:462
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq (Ctrl domain)  (Ctrl domain))))    ; scl_oen <= scl_oen @i2c_master_bit_ctrl.v:432
+(assert  (not(leq LOW  LOW)))    ; c_state <= 8192 @i2c_master_bit_ctrl.v:463
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq (Ctrl domain)  (Ctrl domain))))    ; sda_oen <= sda_oen @i2c_master_bit_ctrl.v:433
+(assert  (not(leq LOW  LOW)))    ; c_state <= 512 @i2c_master_bit_ctrl.v:464
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq (Ctrl domain)  (Ctrl domain))))    ; sda_chk <= 0 @i2c_master_bit_ctrl.v:434
+(assert  (not(leq LOW  LOW)))    ; c_state <= 0 @i2c_master_bit_ctrl.v:465
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq (Ctrl domain)  (Ctrl domain))))    ; c_state <= 2 @i2c_master_bit_ctrl.v:440
+(assert  (not(leq LOW  LOW)))    ; scl_oen <= scl_oen @i2c_master_bit_ctrl.v:468
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq (Ctrl domain)  (Ctrl domain))))    ; scl_oen <= scl_oen @i2c_master_bit_ctrl.v:441
+(assert  (not(leq LOW  LOW)))    ; sda_oen <= sda_oen @i2c_master_bit_ctrl.v:469
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq (Ctrl domain)  (Ctrl domain))))    ; sda_oen <= 1 @i2c_master_bit_ctrl.v:442
+(assert  (not(leq LOW  LOW)))    ; sda_chk <= 0 @i2c_master_bit_ctrl.v:470
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq (Ctrl domain)  (Ctrl domain))))    ; sda_chk <= 0 @i2c_master_bit_ctrl.v:443
+(assert  (not(leq LOW  LOW)))    ; c_state <= 2 @i2c_master_bit_ctrl.v:476
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq (Ctrl domain)  (Ctrl domain))))    ; c_state <= 4 @i2c_master_bit_ctrl.v:448
+(assert  (not(leq LOW  LOW)))    ; scl_oen <= scl_oen @i2c_master_bit_ctrl.v:477
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq (Ctrl domain)  (Ctrl domain))))    ; scl_oen <= 1 @i2c_master_bit_ctrl.v:449
+(assert  (not(leq LOW  LOW)))    ; sda_oen <= 1 @i2c_master_bit_ctrl.v:478
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq (Ctrl domain)  (Ctrl domain))))    ; sda_oen <= 1 @i2c_master_bit_ctrl.v:450
+(assert  (not(leq LOW  LOW)))    ; sda_chk <= 0 @i2c_master_bit_ctrl.v:479
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq (Ctrl domain)  (Ctrl domain))))    ; sda_chk <= 0 @i2c_master_bit_ctrl.v:451
+(assert  (not(leq LOW  LOW)))    ; c_state <= 4 @i2c_master_bit_ctrl.v:484
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq (Ctrl domain)  (Ctrl domain))))    ; c_state <= 8 @i2c_master_bit_ctrl.v:456
+(assert  (not(leq LOW  LOW)))    ; scl_oen <= 1 @i2c_master_bit_ctrl.v:485
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq (Ctrl domain)  (Ctrl domain))))    ; scl_oen <= 1 @i2c_master_bit_ctrl.v:457
+(assert  (not(leq LOW  LOW)))    ; sda_oen <= 1 @i2c_master_bit_ctrl.v:486
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq (Ctrl domain)  (Ctrl domain))))    ; sda_oen <= 0 @i2c_master_bit_ctrl.v:458
+(assert  (not(leq LOW  LOW)))    ; sda_chk <= 0 @i2c_master_bit_ctrl.v:487
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq (Ctrl domain)  (Ctrl domain))))    ; sda_chk <= 0 @i2c_master_bit_ctrl.v:459
+(assert  (not(leq LOW  LOW)))    ; c_state <= 8 @i2c_master_bit_ctrl.v:492
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq (Ctrl domain)  (Ctrl domain))))    ; c_state <= 16 @i2c_master_bit_ctrl.v:464
+(assert  (not(leq LOW  LOW)))    ; scl_oen <= 1 @i2c_master_bit_ctrl.v:493
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq (Ctrl domain)  (Ctrl domain))))    ; scl_oen <= 1 @i2c_master_bit_ctrl.v:465
+(assert  (not(leq LOW  LOW)))    ; sda_oen <= 0 @i2c_master_bit_ctrl.v:494
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq (Ctrl domain)  (Ctrl domain))))    ; sda_oen <= 0 @i2c_master_bit_ctrl.v:466
+(assert  (not(leq LOW  LOW)))    ; sda_chk <= 0 @i2c_master_bit_ctrl.v:495
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq (Ctrl domain)  (Ctrl domain))))    ; sda_chk <= 0 @i2c_master_bit_ctrl.v:467
+(assert  (not(leq LOW  LOW)))    ; c_state <= 16 @i2c_master_bit_ctrl.v:500
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq (Ctrl domain)  (Ctrl domain))))    ; c_state <= 0 @i2c_master_bit_ctrl.v:472
+(assert  (not(leq LOW  LOW)))    ; scl_oen <= 1 @i2c_master_bit_ctrl.v:501
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq (Ctrl domain)  (Ctrl domain))))    ; cmd_ack <= 1 @i2c_master_bit_ctrl.v:473
+(assert  (not(leq LOW  LOW)))    ; sda_oen <= 0 @i2c_master_bit_ctrl.v:502
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq (Ctrl domain)  (Ctrl domain))))    ; scl_oen <= 0 @i2c_master_bit_ctrl.v:474
+(assert  (not(leq LOW  LOW)))    ; sda_chk <= 0 @i2c_master_bit_ctrl.v:503
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq (Ctrl domain)  (Ctrl domain))))    ; sda_oen <= 0 @i2c_master_bit_ctrl.v:475
+(assert  (not(leq LOW  LOW)))    ; c_state <= 0 @i2c_master_bit_ctrl.v:508
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq (Ctrl domain)  (Ctrl domain))))    ; sda_chk <= 0 @i2c_master_bit_ctrl.v:476
+(assert  (not(leq LOW  LOW)))    ; cmd_ack <= 1 @i2c_master_bit_ctrl.v:509
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq (Ctrl domain)  (Ctrl domain))))    ; c_state <= 64 @i2c_master_bit_ctrl.v:482
+(assert  (not(leq LOW  LOW)))    ; scl_oen <= 0 @i2c_master_bit_ctrl.v:510
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq (Ctrl domain)  (Ctrl domain))))    ; scl_oen <= 0 @i2c_master_bit_ctrl.v:483
+(assert  (not(leq LOW  LOW)))    ; sda_oen <= 0 @i2c_master_bit_ctrl.v:511
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq (Ctrl domain)  (Ctrl domain))))    ; sda_oen <= 0 @i2c_master_bit_ctrl.v:484
+(assert  (not(leq LOW  LOW)))    ; sda_chk <= 0 @i2c_master_bit_ctrl.v:512
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq (Ctrl domain)  (Ctrl domain))))    ; sda_chk <= 0 @i2c_master_bit_ctrl.v:485
+(assert  (not(leq LOW  LOW)))    ; c_state <= 64 @i2c_master_bit_ctrl.v:518
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq (Ctrl domain)  (Ctrl domain))))    ; c_state <= 128 @i2c_master_bit_ctrl.v:490
+(assert  (not(leq LOW  LOW)))    ; scl_oen <= 0 @i2c_master_bit_ctrl.v:519
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq (Ctrl domain)  (Ctrl domain))))    ; scl_oen <= 1 @i2c_master_bit_ctrl.v:491
+(assert  (not(leq LOW  LOW)))    ; sda_oen <= 0 @i2c_master_bit_ctrl.v:520
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq (Ctrl domain)  (Ctrl domain))))    ; sda_oen <= 0 @i2c_master_bit_ctrl.v:492
+(assert  (not(leq LOW  LOW)))    ; sda_chk <= 0 @i2c_master_bit_ctrl.v:521
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq (Ctrl domain)  (Ctrl domain))))    ; sda_chk <= 0 @i2c_master_bit_ctrl.v:493
+(assert  (not(leq LOW  LOW)))    ; c_state <= 128 @i2c_master_bit_ctrl.v:526
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq (Ctrl domain)  (Ctrl domain))))    ; c_state <= 256 @i2c_master_bit_ctrl.v:498
+(assert  (not(leq LOW  LOW)))    ; scl_oen <= 1 @i2c_master_bit_ctrl.v:527
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq (Ctrl domain)  (Ctrl domain))))    ; scl_oen <= 1 @i2c_master_bit_ctrl.v:499
+(assert  (not(leq LOW  LOW)))    ; sda_oen <= 0 @i2c_master_bit_ctrl.v:528
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq (Ctrl domain)  (Ctrl domain))))    ; sda_oen <= 0 @i2c_master_bit_ctrl.v:500
+(assert  (not(leq LOW  LOW)))    ; sda_chk <= 0 @i2c_master_bit_ctrl.v:529
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq (Ctrl domain)  (Ctrl domain))))    ; sda_chk <= 0 @i2c_master_bit_ctrl.v:501
+(assert  (not(leq LOW  LOW)))    ; c_state <= 256 @i2c_master_bit_ctrl.v:534
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq (Ctrl domain)  (Ctrl domain))))    ; c_state <= 0 @i2c_master_bit_ctrl.v:506
+(assert  (not(leq LOW  LOW)))    ; scl_oen <= 1 @i2c_master_bit_ctrl.v:535
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq (Ctrl domain)  (Ctrl domain))))    ; cmd_ack <= 1 @i2c_master_bit_ctrl.v:507
+(assert  (not(leq LOW  LOW)))    ; sda_oen <= 0 @i2c_master_bit_ctrl.v:536
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq (Ctrl domain)  (Ctrl domain))))    ; scl_oen <= 1 @i2c_master_bit_ctrl.v:508
+(assert  (not(leq LOW  LOW)))    ; sda_chk <= 0 @i2c_master_bit_ctrl.v:537
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq (Ctrl domain)  (Ctrl domain))))    ; sda_oen <= 1 @i2c_master_bit_ctrl.v:509
+(assert  (not(leq LOW  LOW)))    ; c_state <= 0 @i2c_master_bit_ctrl.v:542
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq (Ctrl domain)  (Ctrl domain))))    ; sda_chk <= 0 @i2c_master_bit_ctrl.v:510
+(assert  (not(leq LOW  LOW)))    ; cmd_ack <= 1 @i2c_master_bit_ctrl.v:543
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq (Ctrl domain)  (Ctrl domain))))    ; c_state <= 1024 @i2c_master_bit_ctrl.v:516
+(assert  (not(leq LOW  LOW)))    ; scl_oen <= 1 @i2c_master_bit_ctrl.v:544
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq (Ctrl domain)  (Ctrl domain))))    ; scl_oen <= 0 @i2c_master_bit_ctrl.v:517
+(assert  (not(leq LOW  LOW)))    ; sda_oen <= 1 @i2c_master_bit_ctrl.v:545
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq (Ctrl domain)  (Ctrl domain))))    ; sda_oen <= 1 @i2c_master_bit_ctrl.v:518
+(assert  (not(leq LOW  LOW)))    ; sda_chk <= 0 @i2c_master_bit_ctrl.v:546
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq (Ctrl domain)  (Ctrl domain))))    ; sda_chk <= 0 @i2c_master_bit_ctrl.v:519
+(assert  (not(leq LOW  LOW)))    ; c_state <= 1024 @i2c_master_bit_ctrl.v:552
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq (Ctrl domain)  (Ctrl domain))))    ; c_state <= 2048 @i2c_master_bit_ctrl.v:524
+(assert  (not(leq LOW  LOW)))    ; scl_oen <= 0 @i2c_master_bit_ctrl.v:553
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq (Ctrl domain)  (Ctrl domain))))    ; scl_oen <= 1 @i2c_master_bit_ctrl.v:525
+(assert  (not(leq LOW  LOW)))    ; sda_oen <= 1 @i2c_master_bit_ctrl.v:554
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq (Ctrl domain)  (Ctrl domain))))    ; sda_oen <= 1 @i2c_master_bit_ctrl.v:526
+(assert  (not(leq LOW  LOW)))    ; sda_chk <= 0 @i2c_master_bit_ctrl.v:555
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq (Ctrl domain)  (Ctrl domain))))    ; sda_chk <= 0 @i2c_master_bit_ctrl.v:527
+(assert  (not(leq LOW  LOW)))    ; c_state <= 2048 @i2c_master_bit_ctrl.v:560
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq (Ctrl domain)  (Ctrl domain))))    ; c_state <= 4096 @i2c_master_bit_ctrl.v:532
+(assert  (not(leq LOW  LOW)))    ; scl_oen <= 1 @i2c_master_bit_ctrl.v:561
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq (Ctrl domain)  (Ctrl domain))))    ; scl_oen <= 1 @i2c_master_bit_ctrl.v:533
+(assert  (not(leq LOW  LOW)))    ; sda_oen <= 1 @i2c_master_bit_ctrl.v:562
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq (Ctrl domain)  (Ctrl domain))))    ; sda_oen <= 1 @i2c_master_bit_ctrl.v:534
+(assert  (not(leq LOW  LOW)))    ; sda_chk <= 0 @i2c_master_bit_ctrl.v:563
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq (Ctrl domain)  (Ctrl domain))))    ; sda_chk <= 0 @i2c_master_bit_ctrl.v:535
+(assert  (not(leq LOW  LOW)))    ; c_state <= 4096 @i2c_master_bit_ctrl.v:568
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq (Ctrl domain)  (Ctrl domain))))    ; c_state <= 0 @i2c_master_bit_ctrl.v:540
+(assert  (not(leq LOW  LOW)))    ; scl_oen <= 1 @i2c_master_bit_ctrl.v:569
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq (Ctrl domain)  (Ctrl domain))))    ; cmd_ack <= 1 @i2c_master_bit_ctrl.v:541
+(assert  (not(leq LOW  LOW)))    ; sda_oen <= 1 @i2c_master_bit_ctrl.v:570
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq (Ctrl domain)  (Ctrl domain))))    ; scl_oen <= 0 @i2c_master_bit_ctrl.v:542
+(assert  (not(leq LOW  LOW)))    ; sda_chk <= 0 @i2c_master_bit_ctrl.v:571
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq (Ctrl domain)  (Ctrl domain))))    ; sda_oen <= 1 @i2c_master_bit_ctrl.v:543
+(assert  (not(leq LOW  LOW)))    ; c_state <= 0 @i2c_master_bit_ctrl.v:576
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq (Ctrl domain)  (Ctrl domain))))    ; sda_chk <= 0 @i2c_master_bit_ctrl.v:544
+(assert  (not(leq LOW  LOW)))    ; cmd_ack <= 1 @i2c_master_bit_ctrl.v:577
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq (Ctrl domain)  (Ctrl domain))))    ; c_state <= 16384 @i2c_master_bit_ctrl.v:550
+(assert  (not(leq LOW  LOW)))    ; scl_oen <= 0 @i2c_master_bit_ctrl.v:578
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq (Ctrl domain)  (Ctrl domain))))    ; scl_oen <= 0 @i2c_master_bit_ctrl.v:551
+(assert  (not(leq LOW  LOW)))    ; sda_oen <= 1 @i2c_master_bit_ctrl.v:579
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq (join (Data domain) (Ctrl domain))  (Ctrl domain))))    ; sda_oen <= din @i2c_master_bit_ctrl.v:552
+(assert  (not(leq LOW  LOW)))    ; sda_chk <= 0 @i2c_master_bit_ctrl.v:580
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq (Ctrl domain)  (Ctrl domain))))    ; sda_chk <= 0 @i2c_master_bit_ctrl.v:553
+(assert  (not(leq LOW  LOW)))    ; c_state <= 16384 @i2c_master_bit_ctrl.v:586
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq (Ctrl domain)  (Ctrl domain))))    ; c_state <= 32768 @i2c_master_bit_ctrl.v:558
+(assert  (not(leq LOW  LOW)))    ; scl_oen <= 0 @i2c_master_bit_ctrl.v:587
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq (Ctrl domain)  (Ctrl domain))))    ; scl_oen <= 1 @i2c_master_bit_ctrl.v:559
+(assert  (not(leq LOW  LOW)))    ; sda_oen <= din @i2c_master_bit_ctrl.v:588
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq (join (Data domain) (Ctrl domain))  (Ctrl domain))))    ; sda_oen <= din @i2c_master_bit_ctrl.v:560
+(assert  (not(leq LOW  LOW)))    ; sda_chk <= 0 @i2c_master_bit_ctrl.v:589
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq (Ctrl domain)  (Ctrl domain))))    ; sda_chk <= 0 @i2c_master_bit_ctrl.v:561
+(assert  (not(leq LOW  LOW)))    ; c_state <= 32768 @i2c_master_bit_ctrl.v:594
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq (Ctrl domain)  (Ctrl domain))))    ; c_state <= 65536 @i2c_master_bit_ctrl.v:567
+(assert  (not(leq LOW  LOW)))    ; scl_oen <= 1 @i2c_master_bit_ctrl.v:595
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq (Ctrl domain)  (Ctrl domain))))    ; scl_oen <= 1 @i2c_master_bit_ctrl.v:568
+(assert  (not(leq LOW  LOW)))    ; sda_oen <= din @i2c_master_bit_ctrl.v:596
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq (join (Data domain) (Ctrl domain))  (Ctrl domain))))    ; sda_oen <= din @i2c_master_bit_ctrl.v:569
+(assert  (not(leq LOW  LOW)))    ; sda_chk <= 0 @i2c_master_bit_ctrl.v:597
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq (Ctrl domain)  (Ctrl domain))))    ; sda_chk <= 1 @i2c_master_bit_ctrl.v:570
+(assert  (not(leq LOW  LOW)))    ; c_state <= 65536 @i2c_master_bit_ctrl.v:603
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq (Ctrl domain)  (Ctrl domain))))    ; c_state <= 0 @i2c_master_bit_ctrl.v:575
+(assert  (not(leq LOW  LOW)))    ; scl_oen <= 1 @i2c_master_bit_ctrl.v:604
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq (Ctrl domain)  (Ctrl domain))))    ; cmd_ack <= 1 @i2c_master_bit_ctrl.v:576
+(assert  (not(leq LOW  LOW)))    ; sda_oen <= din @i2c_master_bit_ctrl.v:605
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq (Ctrl domain)  (Ctrl domain))))    ; scl_oen <= 0 @i2c_master_bit_ctrl.v:577
+(assert  (not(leq LOW  LOW)))    ; sda_chk <= 1 @i2c_master_bit_ctrl.v:606
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq (join (Data domain) (Ctrl domain))  (Ctrl domain))))    ; sda_oen <= din @i2c_master_bit_ctrl.v:578
+(assert  (not(leq LOW  LOW)))    ; c_state <= 0 @i2c_master_bit_ctrl.v:611
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq (Ctrl domain)  (Ctrl domain))))    ; sda_chk <= 0 @i2c_master_bit_ctrl.v:579
+(assert  (not(leq LOW  LOW)))    ; cmd_ack <= 1 @i2c_master_bit_ctrl.v:612
+(check-sat)
+(pop)
+
+
+(push)
+(assert  (not(leq LOW  LOW)))    ; scl_oen <= 0 @i2c_master_bit_ctrl.v:613
+(check-sat)
+(pop)
+
+
+(push)
+(assert  (not(leq LOW  LOW)))    ; sda_oen <= din @i2c_master_bit_ctrl.v:614
+(check-sat)
+(pop)
+
+
+(push)
+(assert  (not(leq LOW  LOW)))    ; sda_chk <= 0 @i2c_master_bit_ctrl.v:615
 (check-sat)
 (pop)
 

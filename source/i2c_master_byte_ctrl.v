@@ -95,34 +95,34 @@ module i2c_master_byte_ctrl (
 	input 			{L} domain;
 	input 			{L} domain_i2c;
 
-	input 			{Ctrl domain} ena;     // core enable signal
+	input 			{L} ena;     // core enable signal
 
-	input [15:0] 	{Ctrl domain} clk_cnt; // 4x SCL
+	input [15:0] 	{L} clk_cnt; // 4x SCL
 
 	// control inputs
-	input       	{Ctrl domain} start;
-	input       	{Ctrl domain} stop;
-	input       	{Ctrl domain} read;
-	input       	{Ctrl domain} write;
-	input       	{Ctrl domain} ack_in;
-	input [7:0] 	{Data domain} din;
+	input       	{L} start;
+	input       	{L} stop;
+	input       	{L} read;
+	input       	{L} write;
+	input       	{L} ack_in;
+	input [7:0] 	{L} din;
 
 	// status outputs
-	output       	{Ctrl domain} cmd_ack;
-	reg 			{Ctrl domain} cmd_ack;
-	output       	{Ctrl domain} ack_out;
-	reg 			{Ctrl domain} ack_out;
-	output       	{Ctrl domain} i2c_busy;
-	output       	{Ctrl domain} i2c_al;
-	output [7:0] 	{Data domain} dout;
+	output       	{L} cmd_ack;
+	reg 			{L} cmd_ack;
+	output       	{L} ack_out;
+	reg 			{L} ack_out;
+	output       	{L} i2c_busy;
+	output       	{L} i2c_al;
+	output [7:0] 	{L} dout;
 
 	// I2C signals
-	input  			{Ctrl domain} scl_i;
-	output 			{Ctrl domain} scl_o;
-	output 			{Ctrl domain} scl_oen;
+	input  			{L} scl_i;
+	output 			{L} scl_o;
+	output 			{L} scl_oen;
 	input  			{Ctrl domain_i2c} sda_i;
-	output 			{Ctrl domain} sda_o;
-	output 			{Ctrl domain} sda_oen;
+	output 			{L} sda_o;
+	output 			{L} sda_oen;
 
 
 	//
@@ -130,22 +130,22 @@ module i2c_master_byte_ctrl (
 	//
 
 	// signals for bit_controller
-	reg  [3:0] 		{Ctrl domain} core_cmd;
-	reg        		{Ctrl domain} core_txd;
-	wire       		{Ctrl domain} core_ack;
-	wire       		{Ctrl domain} core_rxd;
+	reg  [3:0] 		{L} core_cmd;
+	reg        		{L} core_txd;
+	wire       		{L} core_ack;
+	wire       		{L} core_rxd;
 
 	// signals for shift register
-	reg [7:0] 		{Ctrl domain} sr; //8bit shift register
-	reg       		{Ctrl domain} shift;
-	reg       		{Ctrl domain} ld;
+	reg [7:0] 		{L} sr; //8bit shift register
+	reg       		{L} shift;
+	reg       		{L} ld;
 
 	// signals for state machine
-	wire       		{Ctrl domain} go;
-	reg  [2:0] 		{Ctrl domain} dcnt;
-	wire       		{Ctrl domain} cnt_done;
+	wire       		{L} go;
+	reg  [2:0] 		{L} dcnt;
+	wire       		{L} cnt_done;
 
-	reg [4:0] 		{Ctrl domain} c_state; // synopsys enum_state
+	reg [4:0] 		{L} c_state; // synopsys enum_state
 
 	//
 	// Module body

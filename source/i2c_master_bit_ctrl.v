@@ -169,24 +169,24 @@ module i2c_master_bit_ctrl (
     input             {L} domain,
     input             {L} domain_i2c,
 
-    input             {Ctrl domain} ena,      // core enable signal
+    input             {L} ena,      // core enable signal
 
-    input      [15:0] {Ctrl domain} clk_cnt,  // clock prescale value
+    input      [15:0] {L} clk_cnt,  // clock prescale value
 
-    input      [ 3:0] {Ctrl domain} cmd,      // command (from byte controller)
-    output reg        {Ctrl domain} cmd_ack,  // command complete acknowledge
-    output reg        {Ctrl domain} busy,     // i2c bus busy
-    output reg        {Ctrl domain} al,       // i2c bus arbitration lost
+    input      [ 3:0] {L} cmd,      // command (from byte controller)
+    output reg        {L} cmd_ack,  // command complete acknowledge
+    output reg        {L} busy,     // i2c bus busy
+    output reg        {L} al,       // i2c bus arbitration lost
 
-    input             {Data domain} din,
-    output reg        {Data domain} dout,
+    input             {L} din,
+    output reg        {L} dout,
 
-    input             {Ctrl domain} scl_i,    // i2c clock line input
-    output            {Ctrl domain} scl_o,    // i2c clock line output
-    output reg        {Ctrl domain} scl_oen,  // i2c clock line output enable (active low)
+    input             {L} scl_i,    // i2c clock line input
+    output            {L} scl_o,    // i2c clock line output
+    output reg        {L} scl_oen,  // i2c clock line output enable (active low)
     input             {Ctrl domain_i2c} sda_i,    // i2c data line input
-    output            {Ctrl domain} sda_o,    // i2c data line output
-    output reg        {Ctrl domain} sda_oen   // i2c data line output enable (active low)
+    output            {L} sda_o,    // i2c data line output
+    output reg        {L} sda_oen   // i2c data line output enable (active low)
 );
 
 
@@ -194,29 +194,30 @@ module i2c_master_bit_ctrl (
     // variable declarations
     //
 
-    reg [ 1:0]        {Ctrl domain} cSCL;         //considering for the single master here! <GP>
+    reg [ 1:0]        {L} cSCL;         //considering for the single master here! <GP>
     reg [ 1:0]        {Ctrl domain_i2c} cSDA;      // capture SCL and SDA
-    reg [ 2:0]        {Ctrl domain} fSCL;
+    reg [ 2:0]        {L} fSCL;
     reg [ 2:0]        {Ctrl domain_i2c} fSDA;      // SCL and SDA filter inputs
-    reg               {Ctrl domain} sSCL;
+    reg               {L} sSCL;
     reg               {Ctrl domain_i2c} sSDA;      // filtered and synchronized SCL and SDA inputs
-    reg               {Ctrl domain} dSCL;
+    reg               {L} dSCL;
     reg               {Ctrl domain_i2c} dSDA;      // delayed versions of sSCL and sSDA
-    reg               {Ctrl domain} dscl_oen;        // delayed scl_oen
-    reg               {Ctrl domain} sda_chk;         // check SDA output (Multi-master arbitration)
-    reg               {Ctrl domain} clk_en;          // clock generation signals
-    reg               {Ctrl domain} slave_wait;      // slave inserts wait states
-    reg [15:0]        {Ctrl domain} cnt;             // clock divider counter (synthesis)
-    reg [13:0]        {Ctrl domain} filter_cnt;      // clock divider for filter
+    reg               {L} dscl_oen;        // delayed scl_oen
+    reg               {L} sda_chk;         // check SDA output (Multi-master arbitration)
+    reg               {L} clk_en;          // clock generation signals
+    reg               {L} slave_wait;      // slave inserts wait states
+    reg [15:0]        {L} cnt;             // clock divider counter (synthesis)
+    reg [13:0]        {L} filter_cnt;      // clock divider for filter
+    wire              {L} no_filter_cnt;
 
     //Moving wires and reg decl for SecVerilog to proccess - #GP
-    wire              {Ctrl domain} scl_sync;
-    reg               {Ctrl domain} sta_condition;
-    reg               {Ctrl domain} sto_condition;
-    reg               {Ctrl domain} cmd_stop;
+    wire              {L} scl_sync;
+    reg               {Ctrl domain_i2c} sta_condition;
+    reg               {Ctrl domain_i2c} sto_condition;
+    reg               {L} cmd_stop;
 
     // state machine variable
-    reg [17:0]        {Ctrl domain} c_state; // synopsys enum_state
+    reg [17:0]        {L} c_state; // synopsys enum_state
 
     //Moving params for secverilog to process - #GP
  
@@ -232,7 +233,7 @@ module i2c_master_bit_ctrl (
     // slave_wait is asserted when master wants to drive SCL high, but the slave pulls it low
     // slave_wait remains asserted until the slave releases SCL
     always @(posedge clk or negedge nReset)
-      if (!nReset) slave_wait <= 1'b0;
+      if (~nReset == 1'b1) slave_wait <= 1'b0;
       else         slave_wait <= (scl_oen & ~dscl_oen & ~sSCL) | (slave_wait & ~sSCL);
 
     // master drives SCL high, but another master pulls it low
@@ -242,7 +243,7 @@ module i2c_master_bit_ctrl (
 
     // generate clk enable signal
     always @(posedge clk or negedge nReset)
-      if (~nReset)
+      if (~nReset == 1'b1)
       begin
           cnt    <= #1 16'h0;
           clk_en <= #1 1'b1;
@@ -270,12 +271,12 @@ module i2c_master_bit_ctrl (
     // capture SDA and SCL
     // reduce metastability risk
     always @(posedge clk or negedge nReset)
-      if (!nReset)
+      if (~nReset == 1'b1)
       begin
           cSCL <= #1 2'b00;
           cSDA <= #1 2'b00;
       end
-      else if (rst)
+      else if (rst == 1'b1)
       begin
           cSCL <= #1 2'b00;
           cSDA <= #1 2'b00;
@@ -291,78 +292,113 @@ module i2c_master_bit_ctrl (
     always @(posedge clk or negedge nReset)
       if      (!nReset     ) filter_cnt <= 14'h0;
       else if (rst || !ena ) filter_cnt <= 14'h0;
-      else if (~(|filter_cnt)) filter_cnt <= clk_cnt >> 2; //16x I2C bus frequency
+      else if (~no_filter_cnt) filter_cnt <= clk_cnt >> 2; //16x I2C bus frequency
       else                   filter_cnt <= filter_cnt -1;
+
+      assign no_filter_cnt = (|filter_cnt);
 
 
     always @(posedge clk or negedge nReset)
-      if (!nReset)
+      if (~nReset == 1'b1)
       begin
           fSCL <= 3'b111;
-          fSDA <= 3'b111;
       end
-      else if (rst)
+      else if (rst == 1'b1)
       begin
           fSCL <= 3'b111;
-          fSDA <= 3'b111;
       end
-      else if (~(|filter_cnt))
+      else if (~no_filter_cnt)
       begin
           fSCL <= {fSCL[1:0],cSCL[1]};
+      end
+
+
+    // generate filtered SCL and SDA signals
+    always @(posedge clk or negedge nReset)
+      if (~nReset == 1'b1)
+      begin
+          sSCL <= #1 1'b1;
+
+          dSCL <= #1 1'b1;
+      end
+      else if (rst == 1'b1)
+      begin
+          sSCL <= #1 1'b1;
+
+          dSCL <= #1 1'b1;
+      end
+      else
+      begin
+          sSCL <= #1 &fSCL[2:1] | &fSCL[1:0] | (fSCL[2] & fSCL[0]);
+
+          dSCL <= #1 sSCL;
+      end
+
+
+    always @(posedge clk or negedge nReset)
+      if (~nReset == 1'b1)
+      begin
+          fSDA <= 3'b111;
+      end
+      else if (rst == 1'b1)
+      begin
+          fSDA <= 3'b111;
+      end
+      else if (~no_filter_cnt == 1'b1)
+      begin
           fSDA <= {fSDA[1:0],cSDA[1]};
       end
 
 
     // generate filtered SCL and SDA signals
     always @(posedge clk or negedge nReset)
-      if (~nReset)
+      if (~nReset == 1'b1)
       begin
-          sSCL <= #1 1'b1;
           sSDA <= #1 1'b1;
 
-          dSCL <= #1 1'b1;
           dSDA <= #1 1'b1;
       end
-      else if (rst)
+      else if (rst == 1'b1)
       begin
-          sSCL <= #1 1'b1;
           sSDA <= #1 1'b1;
 
-          dSCL <= #1 1'b1;
           dSDA <= #1 1'b1;
       end
       else
       begin
-          sSCL <= #1 &fSCL[2:1] | &fSCL[1:0] | (fSCL[2] & fSCL[0]);
           sSDA <= #1 &fSDA[2:1] | &fSDA[1:0] | (fSDA[2] & fSDA[0]);
 
-          dSCL <= #1 sSCL;
           dSDA <= #1 sSDA;
       end
 
     // detect start condition => detect falling edge on SDA while SCL is high
     // detect stop condition => detect rising edge on SDA while SCL is high
     always @(posedge clk or negedge nReset)
-      if (~nReset)
+      if (~nReset == 1'b1)
       begin
           sta_condition <= #1 1'b0;
           sto_condition <= #1 1'b0;
       end
-      else if (rst)
+      else if (rst == 1'b1)
       begin
           sta_condition <= #1 1'b0;
           sto_condition <= #1 1'b0;
+      end
+      else if(sSCL == 1'b1)
+      begin
+          sta_condition <= #1 ~sSDA &  dSDA;
+          sto_condition <= #1  sSDA & ~dSDA;
       end
       else
       begin
-          sta_condition <= #1 ~sSDA &  dSDA & sSCL;
-          sto_condition <= #1  sSDA & ~dSDA & sSCL;
+          sta_condition <= #1 1'b0;
+          sto_condition <= #1 1'b0;
       end
 
 
     // generate i2c bus busy signal
     always @(posedge clk or negedge nReset)
-      if      (!nReset) busy <= #1 1'b0;
+      if      (~nReset == 1'b1) busy <= #1 1'b0;
       else if (rst    ) busy <= #1 1'b0;
       else              busy <= #1 (sta_condition | busy) & ~sto_condition;
 
@@ -372,17 +408,17 @@ module i2c_master_bit_ctrl (
     // 1) master drives SDA high, but the i2c bus is low
     // 2) stop detected while not requested
     always @(posedge clk or negedge nReset)
-      if (~nReset)
+      if (~nReset == 1'b1)
           cmd_stop <= #1 1'b0;
-      else if (rst)
+      else if (rst == 1'b1)
           cmd_stop <= #1 1'b0;
       else if (clk_en)
           cmd_stop <= #1 cmd == `I2C_CMD_STOP;
 
     always @(posedge clk or negedge nReset)
-      if (~nReset)
+      if (~nReset == 1'b1)
           al <= #1 1'b0;
-      else if (rst)
+      else if (rst == 1'b1)
           al <= #1 1'b0;
       else
           al <= #1 (sda_chk & ~sSDA & sda_oen) | (|c_state & sto_condition & ~cmd_stop);
@@ -396,7 +432,7 @@ module i2c_master_bit_ctrl (
     // generate statemachine
 
     always @(posedge clk or negedge nReset)
-      if (!nReset)
+      if (~nReset == 1'b1)
       begin
           c_state <= #1 `idle;
           cmd_ack <= #1 1'b0;

@@ -90,25 +90,25 @@ module i2c_master_top
 	input 			{L}  domain_i2c,
 
 
-	input  [2:0] 	{Ctrl domain}  wb_adr_i,     // lower address bits
-	input  [7:0] 	{Data domain}  wb_dat_i,     // databus input
-	output [7:0] 	{Data domain}  wb_dat_o,     // databus output
-	input        	{Ctrl domain}  wb_we_i,      // write enable input
-	input        	{Ctrl domain}  wb_stb_i,     // stobe/core select signal
-	input        	{Ctrl domain}  wb_cyc_i,     // valid bus cycle input
-	output       	{Ctrl domain}  wb_ack_o,     // bus cycle acknowledge output
-	output       	{Ctrl domain}  wb_inta_o,    // interrupt request signal output
+	input  [2:0] 	{L}  wb_adr_i,     // lower address bits
+	input  [7:0] 	{L}  wb_dat_i,     // databus input
+	output [7:0] 	{L}  wb_dat_o,     // databus output
+	input        	{L}  wb_we_i,      // write enable input
+	input        	{L}  wb_stb_i,     // stobe/core select signal
+	input        	{L}  wb_cyc_i,     // valid bus cycle input
+	output       	{L}  wb_ack_o,     // bus cycle acknowledge output
+	output       	{L}  wb_inta_o,    // interrupt request signal output
 
 	// I2C signals
 	// i2c clock line
-	input  			{Ctrl domain}  	scl_pad_i,       // SCL-line input
-	output 			{Ctrl domain}  		scl_pad_o,       // SCL-line output (always 1'b0)
-	output 			{Ctrl domain}  		scl_padoen_o,    // SCL-line output enable (active low)
+	input  			{L}  	scl_pad_i,       // SCL-line input
+	output 			{L}  		scl_pad_o,       // SCL-line output (always 1'b0)
+	output 			{L}  		scl_padoen_o,    // SCL-line output enable (active low)
 
 	// i2c data line
 	input  			{Ctrl domain_i2c} 	sda_pad_i,       // SDA-line input
-	output 			{Ctrl domain} 		sda_pad_o,       // SDA-line output (always 1'b0)
-	output 			{Ctrl domain} 		sda_padoen_o    // SDA-line output enable (active low)
+	output 			{L} 		sda_pad_o,       // SDA-line output (always 1'b0)
+	output 			{L} 		sda_padoen_o    // SDA-line output enable (active low)
 );
 
 	// parameters
@@ -122,46 +122,46 @@ module i2c_master_top
 	//
 
 	// I2C signals
-	reg [7:0]		{Data domain} wb_dat_o;
-	reg 			{Ctrl domain} wb_ack_o;
-	reg 			{Ctrl domain} wb_inta_o;
+	reg [7:0]		{L} wb_dat_o;
+	reg 			{L} wb_ack_o;
+	reg 			{L} wb_inta_o;
 
 	// registers
-	reg  [15:0] 	{Data domain} prer; // clock prescale register
-	reg  [ 7:0] 	{Data domain} ctr;  // control register
-	reg  [ 7:0] 	{Data domain} txr;  // transmit register
-	wire [ 7:0] 	{Data domain} rxr;  // receive register
-	reg  [ 7:0] 	{Data domain} cr;   // command register
-	wire [ 7:0] 	{Data domain} sr;   // status register
+	reg  [15:0] 	{L} prer; // clock prescale register
+	reg  [ 7:0] 	{L} ctr;  // control register
+	reg  [ 7:0] 	{L} txr;  // transmit register
+	wire [ 7:0] 	{L} rxr;  // receive register
+	reg  [ 7:0] 	{L} cr;   // command register
+	wire [ 7:0] 	{L} sr;   // status register
 
 	// done signal: command completed, clear command register
-	wire 			{Ctrl domain} done;
+	wire 			{L} done;
 
 	// core enable signal
-	wire 			{Ctrl domain} core_en;
-	wire 			{Ctrl domain} ien;
+	wire 			{L} core_en;
+	wire 			{L} ien;
 
 	// status register signals
-	wire 			{Ctrl domain} irxack;
-	reg  			{Ctrl domain} rxack;       // received aknowledge from slave
-	reg  			{Ctrl domain} tip;         // transfer in progress
-	reg  			{Ctrl domain} irq_flag;    // interrupt pending flag
-	wire 			{Ctrl domain} i2c_busy;    // bus busy (start signal detected)
-	wire 			{Ctrl domain} i2c_al;      // i2c bus arbitration lost
-	reg  			{Ctrl domain} al;          // status register arbitration lost bit
+	wire 			{L} irxack;
+	reg  			{L} rxack;       // received aknowledge from slave
+	reg  			{L} tip;         // transfer in progress
+	reg  			{L} irq_flag;    // interrupt pending flag
+	wire 			{L} i2c_busy;    // bus busy (start signal detected)
+	wire 			{L} i2c_al;      // i2c bus arbitration lost
+	reg  			{L} al;          // status register arbitration lost bit
 
 
 
 	// generate wishbone signals
-	wire 			{Ctrl domain} wb_wacc = wb_we_i & wb_ack_o;
+	wire 			{L} wb_wacc = wb_we_i & wb_ack_o;
 
 	// decode command register
-	wire 			{Ctrl domain} sta  = cr[7];
-	wire 			{Ctrl domain} sto  = cr[6];
-	wire 			{Ctrl domain} rd   = cr[5];
-	wire 			{Ctrl domain} wr   = cr[4];
-	wire 			{Ctrl domain} ack  = cr[3];
-	wire 			{Ctrl domain} iack = cr[0];
+	wire 			{L} sta  = cr[7];
+	wire 			{L} sto  = cr[6];
+	wire 			{L} rd   = cr[5];
+	wire 			{L} wr   = cr[4];
+	wire 			{L} ack  = cr[3];
+	wire 			{L} iack = cr[0];
 
 	//
 	// module body

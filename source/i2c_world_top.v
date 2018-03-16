@@ -70,9 +70,9 @@ module i2c_world_top
 	wire {L} done_sys;
 	
 	//I2C
-    wire {Ctrl domain} scl;
-    wire {Ctrl domain} scl0_o;
-    wire {Ctrl domain} scl0_oen;
+    wire {L} scl;
+    wire {L} scl0_o;
+    wire {L} scl0_oen;
     wire {Ctrl domain} sda;
     wire {Ctrl domain} sda0_o;
     wire {Ctrl domain} sda0_oen;
@@ -245,7 +245,7 @@ module i2c_world_top
         .wb_clk_i(clk),
         .wb_rst_i(1'b0),
         .arst_i(!rst),
-        .domain(2),
+        .domain(2),             //not used now
         .domain_i2c(domain),
 
         .wb_adr_i(wb_addr),
