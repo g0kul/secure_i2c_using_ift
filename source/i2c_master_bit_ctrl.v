@@ -167,6 +167,7 @@ module i2c_master_bit_ctrl (
     input             {L} rst,      // synchronous active high reset
     input             {L} nReset,   // asynchronous active low reset
     input             {L} domain,
+    input             {L} domain_i2c,
 
     input             {Ctrl domain} ena,      // core enable signal
 
@@ -183,7 +184,7 @@ module i2c_master_bit_ctrl (
     input             {Ctrl domain} scl_i,    // i2c clock line input
     output            {Ctrl domain} scl_o,    // i2c clock line output
     output reg        {Ctrl domain} scl_oen,  // i2c clock line output enable (active low)
-    input             {Ctrl domain} sda_i,    // i2c data line input
+    input             {Ctrl domain_i2c} sda_i,    // i2c data line input
     output            {Ctrl domain} sda_o,    // i2c data line output
     output reg        {Ctrl domain} sda_oen   // i2c data line output enable (active low)
 );
@@ -193,10 +194,14 @@ module i2c_master_bit_ctrl (
     // variable declarations
     //
 
-    reg [ 1:0]        {Ctrl domain} cSCL, cSDA;      // capture SCL and SDA
-    reg [ 2:0]        {Ctrl domain} fSCL, fSDA;      // SCL and SDA filter inputs
-    reg               {Ctrl domain} sSCL, sSDA;      // filtered and synchronized SCL and SDA inputs
-    reg               {Ctrl domain} dSCL, dSDA;      // delayed versions of sSCL and sSDA
+    reg [ 1:0]        {Ctrl domain} cSCL;         //considering for the single master here! <GP>
+    reg [ 1:0]        {Ctrl domain_i2c} cSDA;      // capture SCL and SDA
+    reg [ 2:0]        {Ctrl domain} fSCL;
+    reg [ 2:0]        {Ctrl domain_i2c} fSDA;      // SCL and SDA filter inputs
+    reg               {Ctrl domain} sSCL;
+    reg               {Ctrl domain_i2c} sSDA;      // filtered and synchronized SCL and SDA inputs
+    reg               {Ctrl domain} dSCL;
+    reg               {Ctrl domain_i2c} dSDA;      // delayed versions of sSCL and sSDA
     reg               {Ctrl domain} dscl_oen;        // delayed scl_oen
     reg               {Ctrl domain} sda_chk;         // check SDA output (Multi-master arbitration)
     reg               {Ctrl domain} clk_en;          // clock generation signals

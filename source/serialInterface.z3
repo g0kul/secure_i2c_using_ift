@@ -55,15 +55,15 @@
 (declare-fun Data (Int) Label)
 (assert (= (Data 0) D1))
 (assert (= (Data 1) D2))
-;(assert (= (Data 2) LOW))
-;(assert (= (Data 3) HIGH))
+(assert (= (Data 2) LOW))
+(assert (= (Data 3) HIGH))
 
 ; function for control signals
 (declare-fun Ctrl (Int) Label)
 (assert (= (Ctrl 0) D1))
 (assert (= (Ctrl 1) D2))
-;(assert (= (Ctrl 2) LOW))
-;(assert (= (Ctrl 3) HIGH))
+(assert (= (Ctrl 2) LOW))
+(assert (= (Ctrl 3) HIGH))
 
 ; assertions to be verified
 

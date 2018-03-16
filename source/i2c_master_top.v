@@ -87,6 +87,7 @@ module i2c_master_top
 	input        	{L}  wb_rst_i,     // synchronous active high reset
 	input        	{L}  arst_i,       // asynchronous reset
 	input 			{L}  domain,
+	input 			{L}  domain_i2c,
 
 
 	input  [2:0] 	{Ctrl domain}  wb_adr_i,     // lower address bits
@@ -100,14 +101,14 @@ module i2c_master_top
 
 	// I2C signals
 	// i2c clock line
-	input  			{Ctrl domain}  scl_pad_i,       // SCL-line input
-	output 			{Ctrl domain}  scl_pad_o,       // SCL-line output (always 1'b0)
-	output 			{Ctrl domain}  scl_padoen_o,    // SCL-line output enable (active low)
+	input  			{Ctrl domain}  	scl_pad_i,       // SCL-line input
+	output 			{Ctrl domain}  		scl_pad_o,       // SCL-line output (always 1'b0)
+	output 			{Ctrl domain}  		scl_padoen_o,    // SCL-line output enable (active low)
 
 	// i2c data line
-	input  			{Ctrl domain} sda_pad_i,       // SDA-line input
-	output 			{Ctrl domain} sda_pad_o,       // SDA-line output (always 1'b0)
-	output 			{Ctrl domain} sda_padoen_o    // SDA-line output enable (active low)
+	input  			{Ctrl domain_i2c} 	sda_pad_i,       // SDA-line input
+	output 			{Ctrl domain} 		sda_pad_o,       // SDA-line output (always 1'b0)
+	output 			{Ctrl domain} 		sda_padoen_o    // SDA-line output enable (active low)
 );
 
 	// parameters

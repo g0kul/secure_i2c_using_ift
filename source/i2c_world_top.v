@@ -42,10 +42,10 @@ module i2c_world_top
     input           {L} rst,
     input           {L} domain,
     
-    input           {Ctrl domain} start,
-    output [7:0]    {Data domain} rd_data,
-    output          {Ctrl domain} valid,
-    output          {Ctrl domain} done
+    input           {L} start,
+    output [7:0]    {L} rd_data,
+    output          {L} valid,
+    output          {L} done
 );
 
 	//
@@ -53,21 +53,21 @@ module i2c_world_top
 	//	
 	
 	//WB Intf
-    wire [2:0] {Ctrl domain} wb_addr;
-    wire [7:0] {Data domain} wb_wr_data;
-    wire [7:0] {Data domain} wb_rd_data;
+    wire [2:0] {L} wb_addr;
+    wire [7:0] {L} wb_wr_data;
+    wire [7:0] {L} wb_rd_data;
     
-    wire {Ctrl domain} wb_we;
-    wire {Ctrl domain} wb_stb;
-    wire {Ctrl domain} wb_cyc;
+    wire {L} wb_we;
+    wire {L} wb_stb;
+    wire {L} wb_cyc;
     //reg  wb_inta;
-    wire {Ctrl domain} wb_inta;
+    wire {L} wb_inta;
     //reg  wb_ack;
-    wire  {Ctrl domain} wb_ack;
+    wire  {L} wb_ack;
 
-	reg {Ctrl domain} start_sys;
-	reg {Ctrl domain} n_start_sys;
-	wire {Ctrl domain} done_sys;
+	reg {L} start_sys;
+	reg {L} n_start_sys;
+	wire {L} done_sys;
 	
 	//I2C
     wire {Ctrl domain} scl;
@@ -77,22 +77,22 @@ module i2c_world_top
     wire {Ctrl domain} sda0_o;
     wire {Ctrl domain} sda0_oen;
     
-    reg [6:0]  {Ctrl domain} i2c_slave_addr;
-    wire [7:0] {Data domain} i2c_read_data_out;
+    reg [6:0]  {L} i2c_slave_addr;
+    wire [7:0] {L} i2c_read_data_out;
     
-    reg [6:0]  {Ctrl domain} n_i2c_slave_addr;
-    reg [7:0]  {Data domain} rd_data_out;
-    reg [7:0]  {Data domain} n_rd_data_out;
+    reg [6:0]  {L} n_i2c_slave_addr;
+    reg [7:0]  {L} rd_data_out;
+    reg [7:0]  {L} n_rd_data_out;
     
     wire {L} high_imp = 1'bz;
     
     //SM
-    reg [2:0] {Ctrl domain} world_state;
-    reg [2:0] {Ctrl domain} n_world_state;
-    reg       {Ctrl domain} rd_valid;
-    reg       {Ctrl domain} n_rd_valid;
-    reg       {Ctrl domain} done_r;
-    reg       {Ctrl domain} n_done_r;
+    reg [2:0] {L} world_state;
+    reg [2:0] {L} n_world_state;
+    reg       {L} rd_valid;
+    reg       {L} n_rd_valid;
+    reg       {L} done_r;
+    reg       {L} n_done_r;
 
 
     //time mux
@@ -221,7 +221,7 @@ module i2c_world_top
     i2c_sys_top i2c_master_ctrl0 (
         .clk(clk),
         .rst(rst),
-        .domain(domain),
+        .domain(2),
 
         .start(start_sys),
         .done(done_sys),
@@ -245,7 +245,8 @@ module i2c_world_top
         .wb_clk_i(clk),
         .wb_rst_i(1'b0),
         .arst_i(!rst),
-        .domain(domain),
+        .domain(2),
+        .domain_i2c(domain),
 
         .wb_adr_i(wb_addr),
         .wb_dat_i(wb_wr_data),
