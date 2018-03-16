@@ -22,7 +22,8 @@ sub print_fail {
 # type check all files with .v extension in current directory
 # first generate the z3 files
 #my @files = ("i2c_world_top.v", "i2c_master_top.v", "i2c_master_defines.v", "i2c_master_byte_ctrl.v", "i2c_master_bit_ctrl.v", "timescale.v", "i2cSlave.v", "serialInterface.v", "registerInterface.v");
-my @files = ("i2c_world_top.v", "i2c_master_top.v", "i2c_master_defines.v", "i2c_master_byte_ctrl.v", "i2c_master_bit_ctrl.v", "timescale.v", "i2cSlave.v", "serialInterface.v", "registerInterface.v", "i2c_sys_top.v");
+#my @files = ("i2c_world_top.v", "i2c_master_top.v", "i2c_master_defines.v", "i2c_master_byte_ctrl.v", "i2c_master_bit_ctrl.v", "timescale.v", "i2cSlave.v", "serialInterface.v", "registerInterface.v", "i2c_sys_top.v");
+my @files = ("i2c_world_top.v", "i2c_master_top.v", "i2c_master_byte_ctrl.v", "i2c_master_bit_ctrl.v", "i2cSlave.v", "serialInterface.v", "registerInterface.v", "i2c_sys_top.v");
 foreach my $file (@files) {
   if (-f $file and $file =~ /\.v$/) {
     # run iverilog to generate constraints

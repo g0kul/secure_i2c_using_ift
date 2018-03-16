@@ -96,6 +96,7 @@ module i2c_world_top
 
 
     //time mux
+    reg [7:0] {L} count;
     wire {D1} scl_S1;
     wire {D1} sda_S1;
     wire {D2} scl_S2;
@@ -179,10 +180,42 @@ module i2c_world_top
     assign done = done_r;
 
     //for time multiplexing
-    assign scl_S1 = (domain == 1'b0) ? scl : high_imp;
-    assign sda_S1 = (domain == 1'b0) ? sda : high_imp;
-    assign scl_S2 = (domain == 1'b1) ? scl : high_imp;
-    assign sda_S2 = (domain == 1'b1) ? sda : high_imp;
+    always @(posedge clk or posedge rst)
+    begin
+        if (rst)
+        begin
+            // reset
+            count <= 8'd0;
+        end
+        else
+        begin
+            count <= count + 8'd1;
+        end
+    end
+
+    always @(*) 
+    begin
+        if(domain == 1'b0)
+        begin
+            scl_S1 = (count[7] == 1'b1) ? scl : high_imp;
+            sda_S1 = (count[7] == 1'b1) ? sda : high_imp;
+        end
+        else
+        begin
+            scl_S2 = (count[7] == 1'b1) ? scl : high_imp;
+            sda_S2 = (count[7] == 1'b1) ? sda : high_imp;
+        end
+    end
+
+    //assign scl_S1 = ((count[7] == 1'b1) & (domain == 1'b0)) ? scl : high_imp;
+    //assign sda_S1 = ((count[7] == 1'b1) & (domain == 1'b0)) ? sda : high_imp;
+    //assign scl_S2 = ((count[7] == 1'b1) & (domain == 1'b1)) ? scl : high_imp;
+    //assign sda_S2 = ((count[7] == 1'b1) & (domain == 1'b1)) ? sda : high_imp;
+    
+    //assign scl_S1 = (domain == 1'b0) ? scl : high_imp;
+    //assign sda_S1 = (domain == 1'b0) ? sda : high_imp;
+    //assign scl_S2 = (domain == 1'b1) ? scl : high_imp;
+    //assign sda_S2 = (domain == 1'b1) ? sda : high_imp;
 
     
     i2c_sys_top i2c_master_ctrl0 (
