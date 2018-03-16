@@ -110,11 +110,11 @@ module i2c_master_byte_ctrl (
 	// status outputs
 	output       	{L} cmd_ack;
 	reg 			{L} cmd_ack;
-	output       	{L} ack_out;
-	reg 			{L} ack_out;
-	output       	{L} i2c_busy;
+	output       	{Ctrl domain_i2c} ack_out;
+	reg 			{Ctrl domain_i2c} ack_out;
+	output       	{Ctrl domain_i2c} i2c_busy;
 	output       	{L} i2c_al;
-	output [7:0] 	{L} dout;
+	output [7:0] 	{Ctrl domain_i2c} dout;
 
 	// I2C signals
 	input  			{L} scl_i;
@@ -133,11 +133,12 @@ module i2c_master_byte_ctrl (
 	reg  [3:0] 		{L} core_cmd;
 	reg        		{L} core_txd;
 	wire       		{L} core_ack;
-	wire       		{L} core_rxd;
+	wire       		{Ctrl domain_i2c} core_rxd;
 
 	// signals for shift register
-	reg [7:0] 		{L} sr; //8bit shift register
 	reg       		{L} shift;
+	reg [7:0] 		{L} sr_tx; //8bit shift register
+	reg [7:0] 		{Ctrl domain_i2c} sr_rx; //8bit shift register
 	reg       		{L} ld;
 
 	// signals for state machine
@@ -178,18 +179,25 @@ module i2c_master_byte_ctrl (
 	assign go = (read | write | stop) & ~cmd_ack;
 
 	// assign dout output to shift-register
-	assign dout = sr;
+	assign dout = sr_rx;
 
-	// generate shift register
+	// generate tx shift register
 	always @(posedge clk or negedge nReset)
 	  if (!nReset)
-	    sr <= #1 8'h0;
+	    sr_tx <= #1 8'h0;
 	  else if (rst)
-	    sr <= #1 8'h0;
+	    sr_tx <= #1 8'h0;
 	  else if (ld)
-	    sr <= #1 din;
+	    sr_tx <= #1 din;
+
+	// generate rx shift register
+	always @(posedge clk or negedge nReset)
+	  if (!nReset)
+	    sr_rx <= #1 8'h0;
+	  else if (rst)
+	    sr_rx <= #1 8'h0;
 	  else if (shift)
-	    sr <= #1 {sr[6:0], core_rxd};
+	    sr_rx <= #1 {sr_rx[6:0], core_rxd};
 
 	// generate counter
 	always @(posedge clk or negedge nReset)
@@ -232,7 +240,7 @@ module i2c_master_byte_ctrl (
 	else
 	  begin
 	      // initially reset all signals
-	      core_txd <= #1 sr[7];
+	      core_txd <= #1 sr_tx[7];
 	      shift    <= #1 1'b0;
 	      ld       <= #1 1'b0;
 	      cmd_ack  <= #1 1'b0;

@@ -212,19 +212,19 @@
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; Instantiate parameter ack_out in module i2c_master_byte_ctrl @i2c_master_top.v:239
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; Instantiate parameter ack_out in module i2c_master_byte_ctrl @i2c_master_top.v:239
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; Instantiate parameter dout in module i2c_master_byte_ctrl @i2c_master_top.v:239
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; Instantiate parameter dout in module i2c_master_byte_ctrl @i2c_master_top.v:239
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; Instantiate parameter i2c_busy in module i2c_master_byte_ctrl @i2c_master_top.v:239
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; Instantiate parameter i2c_busy in module i2c_master_byte_ctrl @i2c_master_top.v:239
 (check-sat)
 (pop)
 
@@ -272,37 +272,37 @@
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; assign sr[7] = rxack @i2c_master_top.v:299
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; assign sr[7] = rxack @i2c_master_top.v:299
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; assign sr[6] = i2c_busy @i2c_master_top.v:300
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; assign sr[6] = i2c_busy @i2c_master_top.v:300
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; assign sr[5] = al @i2c_master_top.v:301
+(assert  (not(leq LOW  (Ctrl domain_i2c))))    ; assign sr[5] = al @i2c_master_top.v:301
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; assign sr[4:2] = 0 @i2c_master_top.v:302
+(assert  (not(leq LOW  (Ctrl domain_i2c))))    ; assign sr[4:2] = 0 @i2c_master_top.v:302
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; assign sr[1] = tip @i2c_master_top.v:303
+(assert  (not(leq LOW  (Ctrl domain_i2c))))    ; assign sr[1] = tip @i2c_master_top.v:303
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; assign sr[0] = irq_flag @i2c_master_top.v:304
+(assert  (not(leq LOW  (Ctrl domain_i2c))))    ; assign sr[0] = irq_flag @i2c_master_top.v:304
 (check-sat)
 (pop)
 
@@ -332,13 +332,13 @@
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; wb_dat_o <= rxr @i2c_master_top.v:181
+(assert  (not(leq (Ctrl domain_i2c)  LOW)))    ; wb_dat_o <= rxr @i2c_master_top.v:181
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; wb_dat_o <= sr @i2c_master_top.v:182
+(assert  (not(leq (Ctrl domain_i2c)  LOW)))    ; wb_dat_o <= sr @i2c_master_top.v:182
 (check-sat)
 (pop)
 
@@ -464,7 +464,7 @@
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; rxack <= 0 @i2c_master_top.v:270
+(assert  (not(leq LOW  (Ctrl domain_i2c))))    ; rxack <= 0 @i2c_master_top.v:270
 (check-sat)
 (pop)
 
@@ -488,7 +488,7 @@
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; rxack <= 0 @i2c_master_top.v:277
+(assert  (not(leq LOW  (Ctrl domain_i2c))))    ; rxack <= 0 @i2c_master_top.v:277
 (check-sat)
 (pop)
 
@@ -512,7 +512,7 @@
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; rxack <= irxack @i2c_master_top.v:284
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; rxack <= irxack @i2c_master_top.v:284
 (check-sat)
 (pop)
 

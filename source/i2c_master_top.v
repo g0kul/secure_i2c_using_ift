@@ -130,9 +130,9 @@ module i2c_master_top
 	reg  [15:0] 	{L} prer; // clock prescale register
 	reg  [ 7:0] 	{L} ctr;  // control register
 	reg  [ 7:0] 	{L} txr;  // transmit register
-	wire [ 7:0] 	{L} rxr;  // receive register
+	wire [ 7:0] 	{Ctrl domain_i2c} rxr;  // receive register
 	reg  [ 7:0] 	{L} cr;   // command register
-	wire [ 7:0] 	{L} sr;   // status register
+	wire [ 7:0] 	{Ctrl domain_i2c} sr;   // status register
 
 	// done signal: command completed, clear command register
 	wire 			{L} done;
@@ -142,11 +142,11 @@ module i2c_master_top
 	wire 			{L} ien;
 
 	// status register signals
-	wire 			{L} irxack;
-	reg  			{L} rxack;       // received aknowledge from slave
+	wire 			{Ctrl domain_i2c} irxack;
+	reg  			{Ctrl domain_i2c} rxack;       // received aknowledge from slave
 	reg  			{L} tip;         // transfer in progress
 	reg  			{L} irq_flag;    // interrupt pending flag
-	wire 			{L} i2c_busy;    // bus busy (start signal detected)
+	wire 			{Ctrl domain_i2c} i2c_busy;    // bus busy (start signal detected)
 	wire 			{L} i2c_al;      // i2c bus arbitration lost
 	reg  			{L} al;          // status register arbitration lost bit
 
