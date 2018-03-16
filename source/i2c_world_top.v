@@ -36,6 +36,9 @@
 `define W_ST_RD2_START 3'd3
 `define W_ST_RD2_WAIT  3'd4
 
+`define MASTER_MUX_BIT0         19 //524288 clocks max (as per sim 410755) for rd one 8b reg from slave
+`define MASTER_MUX_BIT_WIDTH    20 //MASTER_MUX_BIT0 + log_base2_of_number_of_slaves , here 2 slaves so +1;
+
 module i2c_world_top
 (
     input           {L} clk,
@@ -53,7 +56,7 @@ module i2c_world_top
 	//	
 
     //RD Data
-    reg {L} domain_i2c; //0 - D1, 1 - D2;
+    wire {L} domain_i2c; //0 - D1, 1 - D2;
 	
 	//WB Intf
 
@@ -99,17 +102,30 @@ module i2c_world_top
     reg       {Ctrl domain_i2c} done_r;
     reg       {Ctrl domain_i2c} n_done_r;
 
-    reg {L} n_domain_i2C;
-
 
     //time mux
-    //reg [7:0] {L} count;
+    reg [`MASTER_MUX_BIT_WIDTH-1:0] {L} master_tick_count;
     wire {D1} scl_S1;
     wire {D1} sda_S1;
     wire {D2} scl_S2;
     wire {D2} sda_S2;
     
-    
+    //Master mux count - time mux between different slaves
+    always @(posedge clk or posedge rst)
+    begin
+        if (rst == 1'b1)
+        begin
+            master_tick_count <= {`MASTER_MUX_BIT_WIDTH{1'b0}};
+        end
+        else
+        begin
+            master_tick_count <= master_tick_count + {{(`MASTER_MUX_BIT_WIDTH-1){1'b0}},1'b1};
+        end
+    end
+
+    //Master mux - can be scaled based on number of slaves, now only two slaves, so 1 bit
+    assign domain_i2c = master_tick_count[`MASTER_MUX_BIT0];
+
     always @(posedge clk or posedge rst)
     begin
         if(rst == 1'b1)
@@ -120,7 +136,6 @@ module i2c_world_top
             rd_valid    <= 1'b0;
             start_sys   <= 1'b0;
             done_r      <= 1'b0;
-            domain_i2C  <= 1'b0;
         end
         else
         begin
@@ -130,7 +145,6 @@ module i2c_world_top
             rd_valid    <= n_rd_valid;
             start_sys   <= n_start_sys;
             done_r      <= n_done_r;
-            domain_i2C  <= n_domain_i2C;
         end
     end
 
@@ -153,37 +167,45 @@ module i2c_world_top
             end
             `W_ST_RD1_START:
             begin
-                n_domain_i2C = 0;   //0-D1
-                n_i2c_slave_addr = `M_SEL_ADDR1;
-                n_start_sys = 1'b1;
-                n_world_state = `W_ST_RD1_WAIT;
+                if (domain_i2c == 1'b0)     //Make sure master accesses respective slave in its time slot
+                begin
+                    n_i2c_slave_addr = `M_SEL_ADDR1;
+                    n_start_sys = 1'b1;
+                    n_world_state = `W_ST_RD1_WAIT;
+                end
             end
             `W_ST_RD1_WAIT:
             begin
-                n_domain_i2C = 0;   //0-D1
-                if(done_sys == 1'b1)
+                if (domain_i2c == 1'b0)     //Make sure master accesses respective slave in its time slot
                 begin
-                    n_rd_data_out = i2c_read_data_out;
-                    n_rd_valid = 1'b1;
-                    n_world_state = `W_ST_RD2_START;
+                    if(done_sys == 1'b1)
+                    begin
+                        n_rd_data_out = i2c_read_data_out;
+                        n_rd_valid = 1'b1;
+                        n_world_state = `W_ST_RD2_START;
+                    end
                 end
             end
             `W_ST_RD2_START:
             begin
-                n_domain_i2C = 1;   //1-D2
-                n_i2c_slave_addr = `M_SEL_ADDR2;
-                n_start_sys = 1'b1;
-                n_world_state = `W_ST_RD1_WAIT;
+                if(domain_i2c == 1'b1)     //Make sure master accesses respective slave in its time slot
+                begin
+                    n_i2c_slave_addr = `M_SEL_ADDR2;
+                    n_start_sys = 1'b1;
+                    n_world_state = `W_ST_RD1_WAIT;
+                end
             end
             `W_ST_RD2_WAIT:
             begin
-                n_domain_i2C = 1;   //1-D2
-                if(done_sys == 1'b1)
+                if(domain_i2c == 1'b1)     //Make sure master accesses respective slave in its time slot
                 begin
-                    n_rd_data_out = i2c_read_data_out;
-                    n_rd_valid = 1'b1;
-                    n_done_r = 1'b1;
-                    n_world_state = `W_ST_IDLE;
+                    if(done_sys == 1'b1)
+                    begin
+                        n_rd_data_out = i2c_read_data_out;
+                        n_rd_valid = 1'b1;
+                        n_done_r = 1'b1;
+                        n_world_state = `W_ST_IDLE;
+                    end
                 end
             end
         endcase
