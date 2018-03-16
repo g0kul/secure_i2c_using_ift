@@ -63,50 +63,50 @@ module i2c_sys_top
 	input					{L} domain_i2c;
 
 	input 					{L} start;
-	output 					{L} done;
+	output 					{Ctrl domain_i2c} done;
 	
 	input [6:0] 			{L} slave_addr;
 	output [7:0]	{Data domain_i2c} read_data_out;
     
     //WB Intf
-    output [2:0] {L} wb_addr;
-    output [7:0] {L} wb_wr_data;
-    input  [7:0] {L} wb_rd_data;
+    output [2:0] {Ctrl domain_i2c} wb_addr;
+    output [7:0] {Ctrl domain_i2c} wb_wr_data;
+    input  [7:0] {Ctrl domain_i2c} wb_rd_data;
     input  [7:0] {Data domain_i2c} wb_rd_i2c_data;
-    output {L} wb_we;
-    output {L} wb_stb;
-    output {L} wb_cyc;
-    input  {L} wb_ack;
-    input  {L} wb_inta;
+    output {Ctrl domain_i2c} wb_we;
+    output {Ctrl domain_i2c} wb_stb;
+    output {Ctrl domain_i2c} wb_cyc;
+    input  {Ctrl domain_i2c} wb_ack;
+    input  {Ctrl domain_i2c} wb_inta;
 
 
 	//WB Intf
-	reg [2:0] {L} wb_addr;
-	reg [7:0] {L} wb_wr_data;
-	reg [2:0] {L} n_wb_addr;
-	reg [7:0] {L} n_wb_wr_data;
-	wire [7:0] {L} wb_rd_data;
+	reg [2:0] {Ctrl domain_i2c} wb_addr;
+	reg [7:0] {Ctrl domain_i2c} wb_wr_data;
+	reg [2:0] {Ctrl domain_i2c} n_wb_addr;
+	reg [7:0] {Ctrl domain_i2c} n_wb_wr_data;
+	wire [7:0] {Ctrl domain_i2c} wb_rd_data;
 	reg [7:0] {Data domain_i2c} n_wb_rd_data;
 	reg [7:0] {Data domain_i2c} wb_rd_data_r;
-	reg {L} wb_we;
-	reg {L} wb_stb;
-	reg {L} wb_cyc;
-	reg {L} n_wb_we;
-	reg {L} n_wb_stb;
-	reg {L} n_wb_cyc;
-	wire {L} wb_ack;
-	wire {L} wb_inta;
+	reg {Ctrl domain_i2c} wb_we;
+	reg {Ctrl domain_i2c} wb_stb;
+	reg {Ctrl domain_i2c} wb_cyc;
+	reg {Ctrl domain_i2c} n_wb_we;
+	reg {Ctrl domain_i2c} n_wb_stb;
+	reg {Ctrl domain_i2c} n_wb_cyc;
+	wire {Ctrl domain_i2c} wb_ack;
+	wire {Ctrl domain_i2c} wb_inta;
 
-	reg [3:0] {L} wb_state;
-	reg [3:0] {L} wb_state_d1;
-	reg [3:0] {L} n_wb_state;
-	reg [3:0] {L} n_wb_state_d1;
+	reg [3:0] {Ctrl domain_i2c} wb_state;
+	reg [3:0] {Ctrl domain_i2c} wb_state_d1;
+	reg [3:0] {Ctrl domain_i2c} n_wb_state;
+	reg [3:0] {Ctrl domain_i2c} n_wb_state_d1;
 
-	reg [7:0] {L} wb_cr_data;
-	reg [7:0] {L} n_wb_cr_data;
+	reg [7:0] {Ctrl domain_i2c} wb_cr_data;
+	reg [7:0] {Ctrl domain_i2c} n_wb_cr_data;
 	
-	reg {L} n_done;
-	reg {L} done_r;
+	reg {Ctrl domain_i2c} n_done;
+	reg {Ctrl domain_i2c} done_r;
 
 
 	//params
@@ -248,7 +248,7 @@ module i2c_sys_top
 					n_wb_stb = 1'b1;
 					n_wb_cyc = 1'b1;
 				end
-				else if (wb_rd_i2c_data[1] == 1'b1)	//TODO: wb_rd_i2c_data
+				else if (wb_rd_i2c_data[1] == 1'b1)
 				begin
 					n_wb_addr = `SR;
 					n_wb_we = 1'b0;

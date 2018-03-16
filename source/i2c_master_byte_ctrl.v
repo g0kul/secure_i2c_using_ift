@@ -94,34 +94,34 @@ module i2c_master_byte_ctrl (
 	input 			{L} nReset;  // asynchronous active low reset
 	input 			{L} domain_i2c;
 
-	input 			{L} ena;     // core enable signal
+	input 			{Ctrl domain_i2c} ena;     // core enable signal
 
-	input [15:0] 	{L} clk_cnt; // 4x SCL
+	input [15:0] 	{Ctrl domain_i2c} clk_cnt; // 4x SCL
 
 	// control inputs
-	input       	{L} start;
-	input       	{L} stop;
-	input       	{L} read;
-	input       	{L} write;
-	input       	{L} ack_in;
-	input [7:0] 	{L} din;
+	input       	{Ctrl domain_i2c} start;
+	input       	{Ctrl domain_i2c} stop;
+	input       	{Ctrl domain_i2c} read;
+	input       	{Ctrl domain_i2c} write;
+	input       	{Ctrl domain_i2c} ack_in;
+	input [7:0] 	{Ctrl domain_i2c} din;
 
 	// status outputs
-	output       	{L} cmd_ack;
-	reg 			{L} cmd_ack;
-	output       	{Ctrl domain_i2c} ack_out;
-	reg 			{Ctrl domain_i2c} ack_out;
-	output       	{Ctrl domain_i2c} i2c_busy;
-	output       	{L} i2c_al;
-	output [7:0] 	{Ctrl domain_i2c} dout;
+	output       	{Ctrl domain_i2c} cmd_ack;
+	reg 			{Ctrl domain_i2c} cmd_ack;
+	output       	{Data domain_i2c} ack_out;
+	reg 			{Data domain_i2c} ack_out;
+	output       	{Data domain_i2c} i2c_busy;
+	output       	{Ctrl domain_i2c} i2c_al;
+	output [7:0] 	{Data domain_i2c} dout;
 
 	// I2C signals
-	input  			{L} scl_i;
-	output 			{L} scl_o;
-	output 			{L} scl_oen;
-	input  			{Ctrl domain_i2c} sda_i;
-	output 			{L} sda_o;
-	output 			{L} sda_oen;
+	input  			{Ctrl domain_i2c} scl_i;
+	output 			{Ctrl domain_i2c} scl_o;
+	output 			{Ctrl domain_i2c} scl_oen;
+	input  			{Data domain_i2c} sda_i;
+	output 			{Ctrl domain_i2c} sda_o;
+	output 			{Ctrl domain_i2c} sda_oen;
 
 
 	//
@@ -129,23 +129,23 @@ module i2c_master_byte_ctrl (
 	//
 
 	// signals for bit_controller
-	reg  [3:0] 		{L} core_cmd;
-	reg        		{L} core_txd;
-	wire       		{L} core_ack;
-	wire       		{Ctrl domain_i2c} core_rxd;
+	reg  [3:0] 		{Ctrl domain_i2c} core_cmd;
+	reg        		{Ctrl domain_i2c} core_txd;
+	wire       		{Ctrl domain_i2c} core_ack;
+	wire       		{Data domain_i2c} core_rxd;
 
 	// signals for shift register
-	reg       		{L} shift;
-	reg [7:0] 		{L} sr_tx; //8bit shift register
-	reg [7:0] 		{Ctrl domain_i2c} sr_rx; //8bit shift register
-	reg       		{L} ld;
+	reg       		{Ctrl domain_i2c} shift;
+	reg [7:0] 		{Ctrl domain_i2c} sr_tx; //8bit shift register
+	reg [7:0] 		{Data domain_i2c} sr_rx; //8bit shift register
+	reg       		{Ctrl domain_i2c} ld;
 
 	// signals for state machine
-	wire       		{L} go;
-	reg  [2:0] 		{L} dcnt;
-	wire       		{L} cnt_done;
+	wire       		{Ctrl domain_i2c} go;
+	reg  [2:0] 		{Ctrl domain_i2c} dcnt;
+	wire       		{Ctrl domain_i2c} cnt_done;
 
-	reg [4:0] 		{L} c_state; // synopsys enum_state
+	reg [4:0] 		{Ctrl domain_i2c} c_state; // synopsys enum_state
 
 	//
 	// Module body

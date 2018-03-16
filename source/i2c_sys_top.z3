@@ -112,7 +112,7 @@
 ; assertions to be verified
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; assign done = done_r @i2c_sys_top.v:378
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; assign done = done_r @i2c_sys_top.v:378
 (check-sat)
 (pop)
 
@@ -124,19 +124,19 @@
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; n_wb_state = wb_state @i2c_sys_top.v:119
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; n_wb_state = wb_state @i2c_sys_top.v:119
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; n_wb_state_d1 = wb_state_d1 @i2c_sys_top.v:120
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; n_wb_state_d1 = wb_state_d1 @i2c_sys_top.v:120
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; n_wb_cr_data = wb_cr_data @i2c_sys_top.v:121
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; n_wb_cr_data = wb_cr_data @i2c_sys_top.v:121
 (check-sat)
 (pop)
 
@@ -148,625 +148,625 @@
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; n_wb_addr = {3{'bx}} @i2c_sys_top.v:124
+(assert  (not(leq LOW  (Ctrl domain_i2c))))    ; n_wb_addr = {3{'bx}} @i2c_sys_top.v:124
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; n_wb_wr_data = {8{'bx}} @i2c_sys_top.v:125
+(assert  (not(leq LOW  (Ctrl domain_i2c))))    ; n_wb_wr_data = {8{'bx}} @i2c_sys_top.v:125
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; n_wb_we = 0 @i2c_sys_top.v:126
+(assert  (not(leq LOW  (Ctrl domain_i2c))))    ; n_wb_we = 0 @i2c_sys_top.v:126
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; n_wb_stb = 0 @i2c_sys_top.v:127
+(assert  (not(leq LOW  (Ctrl domain_i2c))))    ; n_wb_stb = 0 @i2c_sys_top.v:127
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; n_wb_cyc = 0 @i2c_sys_top.v:128
+(assert  (not(leq LOW  (Ctrl domain_i2c))))    ; n_wb_cyc = 0 @i2c_sys_top.v:128
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; n_done = 0 @i2c_sys_top.v:130
+(assert  (not(leq LOW  (Ctrl domain_i2c))))    ; n_done = 0 @i2c_sys_top.v:130
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; n_wb_state = 1 @i2c_sys_top.v:137
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; n_wb_state = 1 @i2c_sys_top.v:137
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; n_wb_addr = 0 @i2c_sys_top.v:145
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; n_wb_addr = 0 @i2c_sys_top.v:145
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; n_wb_wr_data = 200 @i2c_sys_top.v:146
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; n_wb_wr_data = 200 @i2c_sys_top.v:146
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; n_wb_we = 1 @i2c_sys_top.v:147
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; n_wb_we = 1 @i2c_sys_top.v:147
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; n_wb_stb = 1 @i2c_sys_top.v:148
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; n_wb_stb = 1 @i2c_sys_top.v:148
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; n_wb_cyc = 1 @i2c_sys_top.v:149
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; n_wb_cyc = 1 @i2c_sys_top.v:149
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; n_wb_we = 'bx @i2c_sys_top.v:153
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; n_wb_we = 'bx @i2c_sys_top.v:153
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; n_wb_stb = 'bx @i2c_sys_top.v:154
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; n_wb_stb = 'bx @i2c_sys_top.v:154
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; n_wb_cyc = 0 @i2c_sys_top.v:155
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; n_wb_cyc = 0 @i2c_sys_top.v:155
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; n_wb_state = 2 @i2c_sys_top.v:156
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; n_wb_state = 2 @i2c_sys_top.v:156
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; n_wb_addr = 1 @i2c_sys_top.v:164
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; n_wb_addr = 1 @i2c_sys_top.v:164
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; n_wb_wr_data = 0 @i2c_sys_top.v:165
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; n_wb_wr_data = 0 @i2c_sys_top.v:165
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; n_wb_we = 1 @i2c_sys_top.v:166
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; n_wb_we = 1 @i2c_sys_top.v:166
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; n_wb_stb = 1 @i2c_sys_top.v:167
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; n_wb_stb = 1 @i2c_sys_top.v:167
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; n_wb_cyc = 1 @i2c_sys_top.v:168
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; n_wb_cyc = 1 @i2c_sys_top.v:168
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; n_wb_we = 'bx @i2c_sys_top.v:172
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; n_wb_we = 'bx @i2c_sys_top.v:172
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; n_wb_stb = 'bx @i2c_sys_top.v:173
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; n_wb_stb = 'bx @i2c_sys_top.v:173
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; n_wb_cyc = 0 @i2c_sys_top.v:174
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; n_wb_cyc = 0 @i2c_sys_top.v:174
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; n_wb_state = 3 @i2c_sys_top.v:175
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; n_wb_state = 3 @i2c_sys_top.v:175
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; n_wb_addr = 2 @i2c_sys_top.v:183
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; n_wb_addr = 2 @i2c_sys_top.v:183
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; n_wb_wr_data = 128 @i2c_sys_top.v:184
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; n_wb_wr_data = 128 @i2c_sys_top.v:184
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; n_wb_we = 1 @i2c_sys_top.v:185
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; n_wb_we = 1 @i2c_sys_top.v:185
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; n_wb_stb = 1 @i2c_sys_top.v:186
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; n_wb_stb = 1 @i2c_sys_top.v:186
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; n_wb_cyc = 1 @i2c_sys_top.v:187
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; n_wb_cyc = 1 @i2c_sys_top.v:187
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; n_wb_we = 'bx @i2c_sys_top.v:191
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; n_wb_we = 'bx @i2c_sys_top.v:191
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; n_wb_stb = 'bx @i2c_sys_top.v:192
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; n_wb_stb = 'bx @i2c_sys_top.v:192
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; n_wb_cyc = 0 @i2c_sys_top.v:193
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; n_wb_cyc = 0 @i2c_sys_top.v:193
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; n_wb_state = 4 @i2c_sys_top.v:195
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; n_wb_state = 4 @i2c_sys_top.v:195
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; n_wb_state_d1 = 7 @i2c_sys_top.v:197
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; n_wb_state_d1 = 7 @i2c_sys_top.v:197
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; n_wb_addr = 3 @i2c_sys_top.v:205
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; n_wb_addr = 3 @i2c_sys_top.v:205
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; n_wb_wr_data = {slave_addr, 0} @i2c_sys_top.v:206
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; n_wb_wr_data = {slave_addr, 0} @i2c_sys_top.v:206
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; n_wb_we = 1 @i2c_sys_top.v:207
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; n_wb_we = 1 @i2c_sys_top.v:207
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; n_wb_stb = 1 @i2c_sys_top.v:208
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; n_wb_stb = 1 @i2c_sys_top.v:208
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; n_wb_cyc = 1 @i2c_sys_top.v:209
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; n_wb_cyc = 1 @i2c_sys_top.v:209
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; n_wb_we = 'bx @i2c_sys_top.v:213
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; n_wb_we = 'bx @i2c_sys_top.v:213
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; n_wb_stb = 'bx @i2c_sys_top.v:214
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; n_wb_stb = 'bx @i2c_sys_top.v:214
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; n_wb_cyc = 0 @i2c_sys_top.v:215
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; n_wb_cyc = 0 @i2c_sys_top.v:215
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; n_wb_state = 5 @i2c_sys_top.v:217
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; n_wb_state = 5 @i2c_sys_top.v:217
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; n_wb_cr_data = 144 @i2c_sys_top.v:218
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; n_wb_cr_data = 144 @i2c_sys_top.v:218
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; n_wb_addr = 4 @i2c_sys_top.v:226
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; n_wb_addr = 4 @i2c_sys_top.v:226
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; n_wb_wr_data = wb_cr_data @i2c_sys_top.v:227
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; n_wb_wr_data = wb_cr_data @i2c_sys_top.v:227
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; n_wb_we = 1 @i2c_sys_top.v:228
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; n_wb_we = 1 @i2c_sys_top.v:228
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; n_wb_stb = 1 @i2c_sys_top.v:229
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; n_wb_stb = 1 @i2c_sys_top.v:229
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; n_wb_cyc = 1 @i2c_sys_top.v:230
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; n_wb_cyc = 1 @i2c_sys_top.v:230
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; n_wb_we = 'bx @i2c_sys_top.v:234
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; n_wb_we = 'bx @i2c_sys_top.v:234
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; n_wb_stb = 'bx @i2c_sys_top.v:235
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; n_wb_stb = 'bx @i2c_sys_top.v:235
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; n_wb_cyc = 0 @i2c_sys_top.v:236
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; n_wb_cyc = 0 @i2c_sys_top.v:236
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; n_wb_state = 6 @i2c_sys_top.v:238
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; n_wb_state = 6 @i2c_sys_top.v:238
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; n_wb_addr = 4 @i2c_sys_top.v:246
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; n_wb_addr = 4 @i2c_sys_top.v:246
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; n_wb_we = 0 @i2c_sys_top.v:247
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; n_wb_we = 0 @i2c_sys_top.v:247
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; n_wb_stb = 1 @i2c_sys_top.v:248
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; n_wb_stb = 1 @i2c_sys_top.v:248
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; n_wb_cyc = 1 @i2c_sys_top.v:249
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; n_wb_cyc = 1 @i2c_sys_top.v:249
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq (Data domain_i2c)  LOW)))    ; n_wb_addr = 4 @i2c_sys_top.v:253
+(assert  (not(leq (join (Data domain_i2c) (Ctrl domain_i2c))  (Ctrl domain_i2c))))    ; n_wb_addr = 4 @i2c_sys_top.v:253
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq (Data domain_i2c)  LOW)))    ; n_wb_we = 0 @i2c_sys_top.v:254
+(assert  (not(leq (join (Data domain_i2c) (Ctrl domain_i2c))  (Ctrl domain_i2c))))    ; n_wb_we = 0 @i2c_sys_top.v:254
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq (Data domain_i2c)  LOW)))    ; n_wb_stb = 1 @i2c_sys_top.v:255
+(assert  (not(leq (join (Data domain_i2c) (Ctrl domain_i2c))  (Ctrl domain_i2c))))    ; n_wb_stb = 1 @i2c_sys_top.v:255
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq (Data domain_i2c)  LOW)))    ; n_wb_cyc = 1 @i2c_sys_top.v:256
+(assert  (not(leq (join (Data domain_i2c) (Ctrl domain_i2c))  (Ctrl domain_i2c))))    ; n_wb_cyc = 1 @i2c_sys_top.v:256
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; n_wb_we = 'bx @i2c_sys_top.v:259
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; n_wb_we = 'bx @i2c_sys_top.v:259
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; n_wb_stb = 'bx @i2c_sys_top.v:260
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; n_wb_stb = 'bx @i2c_sys_top.v:260
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; n_wb_cyc = 0 @i2c_sys_top.v:261
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; n_wb_cyc = 0 @i2c_sys_top.v:261
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; n_wb_state = wb_state_d1 @i2c_sys_top.v:263
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; n_wb_state = wb_state_d1 @i2c_sys_top.v:263
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; n_wb_addr = 3 @i2c_sys_top.v:271
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; n_wb_addr = 3 @i2c_sys_top.v:271
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; n_wb_wr_data = 6 @i2c_sys_top.v:272
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; n_wb_wr_data = 6 @i2c_sys_top.v:272
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; n_wb_we = 1 @i2c_sys_top.v:273
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; n_wb_we = 1 @i2c_sys_top.v:273
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; n_wb_stb = 1 @i2c_sys_top.v:274
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; n_wb_stb = 1 @i2c_sys_top.v:274
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; n_wb_cyc = 1 @i2c_sys_top.v:275
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; n_wb_cyc = 1 @i2c_sys_top.v:275
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; n_wb_we = 'bx @i2c_sys_top.v:279
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; n_wb_we = 'bx @i2c_sys_top.v:279
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; n_wb_stb = 'bx @i2c_sys_top.v:280
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; n_wb_stb = 'bx @i2c_sys_top.v:280
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; n_wb_cyc = 0 @i2c_sys_top.v:281
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; n_wb_cyc = 0 @i2c_sys_top.v:281
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; n_wb_state = 5 @i2c_sys_top.v:283
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; n_wb_state = 5 @i2c_sys_top.v:283
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; n_wb_cr_data = 16 @i2c_sys_top.v:284
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; n_wb_cr_data = 16 @i2c_sys_top.v:284
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; n_wb_state_d1 = 8 @i2c_sys_top.v:285
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; n_wb_state_d1 = 8 @i2c_sys_top.v:285
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; n_wb_addr = 3 @i2c_sys_top.v:293
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; n_wb_addr = 3 @i2c_sys_top.v:293
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; n_wb_wr_data = {slave_addr, 1} @i2c_sys_top.v:294
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; n_wb_wr_data = {slave_addr, 1} @i2c_sys_top.v:294
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; n_wb_we = 1 @i2c_sys_top.v:295
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; n_wb_we = 1 @i2c_sys_top.v:295
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; n_wb_stb = 1 @i2c_sys_top.v:296
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; n_wb_stb = 1 @i2c_sys_top.v:296
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; n_wb_cyc = 1 @i2c_sys_top.v:297
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; n_wb_cyc = 1 @i2c_sys_top.v:297
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; n_wb_we = 'bx @i2c_sys_top.v:301
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; n_wb_we = 'bx @i2c_sys_top.v:301
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; n_wb_stb = 'bx @i2c_sys_top.v:302
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; n_wb_stb = 'bx @i2c_sys_top.v:302
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; n_wb_cyc = 0 @i2c_sys_top.v:303
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; n_wb_cyc = 0 @i2c_sys_top.v:303
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; n_wb_state = 5 @i2c_sys_top.v:305
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; n_wb_state = 5 @i2c_sys_top.v:305
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; n_wb_cr_data = 144 @i2c_sys_top.v:306
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; n_wb_cr_data = 144 @i2c_sys_top.v:306
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; n_wb_state_d1 = 9 @i2c_sys_top.v:307
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; n_wb_state_d1 = 9 @i2c_sys_top.v:307
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; n_wb_state = 5 @i2c_sys_top.v:313
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; n_wb_state = 5 @i2c_sys_top.v:313
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; n_wb_cr_data = 40 @i2c_sys_top.v:314
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; n_wb_cr_data = 40 @i2c_sys_top.v:314
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; n_wb_state_d1 = 10 @i2c_sys_top.v:315
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; n_wb_state_d1 = 10 @i2c_sys_top.v:315
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; n_wb_addr = 3 @i2c_sys_top.v:322
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; n_wb_addr = 3 @i2c_sys_top.v:322
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; n_wb_we = 0 @i2c_sys_top.v:323
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; n_wb_we = 0 @i2c_sys_top.v:323
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; n_wb_stb = 1 @i2c_sys_top.v:324
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; n_wb_stb = 1 @i2c_sys_top.v:324
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; n_wb_cyc = 1 @i2c_sys_top.v:325
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; n_wb_cyc = 1 @i2c_sys_top.v:325
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq (Data domain_i2c)  (Data domain_i2c))))    ; n_wb_rd_data = wb_rd_i2c_data @i2c_sys_top.v:329
+(assert  (not(leq (join (Data domain_i2c) (Ctrl domain_i2c))  (Data domain_i2c))))    ; n_wb_rd_data = wb_rd_i2c_data @i2c_sys_top.v:329
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; n_wb_we = 'bx @i2c_sys_top.v:330
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; n_wb_we = 'bx @i2c_sys_top.v:330
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; n_wb_stb = 'bx @i2c_sys_top.v:331
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; n_wb_stb = 'bx @i2c_sys_top.v:331
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; n_wb_cyc = 0 @i2c_sys_top.v:332
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; n_wb_cyc = 0 @i2c_sys_top.v:332
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; n_done = 1 @i2c_sys_top.v:334
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; n_done = 1 @i2c_sys_top.v:334
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; n_wb_state = 0 @i2c_sys_top.v:335
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; n_wb_state = 0 @i2c_sys_top.v:335
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; wb_state <= 0 @i2c_sys_top.v:348
+(assert  (not(leq LOW  (Ctrl domain_i2c))))    ; wb_state <= 0 @i2c_sys_top.v:348
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; wb_state_d1 <= 0 @i2c_sys_top.v:349
+(assert  (not(leq LOW  (Ctrl domain_i2c))))    ; wb_state_d1 <= 0 @i2c_sys_top.v:349
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; wb_cr_data <= {8{0}} @i2c_sys_top.v:350
+(assert  (not(leq LOW  (Ctrl domain_i2c))))    ; wb_cr_data <= {8{0}} @i2c_sys_top.v:350
 (check-sat)
 (pop)
 
@@ -778,55 +778,55 @@
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; wb_addr <= {3{'bx}} @i2c_sys_top.v:353
+(assert  (not(leq LOW  (Ctrl domain_i2c))))    ; wb_addr <= {3{'bx}} @i2c_sys_top.v:353
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; wb_wr_data <= {8{'bx}} @i2c_sys_top.v:354
+(assert  (not(leq LOW  (Ctrl domain_i2c))))    ; wb_wr_data <= {8{'bx}} @i2c_sys_top.v:354
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; wb_we <= 0 @i2c_sys_top.v:355
+(assert  (not(leq LOW  (Ctrl domain_i2c))))    ; wb_we <= 0 @i2c_sys_top.v:355
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; wb_stb <= 0 @i2c_sys_top.v:356
+(assert  (not(leq LOW  (Ctrl domain_i2c))))    ; wb_stb <= 0 @i2c_sys_top.v:356
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; wb_cyc <= 0 @i2c_sys_top.v:357
+(assert  (not(leq LOW  (Ctrl domain_i2c))))    ; wb_cyc <= 0 @i2c_sys_top.v:357
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; done_r <= 0 @i2c_sys_top.v:359
+(assert  (not(leq LOW  (Ctrl domain_i2c))))    ; done_r <= 0 @i2c_sys_top.v:359
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; wb_state <= n_wb_state @i2c_sys_top.v:363
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; wb_state <= n_wb_state @i2c_sys_top.v:363
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; wb_state_d1 <= n_wb_state_d1 @i2c_sys_top.v:364
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; wb_state_d1 <= n_wb_state_d1 @i2c_sys_top.v:364
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; wb_cr_data <= n_wb_cr_data @i2c_sys_top.v:365
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; wb_cr_data <= n_wb_cr_data @i2c_sys_top.v:365
 (check-sat)
 (pop)
 
@@ -838,37 +838,37 @@
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; wb_addr <= n_wb_addr @i2c_sys_top.v:368
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; wb_addr <= n_wb_addr @i2c_sys_top.v:368
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; wb_wr_data <= n_wb_wr_data @i2c_sys_top.v:369
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; wb_wr_data <= n_wb_wr_data @i2c_sys_top.v:369
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; wb_we <= n_wb_we @i2c_sys_top.v:370
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; wb_we <= n_wb_we @i2c_sys_top.v:370
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; wb_stb <= n_wb_stb @i2c_sys_top.v:371
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; wb_stb <= n_wb_stb @i2c_sys_top.v:371
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; wb_cyc <= n_wb_cyc @i2c_sys_top.v:372
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; wb_cyc <= n_wb_cyc @i2c_sys_top.v:372
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; done_r <= n_done @i2c_sys_top.v:374
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; done_r <= n_done @i2c_sys_top.v:374
 (check-sat)
 (pop)
 

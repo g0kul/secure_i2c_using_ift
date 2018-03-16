@@ -44,8 +44,8 @@ module i2c_world_top
     
     input           {L} start,
     output [7:0]    {Data domain_i2c} rd_data,
-    output          {L} valid,
-    output          {L} done
+    output          {Ctrl domain_i2c} valid,
+    output          {Ctrl domain_i2c} done
 );
 
 	//
@@ -57,27 +57,27 @@ module i2c_world_top
 	
 	//WB Intf
 
-    wire [2:0] {L} wb_addr;
-    wire [7:0] {L} wb_wr_data;
-    wire [7:0] {L} wb_rd_data;
+    wire [2:0] {Ctrl domain_i2c} wb_addr;
+    wire [7:0] {Ctrl domain_i2c} wb_wr_data;
+    wire [7:0] {Ctrl domain_i2c} wb_rd_data;
     wire [7:0] {Data domain_i2c} wb_rd_i2c_data;
     
-    wire {L} wb_we;
-    wire {L} wb_stb;
-    wire {L} wb_cyc;
+    wire {Ctrl domain_i2c} wb_we;
+    wire {Ctrl domain_i2c} wb_stb;
+    wire {Ctrl domain_i2c} wb_cyc;
     //reg  wb_inta;
-    wire {L} wb_inta;
+    wire {Ctrl domain_i2c} wb_inta;
     //reg  wb_ack;
-    wire  {L} wb_ack;
+    wire  {Ctrl domain_i2c} wb_ack;
 
 	reg {L} start_sys;
 	reg {L} n_start_sys;
-	wire {L} done_sys;
+	wire {Ctrl domain_i2c} done_sys;
 	
 	//I2C
-    wire {L} scl;
-    wire {L} scl0_o;
-    wire {L} scl0_oen;
+    wire {Ctrl domain_i2c} scl;
+    wire {Ctrl domain_i2c} scl0_o;
+    wire {Ctrl domain_i2c} scl0_oen;
     wire {Ctrl domain_i2c} sda;
     wire {Ctrl domain_i2c} sda0_o;
     wire {Ctrl domain_i2c} sda0_oen;
@@ -94,10 +94,10 @@ module i2c_world_top
     //SM
     reg [2:0] {L} world_state;
     reg [2:0] {L} n_world_state;
-    reg       {L} rd_valid;
-    reg       {L} n_rd_valid;
-    reg       {L} done_r;
-    reg       {L} n_done_r;
+    reg       {Ctrl domain_i2c} rd_valid;
+    reg       {Ctrl domain_i2c} n_rd_valid;
+    reg       {Ctrl domain_i2c} done_r;
+    reg       {Ctrl domain_i2c} n_done_r;
 
     reg {L} n_domain_i2C;
 

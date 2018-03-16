@@ -124,13 +124,13 @@
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; assign valid = rd_valid @i2c_world_top.v:193
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; assign valid = rd_valid @i2c_world_top.v:193
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; assign done = done_r @i2c_world_top.v:194
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; assign done = done_r @i2c_world_top.v:194
 (check-sat)
 (pop)
 
@@ -160,7 +160,7 @@
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; Instantiate parameter done in module i2c_sys_top @i2c_world_top.v:235
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; Instantiate parameter done in module i2c_sys_top @i2c_world_top.v:235
 (check-sat)
 (pop)
 
@@ -178,19 +178,19 @@
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; Instantiate parameter wb_addr in module i2c_sys_top @i2c_world_top.v:235
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; Instantiate parameter wb_addr in module i2c_sys_top @i2c_world_top.v:235
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; Instantiate parameter wb_wr_data in module i2c_sys_top @i2c_world_top.v:235
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; Instantiate parameter wb_wr_data in module i2c_sys_top @i2c_world_top.v:235
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; Instantiate parameter wb_rd_data in module i2c_sys_top @i2c_world_top.v:235
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; Instantiate parameter wb_rd_data in module i2c_sys_top @i2c_world_top.v:235
 (check-sat)
 (pop)
 
@@ -202,31 +202,31 @@
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; Instantiate parameter wb_we in module i2c_sys_top @i2c_world_top.v:235
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; Instantiate parameter wb_we in module i2c_sys_top @i2c_world_top.v:235
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; Instantiate parameter wb_stb in module i2c_sys_top @i2c_world_top.v:235
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; Instantiate parameter wb_stb in module i2c_sys_top @i2c_world_top.v:235
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; Instantiate parameter wb_cyc in module i2c_sys_top @i2c_world_top.v:235
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; Instantiate parameter wb_cyc in module i2c_sys_top @i2c_world_top.v:235
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; Instantiate parameter wb_ack in module i2c_sys_top @i2c_world_top.v:235
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; Instantiate parameter wb_ack in module i2c_sys_top @i2c_world_top.v:235
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; Instantiate parameter wb_inta in module i2c_sys_top @i2c_world_top.v:235
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; Instantiate parameter wb_inta in module i2c_sys_top @i2c_world_top.v:235
 (check-sat)
 (pop)
 
@@ -256,19 +256,19 @@
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; Instantiate parameter wb_adr_i in module i2c_master_top @i2c_world_top.v:258
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; Instantiate parameter wb_adr_i in module i2c_master_top @i2c_world_top.v:258
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; Instantiate parameter wb_dat_i in module i2c_master_top @i2c_world_top.v:258
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; Instantiate parameter wb_dat_i in module i2c_master_top @i2c_world_top.v:258
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; Instantiate parameter wb_dat_o in module i2c_master_top @i2c_world_top.v:258
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; Instantiate parameter wb_dat_o in module i2c_master_top @i2c_world_top.v:258
 (check-sat)
 (pop)
 
@@ -280,67 +280,67 @@
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; Instantiate parameter wb_we_i in module i2c_master_top @i2c_world_top.v:258
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; Instantiate parameter wb_we_i in module i2c_master_top @i2c_world_top.v:258
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; Instantiate parameter wb_stb_i in module i2c_master_top @i2c_world_top.v:258
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; Instantiate parameter wb_stb_i in module i2c_master_top @i2c_world_top.v:258
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; Instantiate parameter wb_cyc_i in module i2c_master_top @i2c_world_top.v:258
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; Instantiate parameter wb_cyc_i in module i2c_master_top @i2c_world_top.v:258
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; Instantiate parameter wb_ack_o in module i2c_master_top @i2c_world_top.v:258
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; Instantiate parameter wb_ack_o in module i2c_master_top @i2c_world_top.v:258
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; Instantiate parameter wb_inta_o in module i2c_master_top @i2c_world_top.v:258
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; Instantiate parameter wb_inta_o in module i2c_master_top @i2c_world_top.v:258
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; Instantiate parameter scl_pad_i in module i2c_master_top @i2c_world_top.v:258
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; Instantiate parameter scl_pad_i in module i2c_master_top @i2c_world_top.v:258
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; Instantiate parameter scl_pad_o in module i2c_master_top @i2c_world_top.v:258
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; Instantiate parameter scl_pad_o in module i2c_master_top @i2c_world_top.v:258
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; Instantiate parameter scl_padoen_o in module i2c_master_top @i2c_world_top.v:258
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; Instantiate parameter scl_padoen_o in module i2c_master_top @i2c_world_top.v:258
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; Instantiate parameter sda_pad_i in module i2c_master_top @i2c_world_top.v:258
+(assert  (not(leq (Ctrl domain_i2c)  (Data domain_i2c))))    ; Instantiate parameter sda_pad_i in module i2c_master_top @i2c_world_top.v:258
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  (Ctrl domain_i2c))))    ; Instantiate parameter sda_pad_o in module i2c_master_top @i2c_world_top.v:258
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; Instantiate parameter sda_pad_o in module i2c_master_top @i2c_world_top.v:258
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  (Ctrl domain_i2c))))    ; Instantiate parameter sda_padoen_o in module i2c_master_top @i2c_world_top.v:258
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; Instantiate parameter sda_padoen_o in module i2c_master_top @i2c_world_top.v:258
 (check-sat)
 (pop)
 
@@ -466,13 +466,13 @@
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; scl = high_imp @i2c_world_top.v:313
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; scl = high_imp @i2c_world_top.v:313
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; scl = scl0_o @i2c_world_top.v:313
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; scl = scl0_o @i2c_world_top.v:313
 (check-sat)
 (pop)
 
@@ -508,7 +508,7 @@
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; rd_valid <= 0 @i2c_world_top.v:120
+(assert  (not(leq LOW  (Ctrl domain_i2c))))    ; rd_valid <= 0 @i2c_world_top.v:120
 (check-sat)
 (pop)
 
@@ -520,7 +520,7 @@
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; done_r <= 0 @i2c_world_top.v:122
+(assert  (not(leq LOW  (Ctrl domain_i2c))))    ; done_r <= 0 @i2c_world_top.v:122
 (check-sat)
 (pop)
 
@@ -550,7 +550,7 @@
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; rd_valid <= n_rd_valid @i2c_world_top.v:130
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; rd_valid <= n_rd_valid @i2c_world_top.v:130
 (check-sat)
 (pop)
 
@@ -562,7 +562,7 @@
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; done_r <= n_done_r @i2c_world_top.v:132
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; done_r <= n_done_r @i2c_world_top.v:132
 (check-sat)
 (pop)
 
@@ -592,7 +592,7 @@
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; n_rd_valid = 0 @i2c_world_top.v:142
+(assert  (not(leq LOW  (Ctrl domain_i2c))))    ; n_rd_valid = 0 @i2c_world_top.v:142
 (check-sat)
 (pop)
 
@@ -604,7 +604,7 @@
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; n_done_r = 0 @i2c_world_top.v:144
+(assert  (not(leq LOW  (Ctrl domain_i2c))))    ; n_done_r = 0 @i2c_world_top.v:144
 (check-sat)
 (pop)
 
@@ -646,19 +646,19 @@
 
 
 (push)
-(assert  (not(leq (Data domain_i2c)  (Data domain_i2c))))    ; n_rd_data_out = i2c_read_data_out @i2c_world_top.v:166
+(assert  (not(leq (join (Data domain_i2c) (Ctrl domain_i2c))  (Data domain_i2c))))    ; n_rd_data_out = i2c_read_data_out @i2c_world_top.v:166
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; n_rd_valid = 1 @i2c_world_top.v:167
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; n_rd_valid = 1 @i2c_world_top.v:167
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; n_world_state = 3 @i2c_world_top.v:168
+(assert  (not(leq (Ctrl domain_i2c)  LOW)))    ; n_world_state = 3 @i2c_world_top.v:168
 (check-sat)
 (pop)
 
@@ -694,25 +694,25 @@
 
 
 (push)
-(assert  (not(leq (Data domain_i2c)  (Data domain_i2c))))    ; n_rd_data_out = i2c_read_data_out @i2c_world_top.v:183
+(assert  (not(leq (join (Data domain_i2c) (Ctrl domain_i2c))  (Data domain_i2c))))    ; n_rd_data_out = i2c_read_data_out @i2c_world_top.v:183
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; n_rd_valid = 1 @i2c_world_top.v:184
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; n_rd_valid = 1 @i2c_world_top.v:184
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; n_done_r = 1 @i2c_world_top.v:185
+(assert  (not(leq (Ctrl domain_i2c)  (Ctrl domain_i2c))))    ; n_done_r = 1 @i2c_world_top.v:185
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; n_world_state = 0 @i2c_world_top.v:186
+(assert  (not(leq (Ctrl domain_i2c)  LOW)))    ; n_world_state = 0 @i2c_world_top.v:186
 (check-sat)
 (pop)
 
@@ -730,7 +730,7 @@
 
 
 (push)
-(assert (and (= domain_i2c 0)  (not(leq LOW  D1))))    ; scl_S1 = scl @i2c_world_top.v:214
+(assert (and (= domain_i2c 0)  (not(leq (Ctrl domain_i2c)  D1))))    ; scl_S1 = scl @i2c_world_top.v:214
 (check-sat)
 (pop)
 
@@ -754,7 +754,7 @@
 
 
 (push)
-(assert (and (not(= domain_i2c 0))  (not(leq LOW  D2))))    ; scl_S2 = scl @i2c_world_top.v:219
+(assert (and (not(= domain_i2c 0))  (not(leq (Ctrl domain_i2c)  D2))))    ; scl_S2 = scl @i2c_world_top.v:219
 (check-sat)
 (pop)
 

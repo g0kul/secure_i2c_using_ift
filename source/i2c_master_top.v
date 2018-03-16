@@ -89,80 +89,81 @@ module i2c_master_top
 	input 			{L}  domain_i2c,
 
 
-	input  [2:0] 	{L}  wb_adr_i,     // lower address bits
-	input  [7:0] 	{L}  wb_dat_i,     // databus input
-	output [7:0] 	{L}  wb_dat_o,     // databus output
+	input  [2:0] 	{Ctrl domain_i2c}  wb_adr_i,     // lower address bits
+	input  [7:0] 	{Ctrl domain_i2c}  wb_dat_i,     // databus input
+	output [7:0] 	{Ctrl domain_i2c}  wb_dat_o,     // databus output
 	output [7:0] 	{Data domain_i2c}  wb_i2c_dat_o,     // databus output
-	input        	{L}  wb_we_i,      // write enable input
-	input        	{L}  wb_stb_i,     // stobe/core select signal
-	input        	{L}  wb_cyc_i,     // valid bus cycle input
-	output       	{L}  wb_ack_o,     // bus cycle acknowledge output
-	output       	{L}  wb_inta_o,    // interrupt request signal output
+	input        	{Ctrl domain_i2c}  wb_we_i,      // write enable input
+	input        	{Ctrl domain_i2c}  wb_stb_i,     // stobe/core select signal
+	input        	{Ctrl domain_i2c}  wb_cyc_i,     // valid bus cycle input
+	output       	{Ctrl domain_i2c}  wb_ack_o,     // bus cycle acknowledge output
+	output       	{Ctrl domain_i2c}  wb_inta_o,    // interrupt request signal output
 
 	// I2C signals
 	// i2c clock line
-	input  			{L}  	scl_pad_i,       // SCL-line input
-	output 			{L}  		scl_pad_o,       // SCL-line output (always 1'b0)
-	output 			{L}  		scl_padoen_o,    // SCL-line output enable (active low)
+	input  			{Ctrl domain_i2c}  	scl_pad_i,       // SCL-line input
+	output 			{Ctrl domain_i2c}  		scl_pad_o,       // SCL-line output (always 1'b0)
+	output 			{Ctrl domain_i2c}  		scl_padoen_o,    // SCL-line output enable (active low)
 
 	// i2c data line
-	input  			{Ctrl domain_i2c} 	sda_pad_i,       // SDA-line input
-	output 			{L} 		sda_pad_o,       // SDA-line output (always 1'b0)
-	output 			{L} 		sda_padoen_o    // SDA-line output enable (active low)
+	input  			{Data domain_i2c} 	sda_pad_i,       // SDA-line input
+	output 			{Ctrl domain_i2c} 		sda_pad_o,       // SDA-line output (always 1'b0)
+	output 			{Ctrl domain_i2c} 		sda_padoen_o    // SDA-line output enable (active low)
 );
 
 	// parameters
 	//parameter ARST_LVL = 1'b0; // asynchronous reset level
-	wire 			{L} ARST_LVL = 1'b0; // asynchronous reset level
+	//wire 			{L} ARST_LVL = 1'b0; // asynchronous reset level
 	// generate internal reset
-	wire 			{L} rst_i = arst_i ^ ARST_LVL;
+	//wire 			{L} rst_i = arst_i ^ ARST_LVL;
+	wire 			{L} rst_i = arst_i;
 
 	//
 	// variable declarations
 	//
 
 	// I2C signals
-	reg [7:0]		{L} wb_dat_o;
+	reg [7:0]		{Ctrl domain_i2c} wb_dat_o;
 	reg [7:0]		{Data domain_i2c} wb_i2c_dat_o;
-	reg 			{L} wb_ack_o;
-	reg 			{L} wb_inta_o;
+	reg 			{Ctrl domain_i2c} wb_ack_o;
+	reg 			{Ctrl domain_i2c} wb_inta_o;
 
 	// registers
-	reg  [15:0] 	{L} prer; // clock prescale register
-	reg  [ 7:0] 	{L} ctr;  // control register
-	reg  [ 7:0] 	{L} txr;  // transmit register
-	wire [ 7:0] 	{Ctrl domain_i2c} rxr;  // receive register
-	reg  [ 7:0] 	{L} cr;   // command register
-	wire [ 7:0] 	{Ctrl domain_i2c} sr;   // status register
+	reg  [15:0] 	{Ctrl domain_i2c} prer; // clock prescale register
+	reg  [ 7:0] 	{Ctrl domain_i2c} ctr;  // control register
+	reg  [ 7:0] 	{Ctrl domain_i2c} txr;  // transmit register
+	wire [ 7:0] 	{Data domain_i2c} rxr;  // receive register
+	reg  [ 7:0] 	{Ctrl domain_i2c} cr;   // command register
+	wire [ 7:0] 	{Data domain_i2c} sr;   // status register
 
 	// done signal: command completed, clear command register
-	wire 			{L} done;
+	wire 			{Ctrl domain_i2c} done;
 
 	// core enable signal
-	wire 			{L} core_en;
-	wire 			{L} ien;
+	wire 			{Ctrl domain_i2c} core_en;
+	wire 			{Ctrl domain_i2c} ien;
 
 	// status register signals
-	wire 			{Ctrl domain_i2c} irxack;
-	reg  			{Ctrl domain_i2c} rxack;       // received aknowledge from slave
-	reg  			{L} tip;         // transfer in progress
-	reg  			{L} irq_flag;    // interrupt pending flag
-	wire 			{Ctrl domain_i2c} i2c_busy;    // bus busy (start signal detected)
-	wire 			{L} i2c_al;      // i2c bus arbitration lost
-	reg  			{L} al;          // status register arbitration lost bit
+	wire 			{Data domain_i2c} irxack;
+	reg  			{Data domain_i2c} rxack;       // received aknowledge from slave
+	reg  			{Ctrl domain_i2c} tip;         // transfer in progress
+	reg  			{Ctrl domain_i2c} irq_flag;    // interrupt pending flag
+	wire 			{Data domain_i2c} i2c_busy;    // bus busy (start signal detected)
+	wire 			{Ctrl domain_i2c} i2c_al;      // i2c bus arbitration lost
+	reg  			{Ctrl domain_i2c} al;          // status register arbitration lost bit
 
 
 
 	// generate wishbone signals
-	wire 			{L} wb_wacc = wb_we_i & wb_ack_o;
+	wire 			{Ctrl domain_i2c} wb_wacc = wb_we_i & wb_ack_o;
 
 	// decode command register
-	wire 			{L} sta  = cr[7];
-	wire 			{L} sto  = cr[6];
-	wire 			{L} rd   = cr[5];
-	wire 			{L} wr   = cr[4];
-	wire 			{L} ack  = cr[3];
-	wire 			{L} iack = cr[0];
+	wire 			{Ctrl domain_i2c} sta  = cr[7];
+	wire 			{Ctrl domain_i2c} sto  = cr[6];
+	wire 			{Ctrl domain_i2c} rd   = cr[5];
+	wire 			{Ctrl domain_i2c} wr   = cr[4];
+	wire 			{Ctrl domain_i2c} ack  = cr[3];
+	wire 			{Ctrl domain_i2c} iack = cr[0];
 
 	//
 	// module body

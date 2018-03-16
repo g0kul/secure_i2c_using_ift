@@ -168,24 +168,24 @@ module i2c_master_bit_ctrl (
     input             {L} nReset,   // asynchronous active low reset
     input             {L} domain_i2c,
 
-    input             {L} ena,      // core enable signal
+    input             {Ctrl domain_i2c} ena,      // core enable signal
 
-    input      [15:0] {L} clk_cnt,  // clock prescale value
+    input      [15:0] {Ctrl domain_i2c} clk_cnt,  // clock prescale value
 
-    input      [ 3:0] {L} cmd,      // command (from byte controller)
-    output reg        {L} cmd_ack,  // command complete acknowledge
-    output reg        {Ctrl domain_i2c} busy,     // i2c bus busy
-    output reg        {L} al,       // i2c bus arbitration lost
+    input      [ 3:0] {Ctrl domain_i2c} cmd,      // command (from byte controller)
+    output reg        {Ctrl domain_i2c} cmd_ack,  // command complete acknowledge
+    output reg        {Data domain_i2c} busy,     // i2c bus busy
+    output reg        {Ctrl domain_i2c} al,       // i2c bus arbitration lost
 
-    input             {L} din,
-    output reg        {Ctrl domain_i2c} dout,
+    input             {Ctrl domain_i2c} din,
+    output reg        {Data domain_i2c} dout,
 
-    input             {L} scl_i,    // i2c clock line input
-    output            {L} scl_o,    // i2c clock line output
-    output reg        {L} scl_oen,  // i2c clock line output enable (active low)
-    input             {Ctrl domain_i2c} sda_i,    // i2c data line input
-    output            {L} sda_o,    // i2c data line output
-    output reg        {L} sda_oen   // i2c data line output enable (active low)
+    input             {Ctrl domain_i2c} scl_i,    // i2c clock line input
+    output            {Ctrl domain_i2c} scl_o,    // i2c clock line output
+    output reg        {Ctrl domain_i2c} scl_oen,  // i2c clock line output enable (active low)
+    input             {Data domain_i2c} sda_i,    // i2c data line input
+    output            {Ctrl domain_i2c} sda_o,    // i2c data line output
+    output reg        {Ctrl domain_i2c} sda_oen   // i2c data line output enable (active low)
 );
 
 
@@ -193,30 +193,30 @@ module i2c_master_bit_ctrl (
     // variable declarations
     //
 
-    reg [ 1:0]        {L} cSCL;         //considering for the single master here! <GP>
-    reg [ 1:0]        {Ctrl domain_i2c} cSDA;      // capture SCL and SDA
-    reg [ 2:0]        {L} fSCL;
-    reg [ 2:0]        {Ctrl domain_i2c} fSDA;      // SCL and SDA filter inputs
-    reg               {L} sSCL;
-    reg               {Ctrl domain_i2c} sSDA;      // filtered and synchronized SCL and SDA inputs
-    reg               {L} dSCL;
-    reg               {Ctrl domain_i2c} dSDA;      // delayed versions of sSCL and sSDA
-    reg               {L} dscl_oen;        // delayed scl_oen
-    reg               {L} sda_chk;         // check SDA output (Multi-master arbitration)
-    reg               {L} clk_en;          // clock generation signals
-    reg               {L} slave_wait;      // slave inserts wait states
-    reg [15:0]        {L} cnt;             // clock divider counter (synthesis)
-    reg [13:0]        {L} filter_cnt;      // clock divider for filter
-    wire              {L} no_filter_cnt;
+    reg [ 1:0]        {Ctrl domain_i2c} cSCL;         //considering for the single master here! <GP>
+    reg [ 1:0]        {Data domain_i2c} cSDA;      // capture SCL and SDA
+    reg [ 2:0]        {Ctrl domain_i2c} fSCL;
+    reg [ 2:0]        {Data domain_i2c} fSDA;      // SCL and SDA filter inputs
+    reg               {Ctrl domain_i2c} sSCL;
+    reg               {Data domain_i2c} sSDA;      // filtered and synchronized SCL and SDA inputs
+    reg               {Ctrl domain_i2c} dSCL;
+    reg               {Data domain_i2c} dSDA;      // delayed versions of sSCL and sSDA
+    reg               {Ctrl domain_i2c} dscl_oen;        // delayed scl_oen
+    reg               {Ctrl domain_i2c} sda_chk;         // check SDA output (Multi-master arbitration)
+    reg               {Ctrl domain_i2c} clk_en;          // clock generation signals
+    reg               {Ctrl domain_i2c} slave_wait;      // slave inserts wait states
+    reg [15:0]        {Ctrl domain_i2c} cnt;             // clock divider counter (synthesis)
+    reg [13:0]        {Ctrl domain_i2c} filter_cnt;      // clock divider for filter
+    wire              {Ctrl domain_i2c} no_filter_cnt;
 
     //Moving wires and reg decl for SecVerilog to proccess - #GP
-    wire              {L} scl_sync;
-    reg               {Ctrl domain_i2c} sta_condition;
-    reg               {Ctrl domain_i2c} sto_condition;
-    reg               {L} cmd_stop;
+    wire              {Ctrl domain_i2c} scl_sync;
+    reg               {Data domain_i2c} sta_condition;
+    reg               {Data domain_i2c} sto_condition;
+    reg               {Ctrl domain_i2c} cmd_stop;
 
     // state machine variable
-    reg [17:0]        {L} c_state; // synopsys enum_state
+    reg [17:0]        {Ctrl domain_i2c} c_state; // synopsys enum_state
 
     //Moving params for secverilog to process - #GP
  
