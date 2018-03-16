@@ -101,7 +101,7 @@
 /////////////////////////////////////
 //
 // Translate simple commands into SCL/SDA transitions
-// Each command has 5 states, A/B/C/D/idle
+// Each command has 5 states, A/B/C/D/`idle
 //
 // start:	SCL	~~~~~~~~~~\____
 //	SDA	~~~~~~~~\______
@@ -139,6 +139,28 @@
 // synopsys translate_on
 
 `include "i2c_master_defines.v"
+
+
+// nxt_state decoder
+`define idle    18'b0_0000_0000_0000_0000
+`define start_a 18'b0_0000_0000_0000_0001
+`define start_b 18'b0_0000_0000_0000_0010
+`define start_c 18'b0_0000_0000_0000_0100
+`define start_d 18'b0_0000_0000_0000_1000
+`define start_e 18'b0_0000_0000_0001_0000
+`define stop_a  18'b0_0000_0000_0010_0000
+`define stop_b  18'b0_0000_0000_0100_0000
+`define stop_c  18'b0_0000_0000_1000_0000
+`define stop_d  18'b0_0000_0001_0000_0000
+`define rd_a    18'b0_0000_0010_0000_0000
+`define rd_b    18'b0_0000_0100_0000_0000
+`define rd_c    18'b0_0000_1000_0000_0000
+`define rd_d    18'b0_0001_0000_0000_0000
+`define wr_a    18'b0_0010_0000_0000_0000
+`define wr_b    18'b0_0100_0000_0000_0000
+`define wr_c    18'b0_1000_0000_0000_0000
+`define wr_d    18'b1_0000_0000_0000_0000
+
 
 module i2c_master_bit_ctrl (
     input             {L} clk,      // system clock
@@ -192,27 +214,7 @@ module i2c_master_bit_ctrl (
     reg [17:0]        {Ctrl domain} c_state; // synopsys enum_state
 
     //Moving params for secverilog to process - #GP
-    
-    // nxt_state decoder
-    wire [17:0]       {Ctrl domain} idle    = 18'b0_0000_0000_0000_0000;
-    wire [17:0]       {Ctrl domain} start_a = 18'b0_0000_0000_0000_0001;
-    wire [17:0]       {Ctrl domain} start_b = 18'b0_0000_0000_0000_0010;
-    wire [17:0]       {Ctrl domain} start_c = 18'b0_0000_0000_0000_0100;
-    wire [17:0]       {Ctrl domain} start_d = 18'b0_0000_0000_0000_1000;
-    wire [17:0]       {Ctrl domain} start_e = 18'b0_0000_0000_0001_0000;
-    wire [17:0]       {Ctrl domain} stop_a  = 18'b0_0000_0000_0010_0000;
-    wire [17:0]       {Ctrl domain} stop_b  = 18'b0_0000_0000_0100_0000;
-    wire [17:0]       {Ctrl domain} stop_c  = 18'b0_0000_0000_1000_0000;
-    wire [17:0]       {Ctrl domain} stop_d  = 18'b0_0000_0001_0000_0000;
-    wire [17:0]       {Ctrl domain} rd_a    = 18'b0_0000_0010_0000_0000;
-    wire [17:0]       {Ctrl domain} rd_b    = 18'b0_0000_0100_0000_0000;
-    wire [17:0]       {Ctrl domain} rd_c    = 18'b0_0000_1000_0000_0000;
-    wire [17:0]       {Ctrl domain} rd_d    = 18'b0_0001_0000_0000_0000;
-    wire [17:0]       {Ctrl domain} wr_a    = 18'b0_0010_0000_0000_0000;
-    wire [17:0]       {Ctrl domain} wr_b    = 18'b0_0100_0000_0000_0000;
-    wire [17:0]       {Ctrl domain} wr_c    = 18'b0_1000_0000_0000_0000;
-    wire [17:0]       {Ctrl domain} wr_d    = 18'b1_0000_0000_0000_0000;
-
+ 
     //
     // module body
     //
@@ -391,7 +393,7 @@ module i2c_master_bit_ctrl (
     always @(posedge clk or negedge nReset)
       if (!nReset)
       begin
-          c_state <= #1 idle;
+          c_state <= #1 `idle;
           cmd_ack <= #1 1'b0;
           scl_oen <= #1 1'b1;
           sda_oen <= #1 1'b1;
@@ -399,7 +401,7 @@ module i2c_master_bit_ctrl (
       end
       else if (rst | al)
       begin
-          c_state <= #1 idle;
+          c_state <= #1 `idle;
           cmd_ack <= #1 1'b0;
           scl_oen <= #1 1'b1;
           sda_oen <= #1 1'b1;
@@ -411,15 +413,15 @@ module i2c_master_bit_ctrl (
 
           if (clk_en)
               case (c_state) // synopsys full_case parallel_case
-                    // idle state
-                    idle:
+                    // `idle state
+                    `idle:
                     begin
                         case (cmd) // synopsys full_case parallel_case
-                             `I2C_CMD_START: c_state <= #1 start_a;
-                             `I2C_CMD_STOP:  c_state <= #1 stop_a;
-                             `I2C_CMD_WRITE: c_state <= #1 wr_a;
-                             `I2C_CMD_READ:  c_state <= #1 rd_a;
-                             default:        c_state <= #1 idle;
+                             `I2C_CMD_START: c_state <= #1 `start_a;
+                             `I2C_CMD_STOP:  c_state <= #1 `stop_a;
+                             `I2C_CMD_WRITE: c_state <= #1 `wr_a;
+                             `I2C_CMD_READ:  c_state <= #1 `rd_a;
+                             default:        c_state <= #1 `idle;
                         endcase
 
                         scl_oen <= #1 scl_oen; // keep SCL in same state
@@ -428,41 +430,41 @@ module i2c_master_bit_ctrl (
                     end
 
                     // start
-                    start_a:
+                    `start_a:
                     begin
-                        c_state <= #1 start_b;
+                        c_state <= #1 `start_b;
                         scl_oen <= #1 scl_oen; // keep SCL in same state
                         sda_oen <= #1 1'b1;    // set SDA high
                         sda_chk <= #1 1'b0;    // don't check SDA output
                     end
 
-                    start_b:
+                    `start_b:
                     begin
-                        c_state <= #1 start_c;
+                        c_state <= #1 `start_c;
                         scl_oen <= #1 1'b1; // set SCL high
                         sda_oen <= #1 1'b1; // keep SDA high
                         sda_chk <= #1 1'b0; // don't check SDA output
                     end
 
-                    start_c:
+                    `start_c:
                     begin
-                        c_state <= #1 start_d;
+                        c_state <= #1 `start_d;
                         scl_oen <= #1 1'b1; // keep SCL high
                         sda_oen <= #1 1'b0; // set SDA low
                         sda_chk <= #1 1'b0; // don't check SDA output
                     end
 
-                    start_d:
+                    `start_d:
                     begin
-                        c_state <= #1 start_e;
+                        c_state <= #1 `start_e;
                         scl_oen <= #1 1'b1; // keep SCL high
                         sda_oen <= #1 1'b0; // keep SDA low
                         sda_chk <= #1 1'b0; // don't check SDA output
                     end
 
-                    start_e:
+                    `start_e:
                     begin
-                        c_state <= #1 idle;
+                        c_state <= #1 `idle;
                         cmd_ack <= #1 1'b1;
                         scl_oen <= #1 1'b0; // set SCL low
                         sda_oen <= #1 1'b0; // keep SDA low
@@ -470,33 +472,33 @@ module i2c_master_bit_ctrl (
                     end
 
                     // stop
-                    stop_a:
+                    `stop_a:
                     begin
-                        c_state <= #1 stop_b;
+                        c_state <= #1 `stop_b;
                         scl_oen <= #1 1'b0; // keep SCL low
                         sda_oen <= #1 1'b0; // set SDA low
                         sda_chk <= #1 1'b0; // don't check SDA output
                     end
 
-                    stop_b:
+                    `stop_b:
                     begin
-                        c_state <= #1 stop_c;
+                        c_state <= #1 `stop_c;
                         scl_oen <= #1 1'b1; // set SCL high
                         sda_oen <= #1 1'b0; // keep SDA low
                         sda_chk <= #1 1'b0; // don't check SDA output
                     end
 
-                    stop_c:
+                    `stop_c:
                     begin
-                        c_state <= #1 stop_d;
+                        c_state <= #1 `stop_d;
                         scl_oen <= #1 1'b1; // keep SCL high
                         sda_oen <= #1 1'b0; // keep SDA low
                         sda_chk <= #1 1'b0; // don't check SDA output
                     end
 
-                    stop_d:
+                    `stop_d:
                     begin
-                        c_state <= #1 idle;
+                        c_state <= #1 `idle;
                         cmd_ack <= #1 1'b1;
                         scl_oen <= #1 1'b1; // keep SCL high
                         sda_oen <= #1 1'b1; // set SDA high
@@ -504,33 +506,33 @@ module i2c_master_bit_ctrl (
                     end
 
                     // read
-                    rd_a:
+                    `rd_a:
                     begin
-                        c_state <= #1 rd_b;
+                        c_state <= #1 `rd_b;
                         scl_oen <= #1 1'b0; // keep SCL low
                         sda_oen <= #1 1'b1; // tri-state SDA
                         sda_chk <= #1 1'b0; // don't check SDA output
                     end
 
-                    rd_b:
+                    `rd_b:
                     begin
-                        c_state <= #1 rd_c;
+                        c_state <= #1 `rd_c;
                         scl_oen <= #1 1'b1; // set SCL high
                         sda_oen <= #1 1'b1; // keep SDA tri-stated
                         sda_chk <= #1 1'b0; // don't check SDA output
                     end
 
-                    rd_c:
+                    `rd_c:
                     begin
-                        c_state <= #1 rd_d;
+                        c_state <= #1 `rd_d;
                         scl_oen <= #1 1'b1; // keep SCL high
                         sda_oen <= #1 1'b1; // keep SDA tri-stated
                         sda_chk <= #1 1'b0; // don't check SDA output
                     end
 
-                    rd_d:
+                    `rd_d:
                     begin
-                        c_state <= #1 idle;
+                        c_state <= #1 `idle;
                         cmd_ack <= #1 1'b1;
                         scl_oen <= #1 1'b0; // set SCL low
                         sda_oen <= #1 1'b1; // keep SDA tri-stated
@@ -538,34 +540,34 @@ module i2c_master_bit_ctrl (
                     end
 
                     // write
-                    wr_a:
+                    `wr_a:
                     begin
-                        c_state <= #1 wr_b;
+                        c_state <= #1 `wr_b;
                         scl_oen <= #1 1'b0; // keep SCL low
                         sda_oen <= #1 din;  // set SDA
                         sda_chk <= #1 1'b0; // don't check SDA output (SCL low)
                     end
 
-                    wr_b:
+                    `wr_b:
                     begin
-                        c_state <= #1 wr_c;
+                        c_state <= #1 `wr_c;
                         scl_oen <= #1 1'b1; // set SCL high
                         sda_oen <= #1 din;  // keep SDA
                         sda_chk <= #1 1'b0; // don't check SDA output yet
                                             // allow some time for SDA and SCL to settle
                     end
 
-                    wr_c:
+                    `wr_c:
                     begin
-                        c_state <= #1 wr_d;
+                        c_state <= #1 `wr_d;
                         scl_oen <= #1 1'b1; // keep SCL high
                         sda_oen <= #1 din;
                         sda_chk <= #1 1'b1; // check SDA output
                     end
 
-                    wr_d:
+                    `wr_d:
                     begin
-                        c_state <= #1 idle;
+                        c_state <= #1 `idle;
                         cmd_ack <= #1 1'b1;
                         scl_oen <= #1 1'b0; // set SCL low
                         sda_oen <= #1 din;

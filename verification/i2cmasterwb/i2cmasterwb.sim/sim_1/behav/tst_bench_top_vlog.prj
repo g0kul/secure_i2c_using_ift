@@ -1,0 +1,13 @@
+# compile verilog/system verilog design source files
+verilog xil_defaultlib  "../../../i2cmasterwb.srcs/sources_1/imports/verilog/i2c_master_bit_ctrl.v"
+verilog xil_defaultlib  "../../../i2cmasterwb.srcs/sources_1/imports/verilog/i2c_master_byte_ctrl.v"
+verilog xil_defaultlib  "../../../i2cmasterwb.srcs/sources_1/imports/verilog/i2c_master_top.v"
+verilog xil_defaultlib  "../../../i2cmasterwb.srcs/sim_1/imports/verilog/i2c_slave_model.v"
+verilog xil_defaultlib  "../../../i2cmasterwb.srcs/sim_1/imports/verilog/wb_master_model.v"
+verilog xil_defaultlib  "../../../i2cmasterwb.srcs/sim_1/imports/verilog/tst_bench_top.v"
+
+# compile glbl module
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort

@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="tst_bench_top_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="glbl" />
+            <top_module name="tst_bench_top" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="0fs"></ZoomStartTime>
+      <ZoomEndTime time="1090206000001fs"></ZoomEndTime>
+      <Cursor1Time time="553269337000fs"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="290"></NameColumnWidth>
+      <ValueColumnWidth column_width="74"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="37" />
+   <wave_markers>
+      <marker label="" time="427516000000" />
+      <marker label="" time="326536000000" />
+   </wave_markers>
+   <wvobject type="logic" fp_name="/tst_bench_top/i2c_slave/scl">
+      <obj_property name="ElementShortName">scl</obj_property>
+      <obj_property name="ObjectShortName">scl</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tst_bench_top/i2c_slave/sda">
+      <obj_property name="ElementShortName">sda</obj_property>
+      <obj_property name="ObjectShortName">sda</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tst_bench_top/i2c_top/scl_pad_i">
+      <obj_property name="ElementShortName">scl_pad_i</obj_property>
+      <obj_property name="ObjectShortName">scl_pad_i</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tst_bench_top/i2c_top/scl_pad_o">
+      <obj_property name="ElementShortName">scl_pad_o</obj_property>
+      <obj_property name="ObjectShortName">scl_pad_o</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tst_bench_top/i2c_top/scl_padoen_o">
+      <obj_property name="ElementShortName">scl_padoen_o</obj_property>
+      <obj_property name="ObjectShortName">scl_padoen_o</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tst_bench_top/i2c_top/sda_pad_i">
+      <obj_property name="ElementShortName">sda_pad_i</obj_property>
+      <obj_property name="ObjectShortName">sda_pad_i</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tst_bench_top/i2c_top/sda_pad_o">
+      <obj_property name="ElementShortName">sda_pad_o</obj_property>
+      <obj_property name="ObjectShortName">sda_pad_o</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tst_bench_top/i2c_top/sda_padoen_o">
+      <obj_property name="ElementShortName">sda_padoen_o</obj_property>
+      <obj_property name="ObjectShortName">sda_padoen_o</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tst_bench_top/i2c_top/i2c_busy">
+      <obj_property name="ElementShortName">i2c_busy</obj_property>
+      <obj_property name="ObjectShortName">i2c_busy</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tst_bench_top/i2c_top/i2c_al">
+      <obj_property name="ElementShortName">i2c_al</obj_property>
+      <obj_property name="ObjectShortName">i2c_al</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tst_bench_top/i2c_top/al">
+      <obj_property name="ElementShortName">al</obj_property>
+      <obj_property name="ObjectShortName">al</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tst_bench_top/i2c_top/rd">
+      <obj_property name="ElementShortName">rd</obj_property>
+      <obj_property name="ObjectShortName">rd</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tst_bench_top/i2c_top/wr">
+      <obj_property name="ElementShortName">wr</obj_property>
+      <obj_property name="ObjectShortName">wr</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tst_bench_top/i2c_top/ack">
+      <obj_property name="ElementShortName">ack</obj_property>
+      <obj_property name="ObjectShortName">ack</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tst_bench_top/i2c_top/iack">
+      <obj_property name="ElementShortName">iack</obj_property>
+      <obj_property name="ObjectShortName">iack</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tst_bench_top/i2c_top/wb_clk_i">
+      <obj_property name="ElementShortName">wb_clk_i</obj_property>
+      <obj_property name="ObjectShortName">wb_clk_i</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tst_bench_top/i2c_top/wb_rst_i">
+      <obj_property name="ElementShortName">wb_rst_i</obj_property>
+      <obj_property name="ObjectShortName">wb_rst_i</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tst_bench_top/i2c_top/arst_i">
+      <obj_property name="ElementShortName">arst_i</obj_property>
+      <obj_property name="ObjectShortName">arst_i</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tst_bench_top/i2c_top/wb_adr_i">
+      <obj_property name="ElementShortName">wb_adr_i[2:0]</obj_property>
+      <obj_property name="ObjectShortName">wb_adr_i[2:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tst_bench_top/i2c_top/wb_dat_i">
+      <obj_property name="ElementShortName">wb_dat_i[7:0]</obj_property>
+      <obj_property name="ObjectShortName">wb_dat_i[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tst_bench_top/i2c_top/wb_we_i">
+      <obj_property name="ElementShortName">wb_we_i</obj_property>
+      <obj_property name="ObjectShortName">wb_we_i</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tst_bench_top/i2c_top/wb_stb_i">
+      <obj_property name="ElementShortName">wb_stb_i</obj_property>
+      <obj_property name="ObjectShortName">wb_stb_i</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tst_bench_top/i2c_top/wb_cyc_i">
+      <obj_property name="ElementShortName">wb_cyc_i</obj_property>
+      <obj_property name="ObjectShortName">wb_cyc_i</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tst_bench_top/i2c_top/wb_dat_o">
+      <obj_property name="ElementShortName">wb_dat_o[7:0]</obj_property>
+      <obj_property name="ObjectShortName">wb_dat_o[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tst_bench_top/i2c_top/wb_ack_o">
+      <obj_property name="ElementShortName">wb_ack_o</obj_property>
+      <obj_property name="ObjectShortName">wb_ack_o</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tst_bench_top/i2c_top/wb_inta_o">
+      <obj_property name="ElementShortName">wb_inta_o</obj_property>
+      <obj_property name="ObjectShortName">wb_inta_o</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tst_bench_top/i2c_top2/wb_clk_i">
+      <obj_property name="ElementShortName">wb_clk_i</obj_property>
+      <obj_property name="ObjectShortName">wb_clk_i</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tst_bench_top/i2c_top2/wb_rst_i">
+      <obj_property name="ElementShortName">wb_rst_i</obj_property>
+      <obj_property name="ObjectShortName">wb_rst_i</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tst_bench_top/i2c_top2/arst_i">
+      <obj_property name="ElementShortName">arst_i</obj_property>
+      <obj_property name="ObjectShortName">arst_i</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tst_bench_top/i2c_top2/wb_adr_i">
+      <obj_property name="ElementShortName">wb_adr_i[2:0]</obj_property>
+      <obj_property name="ObjectShortName">wb_adr_i[2:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tst_bench_top/i2c_top2/wb_dat_i">
+      <obj_property name="ElementShortName">wb_dat_i[7:0]</obj_property>
+      <obj_property name="ObjectShortName">wb_dat_i[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tst_bench_top/i2c_top2/wb_we_i">
+      <obj_property name="ElementShortName">wb_we_i</obj_property>
+      <obj_property name="ObjectShortName">wb_we_i</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tst_bench_top/i2c_top2/wb_stb_i">
+      <obj_property name="ElementShortName">wb_stb_i</obj_property>
+      <obj_property name="ObjectShortName">wb_stb_i</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tst_bench_top/i2c_top2/wb_cyc_i">
+      <obj_property name="ElementShortName">wb_cyc_i</obj_property>
+      <obj_property name="ObjectShortName">wb_cyc_i</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tst_bench_top/i2c_top2/wb_dat_o">
+      <obj_property name="ElementShortName">wb_dat_o[7:0]</obj_property>
+      <obj_property name="ObjectShortName">wb_dat_o[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tst_bench_top/i2c_top2/wb_ack_o">
+      <obj_property name="ElementShortName">wb_ack_o</obj_property>
+      <obj_property name="ObjectShortName">wb_ack_o</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tst_bench_top/i2c_top2/wb_inta_o">
+      <obj_property name="ElementShortName">wb_inta_o</obj_property>
+      <obj_property name="ObjectShortName">wb_inta_o</obj_property>
+   </wvobject>
+</wave_config>

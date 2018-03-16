@@ -22,8 +22,38 @@
 
 //`include "i2c_sys_defines.vh"
 
+`define PRER_LO 3'b000
+`define PRER_HI 3'b001
+`define CTR     3'b010
+`define RXR     3'b011
+`define TXR     3'b011
+`define CR      3'b100
+`define SR      3'b100
+
+`define TXR_R   3'b101 // undocumented / reserved output
+`define CR_R    3'b110 // undocumented / reserved output
+
+`define RD      1'b1
+`define WR      1'b0
+`define SADDR1  7'b0010_000
+`define SADDR2  7'b0100_000
+
+//state machine
+`define ST_IDLE 			4'd0
+`define ST_WR_PRER_LO 	4'd1
+`define ST_WR_PRER_HI 	4'd2
+`define ST_WR_CTR 		4'd3
+`define ST_WR_SLADR_W 	4'd4
+`define ST_WR_CR 			4'd5
+`define ST_RD_ACK 		4'd6
+`define ST_WR_MEM_ADDR 	4'd7
+`define ST_WR_SLADR_R 	4'd8
+`define ST_RD_INIT 		4'd9
+`define ST_RD_DATA 		4'd10
+
+
 module i2c_sys_top
-(clk, rst, doamin, start, done, slave_addr, read_data_out, wb_addr, wb_wr_data, wb_rd_data, wb_we, wb_stb, wb_cyc, wb_ack, wb_inta);
+(clk, rst, domain, start, done, slave_addr, read_data_out, wb_addr, wb_wr_data, wb_rd_data, wb_we, wb_stb, wb_cyc, wb_ack, wb_inta);
 
 	//
 	// wires && regs
@@ -79,34 +109,6 @@ module i2c_sys_top
 
 	//params
 	//wb
-	wire {Ctrl Domain} PRER_LO = 3'b000;
-	wire {Ctrl Domain} PRER_HI = 3'b001;
-	wire {Ctrl Domain} CTR     = 3'b010;
-	wire {Ctrl Domain} RXR     = 3'b011;
-	wire {Ctrl Domain} TXR     = 3'b011;
-	wire {Ctrl Domain} CR      = 3'b100;
-	wire {Ctrl Domain} SR      = 3'b100;
-
-	wire {Ctrl Domain} TXR_R   = 3'b101; // undocumented / reserved output
-	wire {Ctrl Domain} CR_R    = 3'b110; // undocumented / reserved output
-
-	wire {Ctrl Domain} RD      = 1'b1;
-	wire {Ctrl Domain} WR      = 1'b0;
-	wire {Ctrl Domain} SADDR1  = 7'b0010_000;
-    wire {Ctrl Domain} SADDR2  = 7'b0100_000;
-
-    //state machine
-	wire {Ctrl Domain} ST_IDLE 			= 4'd0;
-	wire {Ctrl Domain} ST_WR_PRER_LO 	= 4'd1;
-	wire {Ctrl Domain} ST_WR_PRER_HI 	= 4'd2;
-	wire {Ctrl Domain} ST_WR_CTR 		= 4'd3;
-	wire {Ctrl Domain} ST_WR_SLADR_W 	= 4'd4;
-	wire {Ctrl Domain} ST_WR_CR 			= 4'd5;
-	wire {Ctrl Domain} ST_RD_ACK 		= 4'd6;
-	wire {Ctrl Domain} ST_WR_MEM_ADDR 	= 4'd7;
-	wire {Ctrl Domain} ST_WR_SLADR_R 	= 4'd8;
-	wire {Ctrl Domain} ST_RD_INIT 		= 4'd9;
-	wire {Ctrl Domain} ST_RD_DATA 		= 4'd10;
 
 
 
@@ -130,15 +132,15 @@ module i2c_sys_top
 			begin
 				if(start == 1'b1)
 				begin
-					n_wb_state = ST_WR_PRER_LO;
+					n_wb_state = `ST_WR_PRER_LO;
 				end
 			end
 
-			ST_WR_PRER_LO:
+			`ST_WR_PRER_LO:
 			begin
 				if(wb_ack == 1'b0)
 				begin
-					n_wb_addr = PRER_LO;
+					n_wb_addr = `PRER_LO;
 					n_wb_wr_data = 8'hc8;
 					n_wb_we = 1'b1;
 					n_wb_stb = 1'b1;
@@ -149,15 +151,15 @@ module i2c_sys_top
 					n_wb_we = 1'bx;
 					n_wb_stb = 1'bx;
 					n_wb_cyc = 1'b0;
-					n_wb_state = ST_WR_PRER_HI;
+					n_wb_state = `ST_WR_PRER_HI;
 				end
 			end
 
-			ST_WR_PRER_HI:
+			`ST_WR_PRER_HI:
 			begin
 				if(wb_ack == 1'b0)
 				begin
-					n_wb_addr = PRER_HI;
+					n_wb_addr = `PRER_HI;
 					n_wb_wr_data = 8'h00;
 					n_wb_we = 1'b1;
 					n_wb_stb = 1'b1;
@@ -168,15 +170,15 @@ module i2c_sys_top
 					n_wb_we = 1'bx;
 					n_wb_stb = 1'bx;
 					n_wb_cyc = 1'b0;
-					n_wb_state = ST_WR_CTR;
+					n_wb_state = `ST_WR_CTR;
 				end
 			end
 
-			ST_WR_CTR:
+			`ST_WR_CTR:
 			begin
 				if(wb_ack == 1'b0)
 				begin
-					n_wb_addr = CTR;
+					n_wb_addr = `CTR;
 					n_wb_wr_data = 8'h80;
 					n_wb_we = 1'b1;
 					n_wb_stb = 1'b1;
@@ -188,18 +190,18 @@ module i2c_sys_top
 					n_wb_stb = 1'bx;
 					n_wb_cyc = 1'b0;
 
-					n_wb_state = ST_WR_SLADR_W;	//Write sl addr with write bit, write cr reg
+					n_wb_state = `ST_WR_SLADR_W;	//Write sl addr with write bit, write cr reg
 												//and also checks for ack
-					n_wb_state_d1 = ST_WR_MEM_ADDR;
+					n_wb_state_d1 = `ST_WR_MEM_ADDR;
 				end
 			end
 
-			ST_WR_SLADR_W:
+			`ST_WR_SLADR_W:
 			begin
 				if(wb_ack == 1'b0)
 				begin
-					n_wb_addr = TXR;
-					n_wb_wr_data = {slave_addr,WR};
+					n_wb_addr = `TXR;
+					n_wb_wr_data = {slave_addr,`WR};
 					n_wb_we = 1'b1;
 					n_wb_stb = 1'b1;
 					n_wb_cyc = 1'b1;
@@ -210,16 +212,16 @@ module i2c_sys_top
 					n_wb_stb = 1'bx;
 					n_wb_cyc = 1'b0;
 
-					n_wb_state = ST_WR_CR;	//write to CR and check for ack
+					n_wb_state = `ST_WR_CR;	//write to CR and check for ack
 					n_wb_cr_data = 8'h90;
 				end
 			end
 
-			ST_WR_CR:
+			`ST_WR_CR:
 			begin
 				if(wb_ack == 1'b0)
 				begin
-					n_wb_addr = CR;
+					n_wb_addr = `CR;
 					n_wb_wr_data = wb_cr_data;
 					n_wb_we = 1'b1;
 					n_wb_stb = 1'b1;
@@ -231,20 +233,26 @@ module i2c_sys_top
 					n_wb_stb = 1'bx;
 					n_wb_cyc = 1'b0;
 				
-					n_wb_state = ST_RD_ACK;
+					n_wb_state = `ST_RD_ACK;
 				end
 			end
 
-			ST_RD_ACK:
+			`ST_RD_ACK:
 			begin
-				if((wb_ack == 1'b0)|(wb_rd_data[1] == 1'b1))
+				if(wb_ack == 1'b0)
 				begin
-					n_wb_addr = SR;
+					n_wb_addr = `SR;
 					n_wb_we = 1'b0;
 					n_wb_stb = 1'b1;
 					n_wb_cyc = 1'b1;
 				end
-				else
+				else if (wb_rd_data[1] == 1'b1)
+				begin
+					n_wb_addr = `SR;
+					n_wb_we = 1'b0;
+					n_wb_stb = 1'b1;
+					n_wb_cyc = 1'b1;
+				end
 				begin
 					n_wb_rd_data = wb_rd_data;	//cap from ip
 					n_wb_we = 1'bx;
@@ -255,11 +263,11 @@ module i2c_sys_top
 				end
 			end
 
-			ST_WR_MEM_ADDR:
+			`ST_WR_MEM_ADDR:
 			begin
 				if(wb_ack == 1'b0)
 				begin
-					n_wb_addr = TXR;
+					n_wb_addr = `TXR;
 					n_wb_wr_data = 8'h06;  //mem addr
 					n_wb_we = 1'b1;
 					n_wb_stb = 1'b1;
@@ -271,18 +279,18 @@ module i2c_sys_top
 					n_wb_stb = 1'bx;
 					n_wb_cyc = 1'b0;
 
-					n_wb_state = ST_WR_CR;	//write to CR and check for ack
+					n_wb_state = `ST_WR_CR;	//write to CR and check for ack
 					n_wb_cr_data = 8'h10;
-					n_wb_state_d1 = ST_WR_SLADR_R;
+					n_wb_state_d1 = `ST_WR_SLADR_R;
 				end
 			end
 
-			ST_WR_SLADR_R:
+			`ST_WR_SLADR_R:
 			begin
 				if(wb_ack == 1'b0)
 				begin
-					n_wb_addr = TXR;
-					n_wb_wr_data = {slave_addr,RD};
+					n_wb_addr = `TXR;
+					n_wb_wr_data = {slave_addr,`RD};
 					n_wb_we = 1'b1;
 					n_wb_stb = 1'b1;
 					n_wb_cyc = 1'b1;
@@ -293,24 +301,24 @@ module i2c_sys_top
 					n_wb_stb = 1'bx;
 					n_wb_cyc = 1'b0;
 
-					n_wb_state = ST_WR_CR;	//write to CR and check for ack
+					n_wb_state = `ST_WR_CR;	//write to CR and check for ack
 					n_wb_cr_data = 8'h90;
-					n_wb_state_d1 = ST_RD_INIT;
+					n_wb_state_d1 = `ST_RD_INIT;
 				end
 			end
 
-			ST_RD_INIT:
+			`ST_RD_INIT:
 			begin
-				n_wb_state = ST_WR_CR;	//write to CR and check for ack
+				n_wb_state = `ST_WR_CR;	//write to CR and check for ack
 				n_wb_cr_data = 8'h28;
-				n_wb_state_d1 = ST_RD_DATA;
+				n_wb_state_d1 = `ST_RD_DATA;
 			end
 
-			ST_RD_DATA:
+			`ST_RD_DATA:
 			begin
 				if(wb_ack == 1'b0)
 				begin
-					n_wb_addr = RXR;
+					n_wb_addr = `RXR;
 					n_wb_we = 1'b0;
 					n_wb_stb = 1'b1;
 					n_wb_cyc = 1'b1;
@@ -323,7 +331,7 @@ module i2c_sys_top
 					n_wb_cyc = 1'b0;
 
                     n_done = 1'b1;          //Assert Done
-					n_wb_state = ST_IDLE;
+					n_wb_state = `ST_IDLE;
 				end
 				//read similar to RD_ACK
 			end
@@ -336,8 +344,8 @@ module i2c_sys_top
 		if (rst)
 		begin
 			// reset
-			wb_state <= ST_IDLE;
-			wb_state_d1 <= ST_IDLE;
+			wb_state <= `ST_IDLE;
+			wb_state_d1 <= `ST_IDLE;
 			wb_cr_data <= {8{1'b0}};
 			wb_rd_data_r <= {8{1'bx}};
 

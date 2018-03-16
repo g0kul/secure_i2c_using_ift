@@ -1,0 +1,21 @@
+Vivado Simulator 2017.2
+Time resolution is 1 ps
+
+status:                    0 Testbench started
+
+
+status:                15000 done reset
+
+status:                    0 Testbench started
+
+
+status:                15000 done reset
+
+READ from 1 : 56
+
+READ from 2 : 56
+
+Done? : 0
+
+
+status:            410746000 Testbench done

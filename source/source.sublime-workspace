@@ -4,6 +4,14 @@
 		"selected_items":
 		[
 			[
+				"scl_s",
+				"scl_S2"
+			],
+			[
+				"sda_s",
+				"sda_S1"
+			],
+			[
 				"i2c",
 				"i2c_sl_address"
 			],
@@ -96,6 +104,15 @@
 			"settings":
 			{
 				"buffer_size": 11868,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "i2c_world_top.v",
+			"settings":
+			{
+				"buffer_size": 6759,
+				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		},
@@ -340,7 +357,7 @@
 	],
 	"find":
 	{
-		"height": 23.0
+		"height": 39.0
 	},
 	"find_in_files":
 	{
@@ -354,6 +371,11 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"scl_S1",
+			"count",
+			"high_imp",
+			"scl_S1",
+			"count",
 			"i2c_sl_address",
 			"done",
 			"wb_rd_data",
@@ -545,6 +567,36 @@
 				},
 				{
 					"buffer": 2,
+					"file": "i2c_world_top.v",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 6759,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								5935,
+								5935
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Verilog/Verilog.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 3112.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
 					"file": "i2cSlave.v",
 					"semi_transient": false,
 					"settings":
@@ -556,8 +608,8 @@
 						"selection":
 						[
 							[
-								0,
-								0
+								4574,
+								4574
 							]
 						],
 						"settings":
@@ -567,10 +619,10 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 315.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 3,
 					"type": "text"
 				}
 			]
@@ -580,7 +632,7 @@
 			"sheets":
 			[
 				{
-					"buffer": 3,
+					"buffer": 4,
 					"file": "check_security.cp",
 					"semi_transient": false,
 					"settings":
@@ -602,15 +654,15 @@
 							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
-						"translation.x": 977.0,
+						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 4,
 					"type": "text"
 				},
 				{
-					"buffer": 4,
+					"buffer": 5,
 					"file": "i2cSlave_define.v",
 					"semi_transient": false,
 					"settings":
@@ -634,11 +686,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
+					"stack_index": 5,
 					"type": "text"
 				},
 				{
-					"buffer": 5,
+					"buffer": 6,
 					"file": "/home/gokul/playground/secverilog/i2c_ift/examples/mux/submodule2.v",
 					"semi_transient": false,
 					"settings":
@@ -664,11 +716,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 5,
+					"stack_index": 6,
 					"type": "text"
 				},
 				{
-					"buffer": 6,
+					"buffer": 7,
 					"file": "/home/gokul/playground/secverilog/i2c_ift/examples/mux/submodule.v",
 					"semi_transient": false,
 					"settings":
@@ -692,7 +744,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 6,
+					"stack_index": 7,
 					"type": "text"
 				}
 			]

@@ -25,6 +25,17 @@
 `include "i2c_master_top.v"
 `include "i2c_sys_top.v"
 
+
+//Params
+`define M_SEL_ADDR1    7'h10
+`define M_SEL_ADDR2     7'h20
+
+`define W_ST_IDLE      3'd0
+`define W_ST_RD1_START 3'd1
+`define W_ST_RD1_WAIT  3'd2
+`define W_ST_RD2_START 3'd3
+`define W_ST_RD2_WAIT  3'd4
+
 module i2c_world_top
 (
     input           {L} clk,
@@ -66,14 +77,14 @@ module i2c_world_top
     wire {Ctrl domain} sda0_o;
     wire {Ctrl domain} sda0_oen;
     
-    reg [6:0]  {L} i2c_slave_addr;
+    reg [6:0]  {Ctrl domain} i2c_slave_addr;
     wire [7:0] {Data domain} i2c_read_data_out;
     
-    reg [6:0]  {L} n_i2c_slave_addr;
+    reg [6:0]  {Ctrl domain} n_i2c_slave_addr;
     reg [7:0]  {Data domain} rd_data_out;
     reg [7:0]  {Data domain} n_rd_data_out;
     
-    wire {L1} high_imp = 1'bz;
+    wire {L} high_imp = 1'bz;
     
     //SM
     reg [2:0] {Ctrl domain} world_state;
@@ -83,18 +94,8 @@ module i2c_world_top
     reg       {Ctrl domain} done_r;
     reg       {Ctrl domain} n_done_r;
 
-	//Params
-    wire [6:0] {L} M_SEL_ADDR1 = 7'h10;
-    wire [6:0] {L} M_SEL_ADDR2 = 7'h20;
-    
-    wire [2:0] {Ctrl domain} W_ST_IDLE = 3'd0;
-    wire [2:0] {Ctrl domain} W_ST_RD1_START = 3'd1;
-    wire [2:0] {Ctrl domain} W_ST_RD1_WAIT = 3'd2;
-    wire [2:0] {Ctrl domain} W_ST_RD2_START = 3'd3;
-    wire [2:0] {Ctrl domain} W_ST_RD2_WAIT = 3'd4;
 
     //time mux
-    reg [7:0] {L} count;
     wire {D1} scl_S1;
     wire {D1} sda_S1;
     wire {D2} scl_S2;
@@ -110,42 +111,42 @@ module i2c_world_top
         n_done_r = 1'b0;
         
         case (world_state)
-            W_ST_IDLE:
+            `W_ST_IDLE:
             begin
                 if(start == 1'b1)
                 begin
-                    n_world_state = W_ST_RD1_START;
+                    n_world_state = `W_ST_RD1_START;
                 end
             end
-            W_ST_RD1_START:
+            `W_ST_RD1_START:
             begin
-                n_i2c_slave_addr = M_SEL_ADDR1;
+                n_i2c_slave_addr = `M_SEL_ADDR1;
                 n_start_sys = 1'b1;
-                n_world_state = W_ST_RD1_WAIT;
+                n_world_state = `W_ST_RD1_WAIT;
             end
-            W_ST_RD1_WAIT:
+            `W_ST_RD1_WAIT:
             begin
                 if(done_sys == 1'b1)
                 begin
                     n_rd_data_out = i2c_read_data_out;
                     n_rd_valid = 1'b1;
-                    n_world_state = W_ST_RD2_START;
+                    n_world_state = `W_ST_RD2_START;
                 end
             end
-            W_ST_RD2_START:
+            `W_ST_RD2_START:
             begin
-                n_i2c_slave_addr = M_SEL_ADDR2;
+                n_i2c_slave_addr = `M_SEL_ADDR2;
                 n_start_sys = 1'b1;
-                n_world_state = W_ST_RD1_WAIT;
+                n_world_state = `W_ST_RD1_WAIT;
             end
-            W_ST_RD2_WAIT:
+            `W_ST_RD2_WAIT:
             begin
                 if(done_sys == 1'b1)
                 begin
                     n_rd_data_out = i2c_read_data_out;
                     n_rd_valid = 1'b1;
                     n_done_r = 1'b1;
-                    n_world_state = W_ST_IDLE;
+                    n_world_state = `W_ST_IDLE;
                 end
             end
         endcase
@@ -155,7 +156,7 @@ module i2c_world_top
     begin
         if(rst == 1'b1)
         begin
-            world_state <= W_ST_IDLE;
+            world_state <= `W_ST_IDLE;
             i2c_slave_addr <= 7'd0;
             rd_data_out <= 8'd0;
             rd_valid    <= 1'b0;
@@ -178,23 +179,10 @@ module i2c_world_top
     assign done = done_r;
 
     //for time multiplexing
-    always @(posedge clk or posedge rst)
-    begin
-        if (rst)
-        begin
-            // reset
-            count <= 8'd0;
-        end
-        else
-        begin
-            count <= count + 8'd1;
-        end
-    end
-
-    assign scl_S1 = (count[7] == 1'b1) & (domain == 1'b0) ? scl : high_imp;
-    assign sda_S1 = (count[7] == 1'b1) & (domain == 1'b0) ? sda : high_imp;
-    assign scl_S2 = (count[7] == 1'b1) & (domain == 1'b1) ? scl : high_imp;
-    assign sda_S2 = (count[7] == 1'b1) & (domain == 1'b1) ? sda : high_imp;
+    assign scl_S1 = (domain == 1'b0) ? scl : high_imp;
+    assign sda_S1 = (domain == 1'b0) ? sda : high_imp;
+    assign scl_S2 = (domain == 1'b1) ? scl : high_imp;
+    assign sda_S2 = (domain == 1'b1) ? sda : high_imp;
 
     
     i2c_sys_top i2c_master_ctrl0 (
@@ -249,7 +237,7 @@ module i2c_world_top
       .rst(rst),
       .domain(1'b0),
 
-      .i2c_sl_address(M_SEL_ADDR1),
+      .i2c_sl_address(`M_SEL_ADDR1),
       .sda(sda_S1),
       .scl(scl_S1),
       .myReg4(8'h12),
@@ -263,7 +251,7 @@ module i2c_world_top
       .rst(rst),
       .domain(1'b1),
 
-      .i2c_sl_address(M_SEL_ADDR2),
+      .i2c_sl_address(`M_SEL_ADDR2),
       .sda(sda_S2),
       .scl(scl_S2),
       .myReg4(8'h90),

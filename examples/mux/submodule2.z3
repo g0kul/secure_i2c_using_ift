@@ -78,37 +78,7 @@
 
 
 (push)
-(assert  (not(leq (Domain 0)  D2)))    ; Instantiate parameter out in module submodule @submodule2.v:20
-(check-sat)
-(pop)
-
-
-(push)
-(assert  (not(leq D1  D1)))    ; Instantiate parameter in1 in module submodule @submodule2.v:29
-(check-sat)
-(pop)
-
-
-(push)
-(assert  (not(leq D2  D2)))    ; Instantiate parameter in2 in module submodule @submodule2.v:29
-(check-sat)
-(pop)
-
-
-(push)
-(assert  (not(leq LOW  LOW)))    ; Instantiate parameter sel in module submodule @submodule2.v:29
-(check-sat)
-(pop)
-
-
-(push)
-(assert  (not(leq D2  (Domain 1))))    ; Instantiate parameter in3 in module submodule @submodule2.v:29
-(check-sat)
-(pop)
-
-
-(push)
-(assert  (not(leq (Domain 1)  D2)))    ; Instantiate parameter out in module submodule @submodule2.v:29
+(assert  (not(leq (Domain 0)  D1)))    ; Instantiate parameter out in module submodule @submodule2.v:20
 (check-sat)
 (pop)
 
