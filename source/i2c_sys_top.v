@@ -53,14 +53,13 @@
 
 
 module i2c_sys_top
-(clk, rst, domain, domain_i2c, start, done, slave_addr, read_data_out, wb_addr, wb_wr_data, wb_rd_data, wb_we, wb_stb, wb_cyc, wb_ack, wb_inta);
+(clk, rst, domain_i2c, start, done, slave_addr, read_data_out, wb_addr, wb_wr_data, wb_rd_data, wb_we, wb_stb, wb_cyc, wb_ack, wb_inta);
 
 	//
 	// wires && regs
 	//
 	input 					{L} clk;
 	input 					{L} rst;
-	input					{L} domain;
 	input					{L} domain_i2c;
 
 	input 					{L} start;
