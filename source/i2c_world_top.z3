@@ -118,7 +118,7 @@
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; assign domain_i2c = master_tick_count[19] @i2c_world_top.v:127
+(assert  (not(leq LOW  LOW)))    ; assign domain_i2c = master_tick_count[16] @i2c_world_top.v:127
 (check-sat)
 (pop)
 
@@ -544,13 +544,13 @@
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; master_tick_count <= {20{0}} @i2c_world_top.v:118
+(assert  (not(leq LOW  LOW)))    ; master_tick_count <= {17{0}} @i2c_world_top.v:118
 (check-sat)
 (pop)
 
 
 (push)
-(assert  (not(leq LOW  LOW)))    ; master_tick_count <= (master_tick_count)+({{(20)-(1){0}}, 1}) @i2c_world_top.v:122
+(assert  (not(leq LOW  LOW)))    ; master_tick_count <= (master_tick_count)+({{(17)-(1){0}}, 1}) @i2c_world_top.v:122
 (check-sat)
 (pop)
 

@@ -36,8 +36,8 @@
 `define W_ST_RD2_START 3'd3
 `define W_ST_RD2_WAIT  3'd4
 
-`define MASTER_MUX_BIT0         19 //524288 clocks max (as per sim 410755) for rd one 8b reg from slave
-`define MASTER_MUX_BIT_WIDTH    20 //MASTER_MUX_BIT0 + log_base2_of_number_of_slaves , here 2 slaves so +1;
+`define MASTER_MUX_BIT0         16 //65536 clocks max (as per sim 41076) for rd one 8b reg from slave
+`define MASTER_MUX_BIT_WIDTH    17 //MASTER_MUX_BIT0 + log_base2_of_number_of_slaves , here 2 slaves so +1;
 
 module i2c_world_top
 (
